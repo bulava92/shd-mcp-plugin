@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-notes-tree",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69107,
+      "gzipBytes": 18849,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/notes-tree/v1.html",
+      "sha256": "aa953f233c4783e336f88a8680e37e0f124a2abd4d4d9ee6bd9c433ba0ee284b"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/notes-tree/v1/index.html"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-agents-health",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69113,
+      "gzipBytes": 18846,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/agents-health/v1.html",
+      "sha256": "d7042f24d6bce4b94db2726c252def333bb99c619295c85a8fb4855788c35373"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/agents-health/v1/index.html"
+  }
+}

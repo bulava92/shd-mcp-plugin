@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-team-workload",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69113,
+      "gzipBytes": 18848,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/team-workload/v1.html",
+      "sha256": "6cf33fa3b892b1947fae4947c61a010a2b66970b9cf8acf4f6e205abbe3093ae"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/team-workload/v1/index.html"
+  }
+}

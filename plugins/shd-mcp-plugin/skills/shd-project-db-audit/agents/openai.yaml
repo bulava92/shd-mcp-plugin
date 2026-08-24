@@ -1,0 +1,5 @@
+interface:
+  display_name: ProjectBase audit
+  short_description: Read-only schema and data audit
+policy:
+  allow_implicit_invocation: false

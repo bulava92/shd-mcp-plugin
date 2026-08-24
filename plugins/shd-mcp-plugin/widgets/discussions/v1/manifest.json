@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-discussions",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 41405,
+      "gzipBytes": 12425,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/discussions/v1.html",
+      "sha256": "9a5b3fd821139066be25a8b0ef920a94b38f4e1b0f9b71a290f9fc0fc7104897"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/discussions/v1/index.html"
+  }
+}

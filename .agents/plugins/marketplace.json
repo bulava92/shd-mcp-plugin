@@ -1,0 +1,20 @@
+{
+  "name": "shd-public",
+  "interface": {
+    "displayName": "SHD Public Plugins"
+  },
+  "plugins": [
+    {
+      "name": "shd-mcp-plugin",
+      "source": {
+        "source": "local",
+        "path": "./plugins/shd-mcp-plugin"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD notifications"
+  short_description: "Review alerts and notification state"
+policy:
+  allow_implicit_invocation: false

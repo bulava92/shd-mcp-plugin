@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD inventory"
+  short_description: "Audit stock, assets and procurement"
+policy:
+  allow_implicit_invocation: false

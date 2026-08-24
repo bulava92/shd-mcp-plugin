@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD analytics
+  short_description: Metrics, comparisons and reports
+policy:
+  allow_implicit_invocation: false

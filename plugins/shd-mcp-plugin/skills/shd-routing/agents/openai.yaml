@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD routing and safety
+  short_description: Route requests to safe MCP tools
+policy:
+  allow_implicit_invocation: false

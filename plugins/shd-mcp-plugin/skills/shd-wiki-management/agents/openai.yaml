@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD Wiki and notes
+  short_description: Pages, revisions and note databases
+policy:
+  allow_implicit_invocation: false

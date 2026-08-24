@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-project-db",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 41403,
+      "gzipBytes": 12423,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/project-db/v1.html",
+      "sha256": "1eab29c71fcd79c4e50de88fd9d3e231f845793fc507134ba393fc0b74fc6024"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/project-db/v1/index.html"
+  }
+}

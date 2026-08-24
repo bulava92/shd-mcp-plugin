@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD project status
+  short_description: Project summaries and risks
+policy:
+  allow_implicit_invocation: false

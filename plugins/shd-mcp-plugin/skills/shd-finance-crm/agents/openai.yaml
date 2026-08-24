@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD finance and CRM
+  short_description: Finance and customer workflows
+policy:
+  allow_implicit_invocation: false

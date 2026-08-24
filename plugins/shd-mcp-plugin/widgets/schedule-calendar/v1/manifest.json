@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-schedule-calendar",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69121,
+      "gzipBytes": 18846,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/schedule-calendar/v1.html",
+      "sha256": "c8fa40e545beb126b55fb1834a9e7025b8b31990e2aa9bf4a73698b9ebe3714f"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/schedule-calendar/v1/index.html"
+  }
+}

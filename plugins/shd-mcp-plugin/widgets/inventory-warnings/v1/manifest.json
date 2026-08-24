@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-inventory-warnings",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69123,
+      "gzipBytes": 18847,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/inventory-warnings/v1.html",
+      "sha256": "01c17190678fb59ec142c4c5356558d8946ee2200169557035d329fb100022d1"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/inventory-warnings/v1/index.html"
+  }
+}

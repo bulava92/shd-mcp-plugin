@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD documents"
+  short_description: "Inspect and safely manage documents"
+policy:
+  allow_implicit_invocation: false

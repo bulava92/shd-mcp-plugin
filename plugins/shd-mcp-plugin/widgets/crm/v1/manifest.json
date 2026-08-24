@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-crm",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "uri": "ui://shd/crm/v1.html",
+      "mediaType": "text/html;profile=mcp-app",
+      "bytes": 35819,
+      "sha256": "f8f91a266320065738372c23e8376c370694ee9c0ec7f8283372ebf9f67cb364",
+      "gzipBytes": 9477
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/crm/v1/index.html"
+  }
+}

@@ -1,0 +1,949 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      color-scheme: light dark;
+      font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --bg: #f8fafc;
+      --surface: #e8edf2;
+      --surface-hover: #e1e8ef;
+      --border: rgba(31, 41, 55, .16);
+      --text: rgb(29, 31, 37);
+      --muted: rgb(97, 102, 112);
+      --accent: rgb(83, 89, 101);
+      --accent-soft: rgba(75, 85, 99, .12);
+      --success: #16794b;
+      --success-soft: #e6f7ef;
+      --warning: #9a6100;
+      --warning-soft: #fff4d8;
+      --danger: #b42318;
+      --danger-soft: #ffebe9;
+      --shadow: 0 0 0 1px rgba(15, 23, 42, .07), 0 8px 22px rgba(15, 23, 42, .11);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #202020;
+        --surface: #292929;
+        --surface-hover: #303336;
+        --border: #43474c;
+        --text: #eaecf0;
+        --muted: #96999d;
+        --accent: #c7b07a;
+        --accent-soft: rgba(199, 176, 122, .18);
+        --success: #70d4a4;
+        --success-soft: #173d31;
+        --warning: #f4c467;
+        --warning-soft: #4b3918;
+        --danger: #ff9b91;
+        --danger-soft: #512522;
+        --shadow: 0 10px 26px rgba(0, 0, 0, .34);
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); }
+    button, input { font: inherit; }
+    button { color: inherit; }
+    .app { padding: 16px; max-width: 900px; margin: 0 auto; }
+    .header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+    h1 { margin: 0; font-size: 20px; line-height: 1.25; letter-spacing: -.01em; }
+    .subtitle { margin: 5px 0 0; color: var(--muted); font-size: 13px; }
+    .toolbar { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+    .search { flex: 1; min-width: 0; border: 1px solid var(--border); border-radius: 9px; padding: 9px 11px; background: var(--bg); color: var(--text); outline: none; }
+    .search:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+    .button { border: 1px solid var(--border); border-radius: 9px; padding: 8px 11px; background: var(--surface); cursor: pointer; white-space: nowrap; }
+    .button:hover { background: var(--surface-hover); }
+    .button:focus-visible, .project-row:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+    .button:disabled { cursor: wait; opacity: .62; }
+    .summary { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+    .summary-item { border-radius: 999px; padding: 5px 9px; background: var(--surface); color: var(--muted); font-size: 12px; }
+    .summary-item strong { color: var(--text); font-weight: 650; }
+    .table { border: 1px solid var(--border); border-radius: 11px; overflow: hidden; box-shadow: var(--shadow); }
+    .table-head, .project-row { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(130px, .8fr) minmax(110px, .7fr); gap: 12px; align-items: center; }
+    .table-head { padding: 9px 12px; background: var(--surface); color: var(--muted); font-size: 11px; font-weight: 650; text-transform: uppercase; letter-spacing: .04em; }
+    .project-row { width: 100%; border: 0; border-top: 1px solid var(--border); padding: 12px; background: var(--bg); text-align: left; cursor: pointer; }
+    .project-row:hover { background: var(--surface-hover); }
+    .project-name { min-width: 0; }
+    .project-title { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 620; }
+    .project-code { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; }
+    .deadline { color: var(--text); font-size: 13px; }
+    .deadline.missing { color: var(--muted); }
+    .deadline.overdue { color: var(--danger); font-weight: 620; }
+    .status { display: inline-flex; width: fit-content; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; border-radius: 999px; padding: 5px 9px; font-size: 12px; font-weight: 620; }
+    .status-neutral { background: var(--surface); color: var(--muted); }
+    .status-progress { background: var(--accent-soft); color: var(--accent); }
+    .status-done { background: var(--success-soft); color: var(--success); }
+    .status-warning { background: var(--warning-soft); color: var(--warning); }
+    .status-danger { background: var(--danger-soft); color: var(--danger); }
+    .empty, .error { padding: 22px 14px; color: var(--muted); text-align: center; }
+    .error { color: var(--danger); }
+    .details { margin-top: 14px; padding: 14px; border: 1px solid var(--border); border-radius: 11px; background: var(--surface); }
+    .details[hidden], .error[hidden] { display: none; }
+    .details-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .details-title { margin: 0; font-size: 16px; }
+    .details-code { margin: 3px 0 0; color: var(--muted); font-size: 12px; }
+    .details-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 14px 0 0; }
+    .detail-label { display: block; margin-bottom: 3px; color: var(--muted); font-size: 11px; }
+    .detail-value { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 13px; }
+    .loading { color: var(--muted); font-size: 13px; }
+    @media (max-width: 600px) {
+      .app { padding: 12px; }
+      .header { display: block; }
+      .header .button { margin-top: 10px; }
+      .table-head, .project-row { grid-template-columns: minmax(0, 1.4fr) minmax(100px, .8fr) minmax(90px, .7fr); gap: 8px; }
+      .table-head, .project-row { padding-left: 9px; padding-right: 9px; }
+      .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+<style data-shd-widget-write-actions="css">
+.shd-widget-actions{margin-top:14px;padding:14px;border:1px solid var(--border,rgba(31,41,55,.16));border-radius:11px;background:var(--surface,#e8edf2);color:var(--text,#1d1f25)}
+.shd-widget-actions[hidden]{display:none}
+.shd-widget-actions-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.shd-widget-actions-selection{overflow:hidden;color:var(--muted,#616670);font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+.shd-widget-actions-select,.shd-widget-actions-input{width:100%;border:1px solid var(--border,rgba(31,41,55,.16));border-radius:8px;padding:8px 10px;background:var(--bg,#f8fafc);color:var(--text,#1d1f25)}
+.shd-widget-actions-select:focus,.shd-widget-actions-input:focus{border-color:var(--accent,#535963);outline:0;box-shadow:0 0 0 3px var(--accent-soft,rgba(75,85,99,.12))}
+.shd-widget-actions-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.shd-widget-actions-field{display:grid;gap:4px;color:var(--muted,#616670);font-size:11px}
+.shd-widget-actions-field:has(textarea){grid-column:span 2}
+.shd-widget-actions-field input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent,#535963)}
+.shd-widget-actions-confirm{display:flex;grid-column:1/-1;align-items:center;gap:7px;color:var(--text,#1d1f25);font-size:12px}
+.shd-widget-actions-warning,.shd-widget-actions-hint{grid-column:1/-1;color:var(--muted,#616670);font-size:12px}
+.shd-widget-actions-danger{color:var(--danger,#b42318)}
+.shd-widget-actions-status{min-height:18px;margin-top:9px;color:var(--muted,#616670);font-size:12px}
+.shd-widget-actions-status-error{color:var(--danger,#b42318)}
+.shd-widget-actions-buttons{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.shd-widget-actions-buttons button{border:1px solid var(--border,rgba(31,41,55,.16));border-radius:8px;padding:8px 11px;background:var(--bg,#f8fafc);color:var(--text,#1d1f25);cursor:pointer}
+.shd-widget-actions-buttons button:hover{background:var(--surface-hover,#e1e8ef)}
+.shd-widget-actions-buttons button:disabled{cursor:wait;opacity:.62}
+@media(max-width:600px){.shd-widget-actions-field:has(textarea){grid-column:auto}.shd-widget-actions-header{display:block}.shd-widget-actions-selection{display:block;margin-top:3px}}
+</style>
+</head>
+<body>
+  <main class="app" aria-live="polite">
+    <header class="header">
+      <div>
+        <h1 data-i18n="title">Активные проекты</h1>
+        <p class="subtitle" data-i18n="subtitle">Сроки завершения и текущие статусы</p>
+      </div>
+      <button class="button" id="refresh" type="button" data-i18n="refresh">Обновить</button>
+    </header>
+    <div class="toolbar">
+      <input class="search" id="search" type="search" autocomplete="off" data-i18n-placeholder="search" placeholder="Поиск по проекту или коду">
+    </div>
+    <div class="summary" id="summary"></div>
+    <section class="table" aria-label="Проекты">
+      <div class="table-head">
+        <span data-i18n="project">Проект</span>
+        <span data-i18n="deadline">Дата завершения</span>
+        <span data-i18n="status">Статус</span>
+      </div>
+      <div id="rows"></div>
+      <div class="empty" id="empty" hidden></div>
+      <div class="error" id="error" hidden></div>
+    </section>
+    <section class="details" id="details" hidden>
+      <div class="details-header">
+        <div>
+          <h2 class="details-title" id="details-title"></h2>
+          <p class="details-code" id="details-code"></p>
+        </div>
+        <button class="button" id="close-details" type="button" data-i18n="close">Закрыть</button>
+      </div>
+      <div class="details-grid" id="details-grid"></div>
+      <p class="loading" id="details-loading" hidden></p>
+    </section>
+  </main>
+  <script>
+    (function () {
+      'use strict';
+
+      var messages = {
+        ru: {
+          title: 'Активные проекты',
+          subtitle: 'Сроки завершения и текущие статусы',
+          refresh: 'Обновить',
+          search: 'Поиск по проекту или коду',
+          project: 'Проект',
+          deadline: 'Дата завершения',
+          status: 'Статус',
+          close: 'Закрыть',
+          missingDate: 'Не указана',
+          noProjects: 'Проекты не найдены.',
+          noMatch: 'По фильтру ничего не найдено.',
+          loading: 'Загрузка…',
+          loadingProject: 'Загрузка данных проекта…',
+          refreshError: 'Не удалось обновить список проектов.',
+          projectError: 'Не удалось получить данные проекта.',
+          total: 'Всего',
+          withoutDate: 'Без даты',
+          archived: 'Архивных',
+          phase: 'Этап',
+          timezone: 'Часовой пояс',
+          updated: 'Обновлён',
+          code: 'Код'
+        },
+        en: {
+          title: 'Active projects',
+          subtitle: 'Completion dates and current statuses',
+          refresh: 'Refresh',
+          search: 'Search by project or code',
+          project: 'Project',
+          deadline: 'Completion date',
+          status: 'Status',
+          close: 'Close',
+          missingDate: 'Not set',
+          noProjects: 'No projects found.',
+          noMatch: 'No projects match the filter.',
+          loading: 'Loading…',
+          loadingProject: 'Loading project data…',
+          refreshError: 'Could not refresh the project list.',
+          projectError: 'Could not load the project data.',
+          total: 'Total',
+          withoutDate: 'No date',
+          archived: 'Archived',
+          phase: 'Phase',
+          timezone: 'Timezone',
+          updated: 'Updated',
+          code: 'Code'
+        }
+      };
+
+      var locale = (document.documentElement.lang || 'ru').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
+      var t = messages[locale];
+      var currentSnapshot = null;
+      var currentProjects = [];
+      var latestToolInput = null;
+      var pendingRequests = new Map();
+      var nextRequestId = 1;
+      var mcpAppsProtocolVersion = '2026-01-26';
+      var busy = false;
+
+      var elements = {
+        refresh: document.getElementById('refresh'),
+        search: document.getElementById('search'),
+        summary: document.getElementById('summary'),
+        rows: document.getElementById('rows'),
+        empty: document.getElementById('empty'),
+        error: document.getElementById('error'),
+        details: document.getElementById('details'),
+        detailsTitle: document.getElementById('details-title'),
+        detailsCode: document.getElementById('details-code'),
+        detailsGrid: document.getElementById('details-grid'),
+        detailsLoading: document.getElementById('details-loading'),
+        closeDetails: document.getElementById('close-details')
+      };
+
+      function applyTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n');
+          if (t[key]) node.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n-placeholder');
+          if (t[key]) node.setAttribute('placeholder', t[key]);
+        });
+      }
+
+      function request(method, params) {
+        var openai = typeof window !== 'undefined' ? window.openai : undefined;
+        if (method === 'tools/call' && openai && typeof openai.callTool === 'function') {
+          return openai.callTool(params.name, params.arguments || {});
+        }
+
+        var id = nextRequestId++;
+        window.parent.postMessage({ jsonrpc: '2.0', id: id, method: method, params: params }, '*');
+        return new Promise(function (resolve, reject) {
+          var timeout = window.setTimeout(function () {
+            pendingRequests.delete(id);
+            reject(new Error('Host request timed out'));
+          }, 10000);
+          pendingRequests.set(id, { resolve: resolve, reject: reject, timeout: timeout });
+        });
+      }
+
+      function notify(method, params) {
+        window.parent.postMessage({ jsonrpc: '2.0', method: method, params: params || {} }, '*');
+      }
+
+      function initializeHost() {
+        return request('ui/initialize', {
+          protocolVersion: mcpAppsProtocolVersion,
+          appInfo: {
+            name: 'SHD Active Projects',
+            title: 'SHD Active Projects',
+            version: '1.0.0',
+            websiteUrl: 'https://shd.xyz.su'
+          },
+          appCapabilities: {}
+        }).then(function () {
+          notify('ui/notifications/initialized', {});
+        }).catch(function () {
+          // The window.openai compatibility bridge can work without the raw postMessage handshake.
+        });
+      }
+
+      function normalizePayload(value) {
+        if (!value) return null;
+        if (value.structuredContent) return value.structuredContent;
+        if (value.toolOutput) return value.toolOutput;
+        return value;
+      }
+
+      function getProjects(value) {
+        var payload = normalizePayload(value);
+        if (!payload || payload.error) return [];
+        if (Array.isArray(payload.projects)) return payload.projects.filter(function (item) { return item && typeof item === 'object'; });
+        var data = payload.data;
+        if (data && !Array.isArray(data) && Array.isArray(data.data)) data = data.data;
+        return Array.isArray(data) ? data.filter(function (item) { return item && typeof item === 'object'; }) : [];
+      }
+
+      function getProjectCode(project) {
+        return String(project.code || project.project_code || project.contract_project_id || project.id || '');
+      }
+
+      function getProjectName(project) {
+        return String(project.display_name || project.title || project.name || getProjectCode(project) || '—');
+      }
+
+      function getStatus(project) {
+        return String(project.status || project.phase || '—');
+      }
+
+      function getTone(status) {
+        var value = String(status).toLowerCase();
+        if (/done|complete|completed|closed|resolved|finished|готов|заверш/.test(value)) return 'done';
+        if (/cancel|reject|blocked|error|отмен|отклон|блок/.test(value)) return 'danger';
+        if (/progress|active|work|processing|в работе|актив/.test(value)) return 'progress';
+        if (/pending|review|pause|ожид|провер|пауза/.test(value)) return 'warning';
+        return 'neutral';
+      }
+
+      function getDeadlineTime(project) {
+        var value = project.deadline;
+        if (!value) return Number.POSITIVE_INFINITY;
+        var timestamp = Date.parse(String(value));
+        return Number.isNaN(timestamp) ? Number.POSITIVE_INFINITY : timestamp;
+      }
+
+      function formatDate(value) {
+        if (!value) return t.missingDate;
+        var timestamp = Date.parse(String(value));
+        if (Number.isNaN(timestamp)) return String(value);
+        try {
+          return new Intl.DateTimeFormat(locale, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(timestamp));
+        } catch (error) {
+          return String(value);
+        }
+      }
+
+      function isOverdue(project) {
+        var timestamp = getDeadlineTime(project);
+        var status = getStatus(project).toLowerCase();
+        return Number.isFinite(timestamp) && timestamp < Date.now() && !/done|complete|closed|resolved|заверш/.test(status);
+      }
+
+      function makeElement(tag, text, className) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      function renderSummary(projects) {
+        elements.summary.replaceChildren();
+        var noDate = projects.filter(function (project) { return !project.deadline; }).length;
+        var archived = projects.filter(function (project) { return project.is_archived === true; }).length;
+        var total = makeElement('span', '', 'summary-item');
+        total.append(makeElement('strong', String(projects.length)), ' ' + t.total);
+        elements.summary.append(total);
+        if (noDate) {
+          var missing = makeElement('span', '', 'summary-item');
+          missing.append(makeElement('strong', String(noDate)), ' ' + t.withoutDate);
+          elements.summary.append(missing);
+        }
+        if (archived) {
+          var archivedNode = makeElement('span', '', 'summary-item');
+          archivedNode.append(makeElement('strong', String(archived)), ' ' + t.archived);
+          elements.summary.append(archivedNode);
+        }
+      }
+
+      function renderRows() {
+        var query = elements.search.value.trim().toLowerCase();
+        var projects = currentProjects.filter(function (project) {
+          if (!query) return true;
+          return (getProjectName(project) + ' ' + getProjectCode(project) + ' ' + getStatus(project)).toLowerCase().indexOf(query) !== -1;
+        });
+
+        elements.rows.replaceChildren();
+        elements.error.hidden = true;
+        elements.empty.hidden = projects.length !== 0;
+        elements.empty.textContent = currentProjects.length === 0 ? t.noProjects : t.noMatch;
+        projects.forEach(function (project) {
+          var row = makeElement('button', '', 'project-row');
+          row.type = 'button';
+          row.setAttribute('aria-label', getProjectName(project));
+
+          var name = makeElement('span', '', 'project-name');
+          name.append(makeElement('span', getProjectName(project), 'project-title'));
+          name.append(makeElement('span', getProjectCode(project), 'project-code'));
+
+          var deadline = makeElement('span', formatDate(project.deadline), 'deadline' + (project.deadline ? '' : ' missing') + (isOverdue(project) ? ' overdue' : ''));
+          var status = makeElement('span', getStatus(project), 'status status-' + getTone(getStatus(project)));
+          row.append(name, deadline, status);
+          row.addEventListener('click', function () { showProject(project); });
+          elements.rows.append(row);
+        });
+      }
+
+      function render(value) {
+        var payload = normalizePayload(value);
+        currentSnapshot = payload;
+        currentProjects = getProjects(payload).slice().sort(function (left, right) {
+          return getDeadlineTime(left) - getDeadlineTime(right) || getProjectName(left).localeCompare(getProjectName(right), locale);
+        });
+        renderSummary(currentProjects);
+        renderRows();
+      }
+
+      function setBusy(nextBusy, label) {
+        busy = nextBusy;
+        elements.refresh.disabled = nextBusy;
+        if (nextBusy) elements.refresh.textContent = label || t.loading;
+        else elements.refresh.textContent = t.refresh;
+      }
+
+      function setError(message) {
+        elements.error.hidden = false;
+        elements.error.textContent = message;
+      }
+
+      function unwrapResult(value) {
+        var payload = normalizePayload(value);
+        if (value && value.isError) throw new Error(payload && payload.error ? payload.error : t.refreshError);
+        if (payload && payload.error) throw new Error(String(payload.error));
+        return payload || value;
+      }
+
+      async function refresh() {
+        if (busy) return;
+        setBusy(true);
+        elements.error.hidden = true;
+        try {
+          var result = await request('tools/call', { name: 'shd_list_projects', arguments: { archived: false, limit: 100 } });
+          render(unwrapResult(result));
+        } catch (error) {
+          setError(error && error.message ? error.message : t.refreshError);
+        } finally {
+          setBusy(false);
+        }
+      }
+
+      function addDetail(label, value) {
+        var item = makeElement('div');
+        item.append(makeElement('span', label, 'detail-label'), makeElement('span', value || '—', 'detail-value'));
+        elements.detailsGrid.append(item);
+      }
+
+      function showDetailSnapshot(project) {
+        elements.detailsTitle.textContent = getProjectName(project);
+        elements.detailsCode.textContent = getProjectCode(project) ? t.code + ': ' + getProjectCode(project) : '';
+        elements.detailsGrid.replaceChildren();
+        addDetail(t.deadline, formatDate(project.deadline));
+        addDetail(t.status, getStatus(project));
+        addDetail(t.phase, String(project.phase || '—'));
+        addDetail(t.timezone, String(project.timezone || '—'));
+        addDetail(t.updated, formatDate(project.updated_at));
+        elements.details.hidden = false;
+      }
+
+      async function showProject(project) {
+        showDetailSnapshot(project);
+        var code = getProjectCode(project);
+        if (!code) return;
+        elements.detailsLoading.hidden = false;
+        elements.detailsLoading.textContent = t.loadingProject;
+        try {
+          var result = await request('tools/call', { name: 'shd_get_project', arguments: { project_code: code } });
+          var payload = unwrapResult(result);
+          var data = payload && payload.data;
+          if (Array.isArray(data)) data = data[0];
+          if (data && typeof data === 'object') showDetailSnapshot(data);
+        } catch (error) {
+          setError(error && error.message ? error.message : t.projectError);
+        } finally {
+          elements.detailsLoading.hidden = true;
+        }
+      }
+
+      window.addEventListener('message', function (event) {
+        if (event.source !== window.parent) return;
+        var message = event.data;
+        if (!message || message.jsonrpc !== '2.0') return;
+        if (message.id !== undefined && pendingRequests.has(message.id)) {
+          var pending = pendingRequests.get(message.id);
+          pendingRequests.delete(message.id);
+          window.clearTimeout(pending.timeout);
+          if (message.error) pending.reject(new Error(message.error.message || t.refreshError));
+          else pending.resolve(message.result);
+          return;
+        }
+        if (message.method === 'ui/notifications/tool-input') {
+          latestToolInput = message.params || null;
+          if (!currentProjects.length) render(latestToolInput);
+        }
+        if (message.method === 'ui/notifications/tool-result') render(message.params && message.params.structuredContent);
+      }, { passive: true });
+
+      elements.search.addEventListener('input', renderRows);
+      elements.refresh.addEventListener('click', refresh);
+      elements.closeDetails.addEventListener('click', function () { elements.details.hidden = true; });
+      applyTranslations();
+      void initializeHost();
+
+      var initialOutput = typeof window !== 'undefined' && window.openai ? window.openai.toolOutput : null;
+      if (initialOutput) render(initialOutput);
+      else {
+        latestToolInput = typeof window !== 'undefined' && window.openai ? window.openai.toolInput : null;
+        render(latestToolInput || currentSnapshot);
+      }
+    }());
+  </script>
+<script data-shd-widget-write-actions="js">
+(function () {
+  'use strict';
+
+  if (window.__SHD_WIDGET_WRITE_ACTIONS__) return;
+  window.__SHD_WIDGET_WRITE_ACTIONS__ = true;
+
+  var copy = {
+    ru: {
+      actions: 'Действия',
+      chooseAction: 'Выберите действие',
+      selectRecord: 'Сначала выберите запись.',
+      submit: 'Сохранить',
+      cancel: 'Отмена',
+      confirm: 'Подтверждаю действие',
+      warning: 'Проверьте данные перед записью.',
+      destructive: 'Операция может изменить или удалить данные.',
+      required: 'Заполните обязательное поле.',
+      invalidJson: 'Введите корректный JSON.',
+      success: 'Изменения сохранены.',
+      failure: 'Не удалось сохранить изменения.',
+      loading: 'Сохраняю…',
+      noActions: 'Для этого виджета нет доступных действий.',
+      refreshed: 'Список обновлён.',
+      fieldValue: 'Значение',
+    },
+    en: {
+      actions: 'Actions',
+      chooseAction: 'Choose an action',
+      selectRecord: 'Select a record first.',
+      submit: 'Save',
+      cancel: 'Cancel',
+      confirm: 'I confirm this action',
+      warning: 'Review the values before writing.',
+      destructive: 'This operation may change or remove data.',
+      required: 'Fill in the required field.',
+      invalidJson: 'Enter valid JSON.',
+      success: 'Changes saved.',
+      failure: 'Could not save changes.',
+      loading: 'Saving…',
+      noActions: 'No actions are available for this widget.',
+      refreshed: 'List refreshed.',
+      fieldValue: 'Value',
+    },
+  };
+
+  var state = {
+    widget: {},
+    records: [],
+    selected: null,
+    action: null,
+    inputs: {},
+    busy: false,
+    lang: String(document.documentElement.lang || 'ru').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en',
+  };
+  var pending = new Map();
+  var nextRequestId = 1;
+  var elements = {};
+
+  function t(key) {
+    return (copy[state.lang] && copy[state.lang][key]) || copy.en[key] || key;
+  }
+
+  function object(value) {
+    return Boolean(value && typeof value === 'object' && !Array.isArray(value));
+  }
+
+  function normalize(value) {
+    if (!value) return null;
+    if (value.structuredContent) return normalize(value.structuredContent);
+    if (value.toolOutput) return normalize(value.toolOutput);
+    if (value.toolInput) return normalize(value.toolInput);
+    if (value.arguments && !value.data && !value.items && !value.projects) return normalize(value.arguments);
+    return value;
+  }
+
+  function widgetFrom(value) {
+    var payload = normalize(value) || {};
+    var meta = object(payload.meta) ? payload.meta : {};
+    return object(meta.widget) ? meta.widget : {};
+  }
+
+  function recordsFrom(value) {
+    var payload = normalize(value) || {};
+    var data = Array.isArray(payload.items) ? payload.items : payload.projects;
+    if (!Array.isArray(data)) data = payload.data;
+    if (data && !Array.isArray(data) && Array.isArray(data.data)) data = data.data;
+    return Array.isArray(data) ? data.filter(function (item) { return object(item); }) : [];
+  }
+
+  function readPath(value, path) {
+    if (!value || path === undefined || path === null) return undefined;
+    var parts = String(path).split('.');
+    var current = value;
+    for (var index = 0; index < parts.length; index += 1) {
+      if (current === undefined || current === null) return undefined;
+      current = current[parts[index]];
+    }
+    return current;
+  }
+
+  function firstValue(paths) {
+    var list = Array.isArray(paths) ? paths : [paths];
+    var sources = [state.selected, state.widget.sourceArgs, state.widget.listArgs];
+    for (var sourceIndex = 0; sourceIndex < sources.length; sourceIndex += 1) {
+      var sourceObject = sources[sourceIndex];
+      if (!sourceObject) continue;
+      for (var pathIndex = 0; pathIndex < list.length; pathIndex += 1) {
+        var value = readPath(sourceObject, list[pathIndex]);
+        if (value !== undefined && value !== null && value !== '') return value;
+      }
+    }
+    return undefined;
+  }
+
+  function text(value) {
+    if (value === undefined || value === null) return '';
+    if (typeof value === 'object') return JSON.stringify(value);
+    return String(value);
+  }
+
+  function label(value) {
+    if (object(value)) return value[state.lang] || value.ru || value.en || t('fieldValue');
+    return String(value || t('fieldValue'));
+  }
+
+  function actionLabel(action) {
+    return label(action && action.label) || action.id || action.tool || t('actions');
+  }
+
+  function hasTargets(action) {
+    return Boolean(action && ((Array.isArray(action.targets) && action.targets.length) || action.target));
+  }
+
+  function actionList() {
+    return Array.isArray(state.widget.actions) ? state.widget.actions.filter(function (action) {
+      return action && action.tool;
+    }) : [];
+  }
+
+  function request(method, params) {
+    var openai = typeof window !== 'undefined' ? window.openai : undefined;
+    if (method === 'tools/call' && openai && typeof openai.callTool === 'function') {
+      return openai.callTool(params.name, params.arguments || {});
+    }
+    var id = nextRequestId++;
+    window.parent.postMessage({ jsonrpc: '2.0', id: id, method: method, params: params || {} }, '*');
+    return new Promise(function (resolve, reject) {
+      var timeout = window.setTimeout(function () {
+        pending.delete(id);
+        reject(new Error(t('failure')));
+      }, 15000);
+      pending.set(id, { resolve: resolve, reject: reject, timeout: timeout });
+    });
+  }
+
+  function unwrap(value) {
+    var payload = normalize(value);
+    if (value && value.isError) throw new Error(payload && payload.error ? text(payload.error) : t('failure'));
+    if (payload && payload.error) throw new Error(text(payload.error));
+    return payload || value;
+  }
+
+  function make(tag, value, className) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value !== undefined) node.textContent = value;
+    return node;
+  }
+
+  function ensurePanel() {
+    if (elements.panel) return;
+    var root = document.querySelector('main') || document.body;
+    var panel = make('section', undefined, 'shd-widget-actions');
+    panel.hidden = true;
+    panel.setAttribute('aria-live', 'polite');
+    var header = make('div', undefined, 'shd-widget-actions-header');
+    header.append(make('strong', t('actions')), make('span', '', 'shd-widget-actions-selection'));
+    var select = document.createElement('select');
+    select.className = 'shd-widget-actions-select';
+    select.setAttribute('aria-label', t('actions'));
+    var form = make('form', undefined, 'shd-widget-actions-form');
+    var status = make('div', '', 'shd-widget-actions-status');
+    var buttons = make('div', undefined, 'shd-widget-actions-buttons');
+    var submit = make('button', t('submit'), 'shd-widget-actions-submit');
+    submit.type = 'submit';
+    var cancel = make('button', t('cancel'), 'shd-widget-actions-cancel');
+    cancel.type = 'button';
+    buttons.append(submit, cancel);
+    panel.append(header, select, form, status, buttons);
+    root.append(panel);
+    elements = { panel: panel, selection: header.lastChild, select: select, form: form, status: status, submit: submit, cancel: cancel };
+    select.addEventListener('change', function () {
+      var selected = actionList().find(function (action) { return action.id === select.value; });
+      state.action = selected || null;
+      renderForm();
+    });
+    cancel.addEventListener('click', function () {
+      state.action = null;
+      select.value = '';
+      renderForm();
+    });
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitAction();
+    });
+  }
+
+  function inputValue(fieldConfig) {
+    var value = firstValue(fieldConfig.source || []);
+    if (value === undefined && fieldConfig.default !== undefined) value = fieldConfig.default;
+    return value;
+  }
+
+  function createInput(fieldConfig) {
+    var type = fieldConfig.type || 'text';
+    var input;
+    if (type === 'textarea' || type === 'json') {
+      input = document.createElement('textarea');
+      input.rows = type === 'json' ? 4 : 3;
+      if (type === 'json') input.placeholder = '{ }';
+    } else if (type === 'select') {
+      input = document.createElement('select');
+      (fieldConfig.options || []).forEach(function (option) {
+        var item = document.createElement('option');
+        item.value = String(option[0]);
+        item.textContent = state.lang === 'ru' ? String(option[1]) : String(option[2] || option[1]);
+        input.append(item);
+      });
+    } else {
+      input = document.createElement('input');
+      input.type = type === 'number' || type === 'email' ? type : 'text';
+    }
+    input.className = 'shd-widget-actions-input';
+    input.name = fieldConfig.name;
+    var value = inputValue(fieldConfig);
+    if (type === 'checkbox') {
+      input.type = 'checkbox';
+      input.checked = value === true || value === 'true' || value === 1 || value === '1';
+    } else if (value !== undefined && value !== null) {
+      input.value = type === 'json' && typeof value === 'object' ? JSON.stringify(value, null, 2) : String(value);
+    }
+    if (fieldConfig.required) input.required = true;
+    return input;
+  }
+
+  function renderForm() {
+    ensurePanel();
+    var selectedActionId = state.action ? state.action.id : '';
+    elements.select.replaceChildren();
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = t('chooseAction');
+    elements.select.append(placeholder);
+    actionList().forEach(function (action) {
+      var option = document.createElement('option');
+      option.value = action.id;
+      option.textContent = actionLabel(action);
+      elements.select.append(option);
+    });
+    elements.select.value = selectedActionId;
+    elements.select.hidden = actionList().length === 0;
+    elements.form.replaceChildren();
+    elements.status.textContent = '';
+    elements.submit.disabled = state.busy;
+    var action = state.action;
+    if (!action) {
+      elements.selection.textContent = state.selected ? text(state.selected.title || state.selected.name || state.selected.id || '') : '';
+      elements.submit.hidden = true;
+      elements.cancel.hidden = true;
+      if (actionList().length && !state.selected && actionList().every(hasTargets)) {
+        elements.form.append(make('div', t('selectRecord'), 'shd-widget-actions-hint'));
+      }
+      return;
+    }
+    elements.selection.textContent = state.selected ? text(state.selected.title || state.selected.name || state.selected.id || '') : '';
+    elements.submit.hidden = false;
+    elements.cancel.hidden = false;
+    if (hasTargets(action) && !state.selected) elements.form.append(make('div', t('selectRecord'), 'shd-widget-actions-hint'));
+    (action.fields || []).forEach(function (fieldConfig) {
+      if (!fieldConfig || !fieldConfig.name || fieldConfig.generated || fieldConfig.type === 'hidden') return;
+      var wrapper = make('label', undefined, 'shd-widget-actions-field');
+      wrapper.append(make('span', label(fieldConfig.label)));
+      wrapper.append(createInput(fieldConfig));
+      elements.form.append(wrapper);
+    });
+    if (action.confirm) {
+      var confirmLabel = make('label', undefined, 'shd-widget-actions-confirm');
+      var confirm = document.createElement('input');
+      confirm.type = 'checkbox';
+      confirm.name = '__confirm';
+      confirm.required = true;
+      confirmLabel.append(confirm, make('span', t('confirm')));
+      elements.form.append(confirmLabel);
+    }
+    var notice = make('div', action.destructive ? t('destructive') : t('warning'), action.destructive ? 'shd-widget-actions-warning shd-widget-actions-danger' : 'shd-widget-actions-warning');
+    elements.form.append(notice);
+  }
+
+  function coerce(value, type) {
+    if (type === 'number') {
+      var number = Number(value);
+      return Number.isFinite(number) ? number : value;
+    }
+    if (type === 'checkbox') return Boolean(value);
+    if (type === 'json') {
+      try { return JSON.parse(value); } catch (error) { throw new Error(t('invalidJson')); }
+    }
+    return value;
+  }
+
+  function targetType(name) {
+    return /^(task|document|contract|booking|item|monitor|proposal|approval|page|notification|topic|membership|organization|space|status|project)_?id$/.test(name) || name === 'issue_number' || name === 'number' ? 'number' : 'text';
+  }
+
+  function targetList(action) {
+    if (Array.isArray(action.targets)) return action.targets;
+    return action.target ? [action.target] : [];
+  }
+
+  function collectArguments(action) {
+    var args = Object.assign({}, action.fixed || {});
+    (action.context || []).forEach(function (name) {
+      var value = firstValue([name]);
+      if (value !== undefined && value !== null && value !== '') args[name] = value;
+    });
+    targetList(action).forEach(function (targetConfig) {
+      var value = firstValue(targetConfig.source || targetConfig.name);
+      if (value === undefined || value === null || value === '') throw new Error(t('selectRecord'));
+      args[targetConfig.name] = coerce(value, targetConfig.type || targetType(targetConfig.name));
+    });
+    (action.fields || []).forEach(function (fieldConfig) {
+      if (!fieldConfig || !fieldConfig.name || fieldConfig.generated || fieldConfig.type === 'hidden') return;
+      var input = Array.prototype.find.call(elements.form.querySelectorAll('[name]'), function (node) {
+        return node.getAttribute('name') === fieldConfig.name;
+      });
+      if (!input) return;
+      var raw = fieldConfig.type === 'checkbox' ? input.checked : input.value.trim();
+      if (raw === '' && !input.checked && !fieldConfig.required) return;
+      if (raw === '' && fieldConfig.required) throw new Error(t('required'));
+      args[fieldConfig.name] = coerce(raw, fieldConfig.type || 'text');
+    });
+    if (action.idempotencyKey) args.idempotency_key = 'shd-widget-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+    if (action.confirmArg) args.confirm = true;
+    return args;
+  }
+
+  function setStatus(message, error) {
+    elements.status.textContent = message || '';
+    elements.status.className = 'shd-widget-actions-status' + (error ? ' shd-widget-actions-status-error' : '');
+  }
+
+  function submitAction() {
+    if (state.busy || !state.action) return;
+    var action = state.action;
+    var args;
+    try { args = collectArguments(action); } catch (error) { setStatus(error.message || t('failure'), true); return; }
+    state.busy = true;
+    elements.submit.disabled = true;
+    elements.cancel.disabled = true;
+    setStatus(t('loading'), false);
+    request('tools/call', { name: action.tool, arguments: args }).then(function (result) {
+      unwrap(result);
+      setStatus(t('success'), false);
+      var refresh = document.getElementById('refresh');
+      if (refresh && typeof refresh.click === 'function') window.setTimeout(function () { refresh.click(); }, 250);
+    }).catch(function (error) {
+      setStatus(error && error.message ? error.message : t('failure'), true);
+    }).finally(function () {
+      state.busy = false;
+      elements.submit.disabled = false;
+      elements.cancel.disabled = false;
+    });
+  }
+
+  function recordFromNode(node) {
+    var content = String(node.textContent || '').toLowerCase();
+    var exact = state.records.find(function (item) {
+      var id = text(item.id || item.code || item.key || item.number).toLowerCase();
+      return id && content.indexOf(id) !== -1;
+    });
+    if (exact) return exact;
+    return state.records.find(function (item) {
+      var title = text(item.title || item.name || item.display_name || item.number).toLowerCase();
+      return title && content.indexOf(title) !== -1;
+    }) || null;
+  }
+
+  function update(value) {
+    var payload = normalize(value) || {};
+    var widget = widgetFrom(payload);
+    if (Object.keys(widget).length) state.widget = widget;
+    var records = recordsFrom(payload);
+    if (records.length || Array.isArray(payload.data) || Array.isArray(payload.items) || Array.isArray(payload.projects)) state.records = records;
+    ensurePanel();
+    var actions = actionList();
+    elements.panel.hidden = actions.length === 0;
+    if (actions.length && !state.action) renderForm();
+    else if (actions.length) renderForm();
+  }
+
+  document.addEventListener('click', function (event) {
+    var node = event.target && event.target.closest ? event.target.closest('.record,.project-row,.visual-card,.progress-card,.preview-card,.calendar-card,.timeline-card,.kanban-card') : null;
+    if (!node || (elements.panel && elements.panel.contains(node))) return;
+    var item = recordFromNode(node);
+    if (!item) return;
+    state.selected = item;
+    ensurePanel();
+    renderForm();
+  }, true);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window.parent) return;
+    var message = event.data;
+    if (!message || message.jsonrpc !== '2.0') return;
+    if (message.id !== undefined && pending.has(message.id)) {
+      var requestState = pending.get(message.id);
+      pending.delete(message.id);
+      window.clearTimeout(requestState.timeout);
+      if (message.error) requestState.reject(new Error(message.error.message || t('failure')));
+      else requestState.resolve(message.result);
+      return;
+    }
+    if (message.method === 'ui/notifications/tool-input' || message.method === 'ui/notifications/tool-result') update(message.params || {});
+  }, { passive: true });
+
+  ensurePanel();
+  var initial = typeof window !== 'undefined' && window.openai ? (window.openai.toolOutput || window.openai.toolInput) : null;
+  if (initial) update(initial);
+}());
+</script>
+</body>
+</html>

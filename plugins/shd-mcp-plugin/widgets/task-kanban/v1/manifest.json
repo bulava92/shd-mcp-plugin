@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-task-kanban",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69109,
+      "gzipBytes": 18846,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/task-kanban/v1.html",
+      "sha256": "04a0294f12237506f211b99437843ebbffb34abc6485e7de49d2d787c4726da3"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/task-kanban/v1/index.html"
+  }
+}

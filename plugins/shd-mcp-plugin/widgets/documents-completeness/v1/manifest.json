@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-documents-completeness",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69131,
+      "gzipBytes": 18846,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/documents-completeness/v1.html",
+      "sha256": "c22ee23ef323e9e0b076d17b75f4d74f42670657ff787fca950334b8e882b0a7"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/documents-completeness/v1/index.html"
+  }
+}

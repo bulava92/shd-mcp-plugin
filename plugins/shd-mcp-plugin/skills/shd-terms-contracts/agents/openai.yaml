@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD Terms and contracts"
+  short_description: "Review revisions and contract completeness"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,37 @@
+SHD MCP PLUGIN LICENSE
+
+Copyright (c) 2026 SHD
+
+This license applies to the SHD MCP Plugin package, its Skills, manifests,
+documentation and SHD branding in this repository. The SHD MCP service and
+its backend are separate systems and remain subject to their own terms.
+
+1. Permission
+
+SHD grants a limited, non-exclusive, non-transferable permission to install and
+use an unmodified copy of this plugin with an authorized SHD account and a
+compatible MCP client.
+
+2. Restrictions
+
+Unless SHD gives prior written permission, you may not sell, sublicense,
+redistribute, publish modified versions of, remove notices from, or use this
+package and its branding to provide a competing service. Public access to this
+repository does not transfer copyright, trademark or other intellectual
+property rights.
+
+3. No credentials or access grant
+
+This package contains no access token and grants no access to SHD data. Access
+is controlled by SHD authentication, organization membership and server-side
+permissions.
+
+4. Warranty and liability
+
+The package is provided "as is" to the maximum extent permitted by law,
+without warranties of any kind. SHD is not liable for indirect, incidental or
+consequential damages arising from its use.
+
+5. Third-party materials
+
+Third-party software and assets, if any, remain subject to their own licenses.

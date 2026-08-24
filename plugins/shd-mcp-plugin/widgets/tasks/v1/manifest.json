@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-tasks",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "uri": "ui://shd/tasks/v1.html",
+      "mediaType": "text/html;profile=mcp-app",
+      "bytes": 35774,
+      "sha256": "926fd10f0478fa566af6d134b174661416dcbd3fe380271c058ef077e17e9898",
+      "gzipBytes": 9451
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/tasks/v1/index.html"
+  }
+}

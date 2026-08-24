@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-project-timeline",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69119,
+      "gzipBytes": 18847,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/project-timeline/v1.html",
+      "sha256": "2f065b809eeaa8d7f5dcb28815ddba3f4121702cd7da9a073c5d49c427837646"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/project-timeline/v1/index.html"
+  }
+}

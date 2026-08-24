@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD events and scheduling
+  short_description: Slots, bookings and event positions
+policy:
+  allow_implicit_invocation: false

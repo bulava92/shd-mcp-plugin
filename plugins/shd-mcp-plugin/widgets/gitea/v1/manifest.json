@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-gitea",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 45931,
+      "gzipBytes": 13579,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/gitea/v1.html",
+      "sha256": "505ea4f334275478da05b4444da93f7e7c89163eeb1880825b2c37d275678fa1"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/gitea/v1/index.html"
+  }
+}

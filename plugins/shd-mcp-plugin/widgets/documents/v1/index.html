@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Документы — SHD MCP</title>
+  <style>
+    :root{color-scheme:light dark;--bg:#f7f8fa;--panel:#fff;--line:#d9dee7;--ink:#172033;--muted:#687386;--accent:#2563eb;--accent-soft:#e8efff;--danger:#b42318}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    .shell{max-width:980px;margin:0 auto;padding:24px}.eyebrow{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    h1{margin:4px 0 6px;font-size:25px;line-height:1.15}.lede{margin:0;color:var(--muted)}.summary{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px}
+    .summary span{padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted)}.summary strong{color:var(--ink)}
+    .toolbar{display:flex;gap:8px;margin-bottom:12px}.search{min-width:0;flex:1;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:inherit}
+    button{cursor:pointer}.refresh{padding:9px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:#fff;font-weight:600}.refresh:disabled{opacity:.6;cursor:wait}
+    .status-message{min-height:22px;color:var(--muted)}.error{color:var(--danger)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+    table{width:100%;border-collapse:collapse;min-width:560px}th,td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);font-size:12px;font-weight:600}
+    tbody tr:last-child td{border-bottom:0}.record{width:100%;border:0;background:transparent;color:inherit;text-align:left}.record:hover{background:var(--accent-soft)}
+    .title{font-weight:650}.subtitle{display:block;color:var(--muted);font-size:12px;margin-top:2px}.pill{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:12px;white-space:nowrap}
+    .empty{padding:24px;text-align:center;color:var(--muted)}.details{margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}.details[hidden]{display:none}
+    .details-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.details h2{margin:0;font-size:18px}.close{border:0;background:transparent;color:var(--muted);font-size:20px}.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
+    .detail{padding:9px;border-radius:8px;background:var(--bg)}.detail-label{display:block;color:var(--muted);font-size:11px;margin-bottom:3px}.detail-value{overflow-wrap:anywhere}
+    @media(prefers-color-scheme:dark){:root{--bg:#11151d;--panel:#1b2230;--line:#303a4b;--ink:#edf2fb;--muted:#aab4c5;--accent:#82aaff;--accent-soft:#263858;--danger:#ff9a93}}
+  </style>
+<style data-shd-widget-write-actions="css">
+.shd-widget-actions{margin-top:14px;padding:14px;border:1px solid var(--border,rgba(31,41,55,.16));border-radius:11px;background:var(--surface,#e8edf2);color:var(--text,#1d1f25)}
+.shd-widget-actions[hidden]{display:none}
+.shd-widget-actions-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.shd-widget-actions-selection{overflow:hidden;color:var(--muted,#616670);font-size:12px;text-overflow:ellipsis;white-space:nowrap}
+.shd-widget-actions-select,.shd-widget-actions-input{width:100%;border:1px solid var(--border,rgba(31,41,55,.16));border-radius:8px;padding:8px 10px;background:var(--bg,#f8fafc);color:var(--text,#1d1f25)}
+.shd-widget-actions-select:focus,.shd-widget-actions-input:focus{border-color:var(--accent,#535963);outline:0;box-shadow:0 0 0 3px var(--accent-soft,rgba(75,85,99,.12))}
+.shd-widget-actions-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.shd-widget-actions-field{display:grid;gap:4px;color:var(--muted,#616670);font-size:11px}
+.shd-widget-actions-field:has(textarea){grid-column:span 2}
+.shd-widget-actions-field input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent,#535963)}
+.shd-widget-actions-confirm{display:flex;grid-column:1/-1;align-items:center;gap:7px;color:var(--text,#1d1f25);font-size:12px}
+.shd-widget-actions-warning,.shd-widget-actions-hint{grid-column:1/-1;color:var(--muted,#616670);font-size:12px}
+.shd-widget-actions-danger{color:var(--danger,#b42318)}
+.shd-widget-actions-status{min-height:18px;margin-top:9px;color:var(--muted,#616670);font-size:12px}
+.shd-widget-actions-status-error{color:var(--danger,#b42318)}
+.shd-widget-actions-buttons{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
+.shd-widget-actions-buttons button{border:1px solid var(--border,rgba(31,41,55,.16));border-radius:8px;padding:8px 11px;background:var(--bg,#f8fafc);color:var(--text,#1d1f25);cursor:pointer}
+.shd-widget-actions-buttons button:hover{background:var(--surface-hover,#e1e8ef)}
+.shd-widget-actions-buttons button:disabled{cursor:wait;opacity:.62}
+@media(max-width:600px){.shd-widget-actions-field:has(textarea){grid-column:auto}.shd-widget-actions-header{display:block}.shd-widget-actions-selection{display:block;margin-top:3px}}
+</style>
+</head>
+<body>
+  <main class="shell" data-widget-module="documents">
+    <header>
+      <div class="eyebrow">SHD MCP</div>
+      <h1>Документы</h1>
+      <p class="lede">Реестр документов с поиском и просмотром деталей.</p>
+      <div class="summary" id="summary"></div>
+    </header>
+    <div class="toolbar">
+      <input class="search" id="search" type="search" placeholder="Поиск по названию, статусу или ID" autocomplete="off">
+      <button class="refresh" id="refresh" type="button">Обновить</button>
+    </div>
+    <div class="status-message" id="status" role="status" aria-live="polite"></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Документ</th><th>Статус</th><th>Обновлено</th><th>Сумма</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden>Нет данных для отображения.</div>
+    </div>
+    <section class="details" id="details" hidden aria-live="polite">
+      <div class="details-head"><div><h2 id="details-title"></h2><div class="subtitle" id="details-subtitle"></div></div><button class="close" id="close" type="button" aria-label="Закрыть">×</button></div>
+      <div class="detail-grid" id="detail-grid"></div>
+    </section>
+  </main>
+  <script>
+    (function () {
+      var CONFIG = {"module":"documents","title":"Документы","description":"Реестр документов с поиском и просмотром деталей.","nameLabel":"Документ","statusLabel":"Статус","dateLabel":"Обновлено","valueLabel":"Сумма","listTool":"shd_list_contracts","detailTool":"shd_get_contract","detailKey":"contract_id","listArgs":{"archived":false,"limit":100}};
+      var pending = new Map();
+      var nextRequestId = 1;
+      var records = [];
+      var busy = false;
+      var elements = {
+        search: document.getElementById('search'),
+        refresh: document.getElementById('refresh'),
+        status: document.getElementById('status'),
+        summary: document.getElementById('summary'),
+        rows: document.getElementById('rows'),
+        empty: document.getElementById('empty'),
+        details: document.getElementById('details'),
+        detailsTitle: document.getElementById('details-title'),
+        detailsSubtitle: document.getElementById('details-subtitle'),
+        detailGrid: document.getElementById('detail-grid'),
+        close: document.getElementById('close')
+      };
+
+      function request(method, params) {
+        var openai = typeof window !== 'undefined' ? window.openai : undefined;
+        if (method === 'tools/call' && openai && typeof openai.callTool === 'function') {
+          return openai.callTool(params.name, params.arguments || {});
+        }
+        var id = nextRequestId++;
+        window.parent.postMessage({ jsonrpc: '2.0', id: id, method: method, params: params || {} }, '*');
+        return new Promise(function (resolve, reject) {
+          var timeout = window.setTimeout(function () {
+            pending.delete(id);
+            reject(new Error('Host request timed out'));
+          }, 10000);
+          pending.set(id, { resolve: resolve, reject: reject, timeout: timeout });
+        });
+      }
+
+      function notify(method, params) {
+        window.parent.postMessage({ jsonrpc: '2.0', method: method, params: params || {} }, '*');
+      }
+
+      function normalizePayload(value) {
+        if (!value) return null;
+        if (value.structuredContent) return value.structuredContent;
+        if (value.toolOutput) return value.toolOutput;
+        return value;
+      }
+
+      function unwrap(value) {
+        var payload = normalizePayload(value);
+        if (value && value.isError) throw new Error('MCP tool returned an error');
+        if (payload && payload.error) throw new Error(String(payload.error));
+        return payload || value;
+      }
+
+      function toArray(value) {
+        var payload = normalizePayload(value);
+        if (!payload) return [];
+        var data = payload.data;
+        if (data && !Array.isArray(data) && Array.isArray(data.data)) data = data.data;
+        if (Array.isArray(payload.items)) data = payload.items;
+        return Array.isArray(data) ? data.filter(function (item) { return item && typeof item === 'object'; }) : [];
+      }
+
+      function idOf(item) { return String(item.id || item.code || item.key || item.number || ''); }
+      function titleOf(item) { return String(item.title || item.name || item.display_name || item.number || idOf(item) || '—'); }
+      function subtitleOf(item) { return String(item.subtitle || item.project_code || item.code || item.key || ''); }
+      function statusOf(item) {
+        var value = item.status;
+        if (value && typeof value === 'object') value = value.name || value.id;
+        return String(value || item.phase || '—');
+      }
+      function dateOf(item) { return String(item.date || item.due_date || item.updated_at || item.issued_at || item.created_at || ''); }
+      function valueOf(item) { return item.value === null || item.value === undefined ? '' : String(item.value); }
+      function dateText(value) {
+        if (!value) return '—';
+        var timestamp = Date.parse(value);
+        if (Number.isNaN(timestamp)) return value;
+        try { return new Intl.DateTimeFormat(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(timestamp)); }
+        catch (error) { return value; }
+      }
+      function make(tag, value, className) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (value !== undefined) node.textContent = value;
+        return node;
+      }
+
+      function renderSummary() {
+        elements.summary.replaceChildren();
+        var item = make('span');
+        item.append(make('strong', String(records.length)), ' записей');
+        elements.summary.append(item);
+      }
+
+      function renderRows() {
+        var query = elements.search.value.trim().toLowerCase();
+        var filtered = records.filter(function (item) {
+          if (!query) return true;
+          return (titleOf(item) + ' ' + subtitleOf(item) + ' ' + statusOf(item) + ' ' + idOf(item)).toLowerCase().indexOf(query) !== -1;
+        });
+        elements.rows.replaceChildren();
+        elements.empty.hidden = filtered.length !== 0;
+        filtered.forEach(function (item) {
+          var row = document.createElement('tr');
+          var name = make('td');
+          name.append(make('span', titleOf(item), 'title'));
+          if (subtitleOf(item)) name.append(make('span', subtitleOf(item), 'subtitle'));
+          var status = make('td');
+          status.append(make('span', statusOf(item), 'pill'));
+          row.append(name, status, make('td', dateText(dateOf(item))), make('td', valueOf(item) || '—'));
+          row.className = 'record';
+          row.tabIndex = 0;
+          row.setAttribute('role', 'button');
+          row.setAttribute('aria-label', titleOf(item));
+          row.addEventListener('click', function () { showDetails(item); });
+          row.addEventListener('keydown', function (event) { if (event.key === 'Enter' || event.key === ' ') showDetails(item); });
+          elements.rows.append(row);
+        });
+        renderSummary();
+      }
+
+      function render(value) {
+        records = toArray(value).slice().sort(function (left, right) {
+          var a = Date.parse(dateOf(left)); var b = Date.parse(dateOf(right));
+          if (Number.isNaN(a)) a = Number.POSITIVE_INFINITY;
+          if (Number.isNaN(b)) b = Number.POSITIVE_INFINITY;
+          return a - b || titleOf(left).localeCompare(titleOf(right));
+        });
+        renderRows();
+      }
+
+      function setStatus(value, isError) {
+        elements.status.textContent = value || '';
+        elements.status.className = isError ? 'status-message error' : 'status-message';
+      }
+
+      function detailValue(value) {
+        if (value === null || value === undefined || value === '') return '—';
+        if (typeof value === 'object') {
+          try { return JSON.stringify(value); } catch (error) { return '—'; }
+        }
+        return String(value);
+      }
+
+      function addDetail(label, value) {
+        var item = make('div', undefined, 'detail');
+        item.append(make('span', label, 'detail-label'), make('span', detailValue(value), 'detail-value'));
+        elements.detailGrid.append(item);
+      }
+
+      function showDetails(item) {
+        elements.detailsTitle.textContent = titleOf(item);
+        elements.detailsSubtitle.textContent = subtitleOf(item) || idOf(item);
+        elements.detailGrid.replaceChildren();
+        addDetail('ID', idOf(item));
+        addDetail(CONFIG.statusLabel, statusOf(item));
+        addDetail(CONFIG.dateLabel, dateText(dateOf(item)));
+        if (valueOf(item)) addDetail(CONFIG.valueLabel, valueOf(item));
+        if (item.meta) addDetail('Meta', item.meta);
+        elements.details.hidden = false;
+        var id = idOf(item);
+        if (!id || !CONFIG.detailTool) return;
+        var args = {};
+        args[CONFIG.detailKey] = Number(id) || id;
+        if (CONFIG.detailSection) args.section = CONFIG.detailSection;
+        request('tools/call', { name: CONFIG.detailTool, arguments: args }).then(function (result) {
+          var payload = unwrap(result);
+          var data = payload && payload.data;
+          if (Array.isArray(data)) data = data[0];
+          if (!data || typeof data !== 'object') return;
+          elements.detailGrid.replaceChildren();
+          Object.keys(data).slice(0, 12).forEach(function (key) { addDetail(key, data[key]); });
+        }).catch(function (error) { setStatus(error && error.message ? error.message : 'Не удалось загрузить детали.', true); });
+      }
+
+      function refresh() {
+        if (busy) return;
+        busy = true;
+        elements.refresh.disabled = true;
+        setStatus('Загрузка…', false);
+        request('tools/call', { name: CONFIG.listTool, arguments: CONFIG.listArgs }).then(function (result) {
+          render(unwrap(result));
+          setStatus('', false);
+        }).catch(function (error) {
+          setStatus(error && error.message ? error.message : 'Не удалось загрузить данные.', true);
+        }).finally(function () {
+          busy = false;
+          elements.refresh.disabled = false;
+        });
+      }
+
+      function initializeHost() {
+        return request('ui/initialize', {
+          protocolVersion: '2025-11-25',
+          appInfo: { name: 'SHD ' + CONFIG.title, title: 'SHD ' + CONFIG.title, version: '1.0.0', websiteUrl: 'https://shd.xyz.su' },
+          appCapabilities: {}
+        }).then(function () { notify('ui/notifications/initialized', {}); }).catch(function () {});
+      }
+
+      window.addEventListener('message', function (event) {
+        if (event.source !== window.parent) return;
+        var message = event.data;
+        if (!message || message.jsonrpc !== '2.0') return;
+        if (message.id !== undefined && pending.has(message.id)) {
+          var entry = pending.get(message.id);
+          pending.delete(message.id);
+          window.clearTimeout(entry.timeout);
+          if (message.error) entry.reject(new Error(message.error.message || 'Host request failed'));
+          else entry.resolve(message.result);
+          return;
+        }
+        if (message.method === 'ui/notifications/tool-input') {
+          if (!records.length) render(message.params || {});
+        }
+        if (message.method === 'ui/notifications/tool-result') render(message.params && message.params.structuredContent);
+      }, { passive: true });
+
+      elements.search.addEventListener('input', renderRows);
+      elements.refresh.addEventListener('click', refresh);
+      elements.close.addEventListener('click', function () { elements.details.hidden = true; });
+      void initializeHost();
+      var initialOutput = typeof window !== 'undefined' && window.openai ? window.openai.toolOutput : null;
+      if (initialOutput) render(initialOutput);
+      else {
+        var initialInput = typeof window !== 'undefined' && window.openai ? window.openai.toolInput : null;
+        if (initialInput) render(initialInput);
+        else refresh();
+      }
+    }());
+  </script>
+<script data-shd-widget-write-actions="js">
+(function () {
+  'use strict';
+
+  if (window.__SHD_WIDGET_WRITE_ACTIONS__) return;
+  window.__SHD_WIDGET_WRITE_ACTIONS__ = true;
+
+  var copy = {
+    ru: {
+      actions: 'Действия',
+      chooseAction: 'Выберите действие',
+      selectRecord: 'Сначала выберите запись.',
+      submit: 'Сохранить',
+      cancel: 'Отмена',
+      confirm: 'Подтверждаю действие',
+      warning: 'Проверьте данные перед записью.',
+      destructive: 'Операция может изменить или удалить данные.',
+      required: 'Заполните обязательное поле.',
+      invalidJson: 'Введите корректный JSON.',
+      success: 'Изменения сохранены.',
+      failure: 'Не удалось сохранить изменения.',
+      loading: 'Сохраняю…',
+      noActions: 'Для этого виджета нет доступных действий.',
+      refreshed: 'Список обновлён.',
+      fieldValue: 'Значение',
+    },
+    en: {
+      actions: 'Actions',
+      chooseAction: 'Choose an action',
+      selectRecord: 'Select a record first.',
+      submit: 'Save',
+      cancel: 'Cancel',
+      confirm: 'I confirm this action',
+      warning: 'Review the values before writing.',
+      destructive: 'This operation may change or remove data.',
+      required: 'Fill in the required field.',
+      invalidJson: 'Enter valid JSON.',
+      success: 'Changes saved.',
+      failure: 'Could not save changes.',
+      loading: 'Saving…',
+      noActions: 'No actions are available for this widget.',
+      refreshed: 'List refreshed.',
+      fieldValue: 'Value',
+    },
+  };
+
+  var state = {
+    widget: {},
+    records: [],
+    selected: null,
+    action: null,
+    inputs: {},
+    busy: false,
+    lang: String(document.documentElement.lang || 'ru').toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en',
+  };
+  var pending = new Map();
+  var nextRequestId = 1;
+  var elements = {};
+
+  function t(key) {
+    return (copy[state.lang] && copy[state.lang][key]) || copy.en[key] || key;
+  }
+
+  function object(value) {
+    return Boolean(value && typeof value === 'object' && !Array.isArray(value));
+  }
+
+  function normalize(value) {
+    if (!value) return null;
+    if (value.structuredContent) return normalize(value.structuredContent);
+    if (value.toolOutput) return normalize(value.toolOutput);
+    if (value.toolInput) return normalize(value.toolInput);
+    if (value.arguments && !value.data && !value.items && !value.projects) return normalize(value.arguments);
+    return value;
+  }
+
+  function widgetFrom(value) {
+    var payload = normalize(value) || {};
+    var meta = object(payload.meta) ? payload.meta : {};
+    return object(meta.widget) ? meta.widget : {};
+  }
+
+  function recordsFrom(value) {
+    var payload = normalize(value) || {};
+    var data = Array.isArray(payload.items) ? payload.items : payload.projects;
+    if (!Array.isArray(data)) data = payload.data;
+    if (data && !Array.isArray(data) && Array.isArray(data.data)) data = data.data;
+    return Array.isArray(data) ? data.filter(function (item) { return object(item); }) : [];
+  }
+
+  function readPath(value, path) {
+    if (!value || path === undefined || path === null) return undefined;
+    var parts = String(path).split('.');
+    var current = value;
+    for (var index = 0; index < parts.length; index += 1) {
+      if (current === undefined || current === null) return undefined;
+      current = current[parts[index]];
+    }
+    return current;
+  }
+
+  function firstValue(paths) {
+    var list = Array.isArray(paths) ? paths : [paths];
+    var sources = [state.selected, state.widget.sourceArgs, state.widget.listArgs];
+    for (var sourceIndex = 0; sourceIndex < sources.length; sourceIndex += 1) {
+      var sourceObject = sources[sourceIndex];
+      if (!sourceObject) continue;
+      for (var pathIndex = 0; pathIndex < list.length; pathIndex += 1) {
+        var value = readPath(sourceObject, list[pathIndex]);
+        if (value !== undefined && value !== null && value !== '') return value;
+      }
+    }
+    return undefined;
+  }
+
+  function text(value) {
+    if (value === undefined || value === null) return '';
+    if (typeof value === 'object') return JSON.stringify(value);
+    return String(value);
+  }
+
+  function label(value) {
+    if (object(value)) return value[state.lang] || value.ru || value.en || t('fieldValue');
+    return String(value || t('fieldValue'));
+  }
+
+  function actionLabel(action) {
+    return label(action && action.label) || action.id || action.tool || t('actions');
+  }
+
+  function hasTargets(action) {
+    return Boolean(action && ((Array.isArray(action.targets) && action.targets.length) || action.target));
+  }
+
+  function actionList() {
+    return Array.isArray(state.widget.actions) ? state.widget.actions.filter(function (action) {
+      return action && action.tool;
+    }) : [];
+  }
+
+  function request(method, params) {
+    var openai = typeof window !== 'undefined' ? window.openai : undefined;
+    if (method === 'tools/call' && openai && typeof openai.callTool === 'function') {
+      return openai.callTool(params.name, params.arguments || {});
+    }
+    var id = nextRequestId++;
+    window.parent.postMessage({ jsonrpc: '2.0', id: id, method: method, params: params || {} }, '*');
+    return new Promise(function (resolve, reject) {
+      var timeout = window.setTimeout(function () {
+        pending.delete(id);
+        reject(new Error(t('failure')));
+      }, 15000);
+      pending.set(id, { resolve: resolve, reject: reject, timeout: timeout });
+    });
+  }
+
+  function unwrap(value) {
+    var payload = normalize(value);
+    if (value && value.isError) throw new Error(payload && payload.error ? text(payload.error) : t('failure'));
+    if (payload && payload.error) throw new Error(text(payload.error));
+    return payload || value;
+  }
+
+  function make(tag, value, className) {
+    var node = document.createElement(tag);
+    if (className) node.className = className;
+    if (value !== undefined) node.textContent = value;
+    return node;
+  }
+
+  function ensurePanel() {
+    if (elements.panel) return;
+    var root = document.querySelector('main') || document.body;
+    var panel = make('section', undefined, 'shd-widget-actions');
+    panel.hidden = true;
+    panel.setAttribute('aria-live', 'polite');
+    var header = make('div', undefined, 'shd-widget-actions-header');
+    header.append(make('strong', t('actions')), make('span', '', 'shd-widget-actions-selection'));
+    var select = document.createElement('select');
+    select.className = 'shd-widget-actions-select';
+    select.setAttribute('aria-label', t('actions'));
+    var form = make('form', undefined, 'shd-widget-actions-form');
+    var status = make('div', '', 'shd-widget-actions-status');
+    var buttons = make('div', undefined, 'shd-widget-actions-buttons');
+    var submit = make('button', t('submit'), 'shd-widget-actions-submit');
+    submit.type = 'submit';
+    var cancel = make('button', t('cancel'), 'shd-widget-actions-cancel');
+    cancel.type = 'button';
+    buttons.append(submit, cancel);
+    panel.append(header, select, form, status, buttons);
+    root.append(panel);
+    elements = { panel: panel, selection: header.lastChild, select: select, form: form, status: status, submit: submit, cancel: cancel };
+    select.addEventListener('change', function () {
+      var selected = actionList().find(function (action) { return action.id === select.value; });
+      state.action = selected || null;
+      renderForm();
+    });
+    cancel.addEventListener('click', function () {
+      state.action = null;
+      select.value = '';
+      renderForm();
+    });
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      submitAction();
+    });
+  }
+
+  function inputValue(fieldConfig) {
+    var value = firstValue(fieldConfig.source || []);
+    if (value === undefined && fieldConfig.default !== undefined) value = fieldConfig.default;
+    return value;
+  }
+
+  function createInput(fieldConfig) {
+    var type = fieldConfig.type || 'text';
+    var input;
+    if (type === 'textarea' || type === 'json') {
+      input = document.createElement('textarea');
+      input.rows = type === 'json' ? 4 : 3;
+      if (type === 'json') input.placeholder = '{ }';
+    } else if (type === 'select') {
+      input = document.createElement('select');
+      (fieldConfig.options || []).forEach(function (option) {
+        var item = document.createElement('option');
+        item.value = String(option[0]);
+        item.textContent = state.lang === 'ru' ? String(option[1]) : String(option[2] || option[1]);
+        input.append(item);
+      });
+    } else {
+      input = document.createElement('input');
+      input.type = type === 'number' || type === 'email' ? type : 'text';
+    }
+    input.className = 'shd-widget-actions-input';
+    input.name = fieldConfig.name;
+    var value = inputValue(fieldConfig);
+    if (type === 'checkbox') {
+      input.type = 'checkbox';
+      input.checked = value === true || value === 'true' || value === 1 || value === '1';
+    } else if (value !== undefined && value !== null) {
+      input.value = type === 'json' && typeof value === 'object' ? JSON.stringify(value, null, 2) : String(value);
+    }
+    if (fieldConfig.required) input.required = true;
+    return input;
+  }
+
+  function renderForm() {
+    ensurePanel();
+    var selectedActionId = state.action ? state.action.id : '';
+    elements.select.replaceChildren();
+    var placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = t('chooseAction');
+    elements.select.append(placeholder);
+    actionList().forEach(function (action) {
+      var option = document.createElement('option');
+      option.value = action.id;
+      option.textContent = actionLabel(action);
+      elements.select.append(option);
+    });
+    elements.select.value = selectedActionId;
+    elements.select.hidden = actionList().length === 0;
+    elements.form.replaceChildren();
+    elements.status.textContent = '';
+    elements.submit.disabled = state.busy;
+    var action = state.action;
+    if (!action) {
+      elements.selection.textContent = state.selected ? text(state.selected.title || state.selected.name || state.selected.id || '') : '';
+      elements.submit.hidden = true;
+      elements.cancel.hidden = true;
+      if (actionList().length && !state.selected && actionList().every(hasTargets)) {
+        elements.form.append(make('div', t('selectRecord'), 'shd-widget-actions-hint'));
+      }
+      return;
+    }
+    elements.selection.textContent = state.selected ? text(state.selected.title || state.selected.name || state.selected.id || '') : '';
+    elements.submit.hidden = false;
+    elements.cancel.hidden = false;
+    if (hasTargets(action) && !state.selected) elements.form.append(make('div', t('selectRecord'), 'shd-widget-actions-hint'));
+    (action.fields || []).forEach(function (fieldConfig) {
+      if (!fieldConfig || !fieldConfig.name || fieldConfig.generated || fieldConfig.type === 'hidden') return;
+      var wrapper = make('label', undefined, 'shd-widget-actions-field');
+      wrapper.append(make('span', label(fieldConfig.label)));
+      wrapper.append(createInput(fieldConfig));
+      elements.form.append(wrapper);
+    });
+    if (action.confirm) {
+      var confirmLabel = make('label', undefined, 'shd-widget-actions-confirm');
+      var confirm = document.createElement('input');
+      confirm.type = 'checkbox';
+      confirm.name = '__confirm';
+      confirm.required = true;
+      confirmLabel.append(confirm, make('span', t('confirm')));
+      elements.form.append(confirmLabel);
+    }
+    var notice = make('div', action.destructive ? t('destructive') : t('warning'), action.destructive ? 'shd-widget-actions-warning shd-widget-actions-danger' : 'shd-widget-actions-warning');
+    elements.form.append(notice);
+  }
+
+  function coerce(value, type) {
+    if (type === 'number') {
+      var number = Number(value);
+      return Number.isFinite(number) ? number : value;
+    }
+    if (type === 'checkbox') return Boolean(value);
+    if (type === 'json') {
+      try { return JSON.parse(value); } catch (error) { throw new Error(t('invalidJson')); }
+    }
+    return value;
+  }
+
+  function targetType(name) {
+    return /^(task|document|contract|booking|item|monitor|proposal|approval|page|notification|topic|membership|organization|space|status|project)_?id$/.test(name) || name === 'issue_number' || name === 'number' ? 'number' : 'text';
+  }
+
+  function targetList(action) {
+    if (Array.isArray(action.targets)) return action.targets;
+    return action.target ? [action.target] : [];
+  }
+
+  function collectArguments(action) {
+    var args = Object.assign({}, action.fixed || {});
+    (action.context || []).forEach(function (name) {
+      var value = firstValue([name]);
+      if (value !== undefined && value !== null && value !== '') args[name] = value;
+    });
+    targetList(action).forEach(function (targetConfig) {
+      var value = firstValue(targetConfig.source || targetConfig.name);
+      if (value === undefined || value === null || value === '') throw new Error(t('selectRecord'));
+      args[targetConfig.name] = coerce(value, targetConfig.type || targetType(targetConfig.name));
+    });
+    (action.fields || []).forEach(function (fieldConfig) {
+      if (!fieldConfig || !fieldConfig.name || fieldConfig.generated || fieldConfig.type === 'hidden') return;
+      var input = Array.prototype.find.call(elements.form.querySelectorAll('[name]'), function (node) {
+        return node.getAttribute('name') === fieldConfig.name;
+      });
+      if (!input) return;
+      var raw = fieldConfig.type === 'checkbox' ? input.checked : input.value.trim();
+      if (raw === '' && !input.checked && !fieldConfig.required) return;
+      if (raw === '' && fieldConfig.required) throw new Error(t('required'));
+      args[fieldConfig.name] = coerce(raw, fieldConfig.type || 'text');
+    });
+    if (action.idempotencyKey) args.idempotency_key = 'shd-widget-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+    if (action.confirmArg) args.confirm = true;
+    return args;
+  }
+
+  function setStatus(message, error) {
+    elements.status.textContent = message || '';
+    elements.status.className = 'shd-widget-actions-status' + (error ? ' shd-widget-actions-status-error' : '');
+  }
+
+  function submitAction() {
+    if (state.busy || !state.action) return;
+    var action = state.action;
+    var args;
+    try { args = collectArguments(action); } catch (error) { setStatus(error.message || t('failure'), true); return; }
+    state.busy = true;
+    elements.submit.disabled = true;
+    elements.cancel.disabled = true;
+    setStatus(t('loading'), false);
+    request('tools/call', { name: action.tool, arguments: args }).then(function (result) {
+      unwrap(result);
+      setStatus(t('success'), false);
+      var refresh = document.getElementById('refresh');
+      if (refresh && typeof refresh.click === 'function') window.setTimeout(function () { refresh.click(); }, 250);
+    }).catch(function (error) {
+      setStatus(error && error.message ? error.message : t('failure'), true);
+    }).finally(function () {
+      state.busy = false;
+      elements.submit.disabled = false;
+      elements.cancel.disabled = false;
+    });
+  }
+
+  function recordFromNode(node) {
+    var content = String(node.textContent || '').toLowerCase();
+    var exact = state.records.find(function (item) {
+      var id = text(item.id || item.code || item.key || item.number).toLowerCase();
+      return id && content.indexOf(id) !== -1;
+    });
+    if (exact) return exact;
+    return state.records.find(function (item) {
+      var title = text(item.title || item.name || item.display_name || item.number).toLowerCase();
+      return title && content.indexOf(title) !== -1;
+    }) || null;
+  }
+
+  function update(value) {
+    var payload = normalize(value) || {};
+    var widget = widgetFrom(payload);
+    if (Object.keys(widget).length) state.widget = widget;
+    var records = recordsFrom(payload);
+    if (records.length || Array.isArray(payload.data) || Array.isArray(payload.items) || Array.isArray(payload.projects)) state.records = records;
+    ensurePanel();
+    var actions = actionList();
+    elements.panel.hidden = actions.length === 0;
+    if (actions.length && !state.action) renderForm();
+    else if (actions.length) renderForm();
+  }
+
+  document.addEventListener('click', function (event) {
+    var node = event.target && event.target.closest ? event.target.closest('.record,.project-row,.visual-card,.progress-card,.preview-card,.calendar-card,.timeline-card,.kanban-card') : null;
+    if (!node || (elements.panel && elements.panel.contains(node))) return;
+    var item = recordFromNode(node);
+    if (!item) return;
+    state.selected = item;
+    ensurePanel();
+    renderForm();
+  }, true);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window.parent) return;
+    var message = event.data;
+    if (!message || message.jsonrpc !== '2.0') return;
+    if (message.id !== undefined && pending.has(message.id)) {
+      var requestState = pending.get(message.id);
+      pending.delete(message.id);
+      window.clearTimeout(requestState.timeout);
+      if (message.error) requestState.reject(new Error(message.error.message || t('failure')));
+      else requestState.resolve(message.result);
+      return;
+    }
+    if (message.method === 'ui/notifications/tool-input' || message.method === 'ui/notifications/tool-result') update(message.params || {});
+  }, { passive: true });
+
+  ensurePanel();
+  var initial = typeof window !== 'undefined' && window.openai ? (window.openai.toolOutput || window.openai.toolInput) : null;
+  if (initial) update(initial);
+}());
+</script>
+</body>
+</html>

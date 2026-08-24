@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD safe bulk changes
+  short_description: Plan and validate bulk mutations
+policy:
+  allow_implicit_invocation: false

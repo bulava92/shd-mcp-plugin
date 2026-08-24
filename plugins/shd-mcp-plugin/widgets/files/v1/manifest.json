@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-files",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 45931,
+      "gzipBytes": 13579,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/files/v1.html",
+      "sha256": "6091dc2361901d2f15b2cb19ef6bf5ce0c955f79a6017838cbe9b2d55da027ae"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/files/v1/index.html"
+  }
+}

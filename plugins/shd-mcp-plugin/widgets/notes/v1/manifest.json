@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-notes",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 41393,
+      "gzipBytes": 12426,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/notes/v1.html",
+      "sha256": "f90f27e3ca3cb80aee68e1e35d37eb2d664b5055cd0d0075c3f532a811db60ff"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/notes/v1/index.html"
+  }
+}

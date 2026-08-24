@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-finance-dashboard",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 69121,
+      "gzipBytes": 18845,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/finance-dashboard/v1.html",
+      "sha256": "7b461816e3482390408daf834faef083686f9d0fe567fc4ca9e808f56343ab67"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/finance-dashboard/v1/index.html"
+  }
+}
