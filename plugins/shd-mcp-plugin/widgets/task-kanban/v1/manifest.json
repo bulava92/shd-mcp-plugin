@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 69109,
-      "gzipBytes": 18846,
+      "bytes": 77309,
+      "gzipBytes": 20862,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/task-kanban/v1.html",
-      "sha256": "04a0294f12237506f211b99437843ebbffb34abc6485e7de49d2d787c4726da3"
+      "sha256": "59b04fd7164b1ea92c5c5e099116236142f97395857fa47b1d16a4ca7cc31b6d"
     }
   ],
   "license": "../../../../../LICENSE",

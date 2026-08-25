@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 69123,
-      "gzipBytes": 18847,
+      "bytes": 77323,
+      "gzipBytes": 20864,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/inventory-warnings/v1.html",
-      "sha256": "01c17190678fb59ec142c4c5356558d8946ee2200169557035d329fb100022d1"
+      "sha256": "0822a8596548a6f729c4ef236d0125b810eb94c26e5e42610987c4966fa707aa"
     }
   ],
   "license": "../../../../../LICENSE",

@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 69121,
-      "gzipBytes": 18845,
+      "bytes": 77321,
+      "gzipBytes": 20861,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/finance-dashboard/v1.html",
-      "sha256": "7b461816e3482390408daf834faef083686f9d0fe567fc4ca9e808f56343ab67"
+      "sha256": "b4cd475b62a373dcb338bab808ffb5be5646890577501a65dd8a57b5c96643e3"
     }
   ],
   "license": "../../../../../LICENSE",

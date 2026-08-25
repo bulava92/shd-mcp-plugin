@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 69107,
-      "gzipBytes": 18847,
+      "bytes": 77307,
+      "gzipBytes": 20863,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/crm-funnel/v1.html",
-      "sha256": "8aa0f61e0d1a87444c832d9de570faf4e7ffac715ca13a060379db21bac61edb"
+      "sha256": "a1c67b2e401aea9f4f5d2534c4a273a93172de9f1d0942d1b82a0e1be3005251"
     }
   ],
   "license": "../../../../../LICENSE",

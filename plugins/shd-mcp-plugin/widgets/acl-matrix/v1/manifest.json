@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 69107,
-      "gzipBytes": 18847,
+      "bytes": 77307,
+      "gzipBytes": 20863,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/acl-matrix/v1.html",
-      "sha256": "818956bcece3e1a64a8f41f51a8bcc19ebcd0c95d1eb9bfa923166dca9660711"
+      "sha256": "6cf42e69f895b240c8a4018f74d9da3076dfaf3b6f2be9c1ced2417c89c86b79"
     }
   ],
   "license": "../../../../../LICENSE",

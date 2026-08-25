@@ -14,14 +14,16 @@ description: Use when the user asks for all active SHD projects, project deadlin
    `shd_get_project` once per row just to repeat list data.
 4. Sort projects with a non-null `deadline` in ascending order. Put projects
    without a deadline after dated projects; do not invent a date.
-5. Return the compact table:
+5. If the user is in a UI-capable MCP host, call `shd_render_projects_widget`
+   after the data call, passing the returned `data` array as `projects` and the
+   returned `meta` object as `meta`. When rendering succeeds, keep the project
+   rows inside the widget and give only a short confirmation in the final
+   response; do not repeat the rows as prose or a Markdown table.
+6. If the UI host is unavailable or the render tool returns an error, return
+   the compact fallback table:
 
    `Проект | Дата завершения | Статус`
 
-6. If the user is in a UI-capable MCP host, call `shd_render_projects_widget`
-   after the data call, passing the returned `data` array as `projects` and the
-   returned `meta` object as `meta`. The widget is optional; the plain table
-   remains the fallback for hosts without MCP Apps UI.
 7. Preserve the server's project name/code and status. If a deadline is a
    datetime, format it with its returned timezone when available; otherwise
    keep the value unmodified and state that timezone data was unavailable.

@@ -7,9 +7,9 @@
       "file": "index.html",
       "uri": "ui://shd/finance/v1.html",
       "mediaType": "text/html;profile=mcp-app",
-      "bytes": 35866,
-      "sha256": "bcd1e3b07ccb8bdb9a28d884d01a64c473fb7ca079271eadb062446cf81174c6",
-      "gzipBytes": 9488
+      "bytes": 46724,
+      "sha256": "9602680407f0da06e87d71ad3374dbd4602d6ca6124f19983647b207c33c5b6e",
+      "gzipBytes": 12444
     }
   ],
   "license": "../../../../../LICENSE",

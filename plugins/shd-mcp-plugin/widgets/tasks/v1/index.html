@@ -5,41 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Задачи — SHD MCP</title>
   <style>
-    :root{color-scheme:light dark;--bg:#f7f8fa;--panel:#fff;--line:#d9dee7;--ink:#172033;--muted:#687386;--accent:#2563eb;--accent-soft:#e8efff;--danger:#b42318}
+    :root{color-scheme:light dark;--bg:#f8fafc;--surface:#e8edf2;--hover:#e1e8ef;--line:rgba(31,41,55,.16);--ink:#1d1f25;--muted:#616670;--accent:#535963;--soft:rgba(75,85,99,.12);--bad:#b42318;--good:#2f855a;--button:#fff;--shadow:0 10px 26px rgba(31,41,55,.1)}
     *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
     .shell{max-width:980px;margin:0 auto;padding:24px}.eyebrow{color:var(--accent);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
     h1{margin:4px 0 6px;font-size:25px;line-height:1.15}.lede{margin:0;color:var(--muted)}.summary{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 14px}
-    .summary span{padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--muted)}.summary strong{color:var(--ink)}
-    .toolbar{display:flex;gap:8px;margin-bottom:12px}.search{min-width:0;flex:1;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:inherit}
-    button{cursor:pointer}.refresh{padding:9px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:#fff;font-weight:600}.refresh:disabled{opacity:.6;cursor:wait}
-    .status-message{min-height:22px;color:var(--muted)}.error{color:var(--danger)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+    .summary span{padding:5px 9px;border:1px solid var(--line);border-radius:999px;background:var(--hover);color:var(--muted)}.summary strong{color:var(--ink)}
+    .toolbar{display:flex;gap:8px;margin-bottom:12px}.search{min-width:0;flex:1;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:inherit}
+    button{cursor:pointer}.refresh{padding:9px 14px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:var(--button);font-weight:600}.refresh:disabled{opacity:.6;cursor:wait}
+    .status-message{min-height:22px;color:var(--muted)}.error{color:var(--bad)}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
     table{width:100%;border-collapse:collapse;min-width:560px}th,td{padding:11px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{color:var(--muted);font-size:12px;font-weight:600}
-    tbody tr:last-child td{border-bottom:0}.record{width:100%;border:0;background:transparent;color:inherit;text-align:left}.record:hover{background:var(--accent-soft)}
-    .title{font-weight:650}.subtitle{display:block;color:var(--muted);font-size:12px;margin-top:2px}.pill{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:12px;white-space:nowrap}
-    .empty{padding:24px;text-align:center;color:var(--muted)}.details{margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}.details[hidden]{display:none}
+    tbody tr:last-child td{border-bottom:0}.record{width:100%;border:0;background:transparent;color:inherit;text-align:left}.record:hover{background:var(--soft)}
+    .title{font-weight:650}.subtitle{display:block;color:var(--muted);font-size:12px;margin-top:2px}.pill{display:inline-block;padding:3px 8px;border-radius:999px;background:var(--soft);color:var(--accent);font-size:12px;white-space:nowrap}
+    .empty{padding:24px;text-align:center;color:var(--muted)}.details{margin-top:14px;padding:16px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}.details[hidden]{display:none}
     .details-head{display:flex;justify-content:space-between;gap:12px;align-items:start}.details h2{margin:0;font-size:18px}.close{border:0;background:transparent;color:var(--muted);font-size:20px}.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:14px}
     .detail{padding:9px;border-radius:8px;background:var(--bg)}.detail-label{display:block;color:var(--muted);font-size:11px;margin-bottom:3px}.detail-value{overflow-wrap:anywhere}
-    @media(prefers-color-scheme:dark){:root{--bg:#11151d;--panel:#1b2230;--line:#303a4b;--ink:#edf2fb;--muted:#aab4c5;--accent:#82aaff;--accent-soft:#263858;--danger:#ff9a93}}
+    @media(prefers-color-scheme:dark){:root{--bg:#202020;--surface:#292929;--hover:#303336;--line:#43474c;--ink:#eaecf0;--muted:#96999d;--accent:#c7b07a;--soft:rgba(199,176,122,.18);--bad:#ff9a93;--good:#83c995;--button:#241f14;--shadow:0 10px 26px rgba(0,0,0,.34)}}
   </style>
 <style data-shd-widget-write-actions="css">
-.shd-widget-actions{margin-top:14px;padding:14px;border:1px solid var(--border,rgba(31,41,55,.16));border-radius:11px;background:var(--surface,#e8edf2);color:var(--text,#1d1f25)}
+.shd-widget-actions{margin-top:14px;padding:14px;border:1px solid var(--border,var(--line,rgba(31,41,55,.16)));border-radius:11px;background:var(--surface,var(--panel,#e8edf2));color:var(--text,var(--ink,#1d1f25))}
 .shd-widget-actions[hidden]{display:none}
 .shd-widget-actions-header{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
 .shd-widget-actions-selection{overflow:hidden;color:var(--muted,#616670);font-size:12px;text-overflow:ellipsis;white-space:nowrap}
-.shd-widget-actions-select,.shd-widget-actions-input{width:100%;border:1px solid var(--border,rgba(31,41,55,.16));border-radius:8px;padding:8px 10px;background:var(--bg,#f8fafc);color:var(--text,#1d1f25)}
-.shd-widget-actions-select:focus,.shd-widget-actions-input:focus{border-color:var(--accent,#535963);outline:0;box-shadow:0 0 0 3px var(--accent-soft,rgba(75,85,99,.12))}
+.shd-widget-actions-select,.shd-widget-actions-input{width:100%;border:1px solid var(--border,var(--line,rgba(31,41,55,.16)));border-radius:8px;padding:8px 10px;background:var(--bg,#f8fafc);color:var(--text,var(--ink,#1d1f25))}
+.shd-widget-actions-select:focus,.shd-widget-actions-input:focus{border-color:var(--accent,#535963);outline:0;box-shadow:0 0 0 3px var(--accent-soft,var(--soft,rgba(75,85,99,.12)))}
 .shd-widget-actions-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
 .shd-widget-actions-field{display:grid;gap:4px;color:var(--muted,#616670);font-size:11px}
 .shd-widget-actions-field:has(textarea){grid-column:span 2}
 .shd-widget-actions-field input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent,#535963)}
-.shd-widget-actions-confirm{display:flex;grid-column:1/-1;align-items:center;gap:7px;color:var(--text,#1d1f25);font-size:12px}
+.shd-widget-actions-confirm{display:flex;grid-column:1/-1;align-items:center;gap:7px;color:var(--text,var(--ink,#1d1f25));font-size:12px}
 .shd-widget-actions-warning,.shd-widget-actions-hint{grid-column:1/-1;color:var(--muted,#616670);font-size:12px}
-.shd-widget-actions-danger{color:var(--danger,#b42318)}
+.shd-widget-actions-danger{color:var(--danger,var(--bad,#b42318))}
 .shd-widget-actions-status{min-height:18px;margin-top:9px;color:var(--muted,#616670);font-size:12px}
-.shd-widget-actions-status-error{color:var(--danger,#b42318)}
+.shd-widget-actions-status-error{color:var(--danger,var(--bad,#b42318))}
 .shd-widget-actions-buttons{display:flex;justify-content:flex-end;gap:8px;margin-top:10px}
-.shd-widget-actions-buttons button{border:1px solid var(--border,rgba(31,41,55,.16));border-radius:8px;padding:8px 11px;background:var(--bg,#f8fafc);color:var(--text,#1d1f25);cursor:pointer}
-.shd-widget-actions-buttons button:hover{background:var(--surface-hover,#e1e8ef)}
+.shd-widget-actions-buttons button{border:1px solid var(--border,var(--line,rgba(31,41,55,.16)));border-radius:8px;padding:8px 11px;background:var(--bg,#f8fafc);color:var(--text,var(--ink,#1d1f25));cursor:pointer}
+.shd-widget-actions-buttons button:hover{background:var(--surface-hover,var(--hover,#e1e8ef))}
 .shd-widget-actions-buttons button:disabled{cursor:wait;opacity:.62}
 @media(max-width:600px){.shd-widget-actions-field:has(textarea){grid-column:auto}.shd-widget-actions-header{display:block}.shd-widget-actions-selection{display:block;margin-top:3px}}
 </style>
@@ -72,6 +72,13 @@
   <script>
     (function () {
       var CONFIG = {"module":"tasks","title":"Задачи","description":"Реестр задач с поиском и просмотром деталей.","nameLabel":"Задача","statusLabel":"Статус","dateLabel":"Срок","valueLabel":"Приоритет","listTool":"shd_list_tasks","detailTool":"shd_get_task","detailKey":"task_id","listArgs":{"archived":false,"limit":100}};
+      var COPY={"ru":{"title":"Задачи","description":"Реестр задач с поиском и просмотром деталей.","search":"Поиск по названию, статусу или ID","refresh":"Обновить","empty":"Нет данных для отображения.","records":"записей","name":"Задача","status":"Статус","date":"Срок","value":"Приоритет","meta":"Метаданные","id":"ID","details":"Детали","close":"Закрыть","loading":"Загрузка…","load":"Не удалось загрузить данные.","detail":"Не удалось загрузить детали.","yes":"Да","no":"Нет"},"en":{"title":"Tasks","description":"Task registry with search and detail viewing.","search":"Search by name, status or ID","refresh":"Refresh","empty":"No data to display.","records":"records","name":"Task","status":"Status","date":"Due date","value":"Priority","meta":"Metadata","id":"ID","details":"Details","close":"Close","loading":"Loading…","load":"Could not load data.","detail":"Could not load details.","yes":"Yes","no":"No"}};
+      var FIELD_LABELS={ru:{id:'ID',key:'Ключ',project_id:'ID проекта',task_project_id:'ID проекта задачи',linked_project_ids:'Связанные проекты',project_code:'Код проекта',base_reference:'Ссылка на базу',base_public_id:'Публичный ID базы',table_public_id:'Публичный ID таблицы',record_public_id:'Публичный ID записи',title:'Название',name:'Название',description:'Описание',status:'Статус',status_id:'ID статуса',is_done:'Завершено',is_complete:'Завершено',section:'Раздел',sort_order:'Порядок сортировки',created_at:'Создано',updated_at:'Обновлено',due_date:'Срок',deadline:'Дедлайн',starts_at:'Начало',ends_at:'Окончание',url:'Ссылка',diagnostic:'Диагностика',message:'Сообщение',type:'Тип',state:'Состояние',phase:'Этап',health:'Состояние',email:'Электронная почта',username:'Имя пользователя',role:'Роль',permissions:'Разрешения',source:'Источник',module:'Модуль',table:'Таблица',fields:'Поля',value:'Значение',stage:'Стадия',approval_status:'Статус согласования',approval_state:'Состояние согласования',priority:'Приоритет',assignee:'Исполнитель',owner:'Владелец',type:'Тип',category:'Категория',permissions:'Разрешения',permission:'Разрешение',read:'Чтение',write:'Запись',manage:'Управление',admin:'Администратор',view:'Просмотр',create:'Создание',update:'Изменение',delete:'Удаление',error:'Ошибка',warning:'Предупреждение',message:'Сообщение',path:'Путь',link:'Ссылка',amount:'Сумма',total:'Итого',quantity:'Количество',available_quantity:'Доступное количество',stock:'Остаток',planned:'План',planned_hours:'Плановые часы',capacity:'Ёмкость',capacity_hours:'Часы ёмкости',utilization:'Загрузка',utilization_percent:'Загрузка, %',overload:'Перегрузка',overload_hours:'Часы перегрузки',score:'Оценка',progress:'Прогресс',completeness_score:'Оценка полноты',completion_percent:'Полнота, %',availability_percent:'Доступность, %',record_count:'Количество записей',revision:'Ревизия',pages:'Страницы',page_count:'Количество страниц',date:'Дата',is_archived:'В архиве',low_stock:'Мало на складе',critical:'Критический',meta:'Метаданные'},en:{id:'ID',key:'Key',project_id:'Project ID',task_project_id:'Task project ID',linked_project_ids:'Linked projects',project_code:'Project code',base_reference:'Base reference',base_public_id:'Public base ID',table_public_id:'Public table ID',record_public_id:'Public record ID',title:'Title',name:'Name',description:'Description',status:'Status',status_id:'Status ID',is_done:'Completed',is_complete:'Completed',section:'Section',sort_order:'Sort order',created_at:'Created',updated_at:'Updated',due_date:'Due date',deadline:'Deadline',starts_at:'Starts',ends_at:'Ends',url:'URL',diagnostic:'Diagnostics',message:'Message',type:'Type',state:'State',phase:'Phase',health:'Health',email:'Email',username:'Username',role:'Role',permissions:'Permissions',source:'Source',module:'Module',table:'Table',fields:'Fields',value:'Value',stage:'Stage',approval_status:'Approval status',approval_state:'Approval state',priority:'Priority',assignee:'Assignee',owner:'Owner',type:'Type',category:'Category',permissions:'Permissions',permission:'Permission',read:'Read',write:'Write',manage:'Manage',admin:'Admin',view:'View',create:'Create',update:'Update',delete:'Delete',error:'Error',warning:'Warning',message:'Message',path:'Path',link:'Link',amount:'Amount',total:'Total',quantity:'Quantity',available_quantity:'Available quantity',stock:'Stock',planned:'Planned',planned_hours:'Planned hours',capacity:'Capacity',capacity_hours:'Capacity hours',utilization:'Utilization',utilization_percent:'Utilization, %',overload:'Overload',overload_hours:'Overload hours',score:'Score',progress:'Progress',completeness_score:'Completeness score',completion_percent:'Completeness, %',availability_percent:'Availability, %',record_count:'Record count',revision:'Revision',pages:'Pages',page_count:'Page count',date:'Date',is_archived:'Archived',low_stock:'Low stock',critical:'Critical',meta:'Metadata'}};
+      var VALUE_LABELS={ru:{Tasks_Status_Todo:'К выполнению',Tasks_Status_Done:'Завершено',Tasks_Status_In_Progress:'В работе',Tasks_Status_Review:'На проверке',Modules_Done:'Завершено',todo:'К выполнению',to_do:'К выполнению','to do':'К выполнению',in_progress:'В работе','in progress':'В работе','in-progress':'В работе',in_progress_status:'В работе',done:'Завершено',completed:'Завершено',complete:'Завершено',closed:'Закрыто',active:'Активно',pending:'Ожидает',review:'На проверке',approved:'Согласовано',rejected:'Отклонено',archived:'В архиве',not_set:'Не задано'},en:{Tasks_Status_Todo:'To do',Tasks_Status_Done:'Done',Tasks_Status_In_Progress:'In progress',Tasks_Status_Review:'In review',Modules_Done:'Done',todo:'To do',to_do:'To do','to do':'To do',in_progress:'In progress','in progress':'In progress','in-progress':'In progress',in_progress_status:'In progress',done:'Done',completed:'Completed',complete:'Complete',closed:'Closed',active:'Active',pending:'Pending',review:'In review',approved:'Approved',rejected:'Rejected',archived:'Archived',not_set:'Not set'}};
+      var STATUS_LABELS={ru:{Tasks_Status_Todo:'К выполнению',Tasks_Status_Done:'Завершено',Tasks_Status_In_Progress:'В работе',Tasks_Status_Review:'На проверке',Modules_Done:'Завершено',todo:'К выполнению',to_do:'К выполнению','to do':'К выполнению','in progress':'В работе',in_progress:'В работе',in_progress_status:'В работе',done:'Завершено',completed:'Завершено',complete:'Завершено',closed:'Закрыто',active:'Активно',pending:'Ожидает',review:'На проверке',approved:'Согласовано',rejected:'Отклонено',archived:'В архиве',not_set:'Не задано',overdue:'Просрочено',blocked:'Заблокировано',error:'Ошибка',warning:'Предупреждение',maintenance:'Техническое обслуживание',low_stock:'Мало на складе',critical:'Критический',out_of_stock:'Нет на складе',available:'Доступно',unavailable:'Недоступно'},en:{Tasks_Status_Todo:'To do',Tasks_Status_Done:'Done',Tasks_Status_In_Progress:'In progress',Tasks_Status_Review:'In review',Modules_Done:'Done',todo:'To do',to_do:'To do','to do':'To do','in progress':'In progress',in_progress:'In progress',in_progress_status:'In progress',done:'Done',completed:'Completed',complete:'Complete',closed:'Closed',active:'Active',pending:'Pending',review:'In review',approved:'Approved',rejected:'Rejected',archived:'Archived',not_set:'Not set',overdue:'Overdue',blocked:'Blocked',error:'Error',warning:'Warning',maintenance:'Maintenance',low_stock:'Low stock',critical:'Critical',out_of_stock:'Out of stock',available:'Available',unavailable:'Unavailable'}};
+      var localeSource=typeof window!=='undefined'&&window.openai&&window.openai.locale||document.documentElement.lang||'ru';
+      var locale=String(localeSource).toLowerCase().indexOf('ru')===0?'ru':'en';
+      function t(key){return COPY[locale][key]}
       var pending = new Map();
       var nextRequestId = 1;
       var records = [];
@@ -90,6 +97,18 @@
         close: document.getElementById('close')
       };
 
+      function applyTranslations(){
+        document.documentElement.lang=locale;
+        document.title=t('title')+' — SHD MCP';
+        document.querySelector('h1').textContent=t('title');
+        document.querySelector('.lede').textContent=t('description');
+        elements.search.placeholder=t('search');
+        elements.refresh.textContent=t('refresh');
+        elements.empty.textContent=t('empty');
+        elements.close.setAttribute('aria-label',t('close'));
+        var heads=document.querySelectorAll('thead th');
+        if(heads.length>=4){heads[0].textContent=t('name');heads[1].textContent=t('status');heads[2].textContent=t('date');heads[3].textContent=t('value');}
+      }
       function request(method, params) {
         var openai = typeof window !== 'undefined' ? window.openai : undefined;
         if (method === 'tools/call' && openai && typeof openai.callTool === 'function') {
@@ -147,7 +166,7 @@
         if (!value) return '—';
         var timestamp = Date.parse(value);
         if (Number.isNaN(timestamp)) return value;
-        try { return new Intl.DateTimeFormat(undefined, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(timestamp)); }
+        try { return new Intl.DateTimeFormat(locale, { day: '2-digit', month: '2-digit', year: 'numeric' }).format(new Date(timestamp)); }
         catch (error) { return value; }
       }
       function make(tag, value, className) {
@@ -160,7 +179,7 @@
       function renderSummary() {
         elements.summary.replaceChildren();
         var item = make('span');
-        item.append(make('strong', String(records.length)), ' записей');
+        item.append(make('strong', String(records.length)), ' '+t('records'));
         elements.summary.append(item);
       }
 
@@ -178,8 +197,8 @@
           name.append(make('span', titleOf(item), 'title'));
           if (subtitleOf(item)) name.append(make('span', subtitleOf(item), 'subtitle'));
           var status = make('td');
-          status.append(make('span', statusOf(item), 'pill'));
-          row.append(name, status, make('td', dateText(dateOf(item))), make('td', valueOf(item) || '—'));
+          status.append(make('span', statusLabel(statusOf(item)), 'pill'));
+          row.append(name, status, make('td', dateText(dateOf(item))), make('td', detailValue(valueOf(item),'value') || '—'));
           row.className = 'record';
           row.tabIndex = 0;
           row.setAttribute('role', 'button');
@@ -206,17 +225,13 @@
         elements.status.className = isError ? 'status-message error' : 'status-message';
       }
 
-      function detailValue(value) {
-        if (value === null || value === undefined || value === '') return '—';
-        if (typeof value === 'object') {
-          try { return JSON.stringify(value); } catch (error) { return '—'; }
-        }
-        return String(value);
-      }
+      function fieldLabel(key){var raw=String(key||'');var labels=FIELD_LABELS[locale]||FIELD_LABELS.ru;return labels[raw]||raw.replace(/[_-]+/g,' ')}
+      function statusLabel(value){var raw=String(value||'—'),labels=STATUS_LABELS[locale]||STATUS_LABELS.ru;return labels[raw]||labels[raw.toLowerCase()]||raw}
+      function detailValue(value,key){if(value===null||value===undefined||value==='')return'—';if(typeof value==='boolean')return value?t('yes'):t('no');if(Array.isArray(value))return'['+value.map(function(item){return detailValue(item,key)}).join(', ')+']';if(typeof value==='object'){return'{'+Object.keys(value).map(function(itemKey){return fieldLabel(itemKey)+': '+detailValue(value[itemKey],itemKey)}).join(', ')+'}';}var raw=String(value),labels=VALUE_LABELS[locale]||VALUE_LABELS.ru;return labels[raw]||labels[raw.toLowerCase()]||raw}
 
-      function addDetail(label, value) {
+      function addDetail(label, value, key) {
         var item = make('div', undefined, 'detail');
-        item.append(make('span', label, 'detail-label'), make('span', detailValue(value), 'detail-value'));
+        item.append(make('span', fieldLabel(label), 'detail-label'), make('span', detailValue(value, key), 'detail-value'));
         elements.detailGrid.append(item);
       }
 
@@ -224,11 +239,11 @@
         elements.detailsTitle.textContent = titleOf(item);
         elements.detailsSubtitle.textContent = subtitleOf(item) || idOf(item);
         elements.detailGrid.replaceChildren();
-        addDetail('ID', idOf(item));
-        addDetail(CONFIG.statusLabel, statusOf(item));
-        addDetail(CONFIG.dateLabel, dateText(dateOf(item)));
-        if (valueOf(item)) addDetail(CONFIG.valueLabel, valueOf(item));
-        if (item.meta) addDetail('Meta', item.meta);
+        addDetail(t('id'), idOf(item), 'id');
+        addDetail(t('status'), statusOf(item), 'status');
+        addDetail(t('date'), dateText(dateOf(item)), 'date');
+        if (valueOf(item)) addDetail(t('value'), valueOf(item), 'value');
+        if (item.meta) addDetail(t('meta'), item.meta, 'meta');
         elements.details.hidden = false;
         var id = idOf(item);
         if (!id || !CONFIG.detailTool) return;
@@ -241,20 +256,20 @@
           if (Array.isArray(data)) data = data[0];
           if (!data || typeof data !== 'object') return;
           elements.detailGrid.replaceChildren();
-          Object.keys(data).slice(0, 12).forEach(function (key) { addDetail(key, data[key]); });
-        }).catch(function (error) { setStatus(error && error.message ? error.message : 'Не удалось загрузить детали.', true); });
+          Object.keys(data).slice(0, 12).forEach(function (key) { addDetail(key, data[key], key); });
+        }).catch(function (error) { setStatus(error && error.message ? error.message : t('detail'), true); });
       }
 
       function refresh() {
         if (busy) return;
         busy = true;
         elements.refresh.disabled = true;
-        setStatus('Загрузка…', false);
+        setStatus(t('loading'), false);
         request('tools/call', { name: CONFIG.listTool, arguments: CONFIG.listArgs }).then(function (result) {
           render(unwrap(result));
           setStatus('', false);
         }).catch(function (error) {
-          setStatus(error && error.message ? error.message : 'Не удалось загрузить данные.', true);
+          setStatus(error && error.message ? error.message : t('load'), true);
         }).finally(function () {
           busy = false;
           elements.refresh.disabled = false;
@@ -264,7 +279,7 @@
       function initializeHost() {
         return request('ui/initialize', {
           protocolVersion: '2025-11-25',
-          appInfo: { name: 'SHD ' + CONFIG.title, title: 'SHD ' + CONFIG.title, version: '1.0.0', websiteUrl: 'https://shd.xyz.su' },
+          appInfo: { name: 'SHD ' + t('title'), title: 'SHD ' + t('title'), version: '1.0.0', websiteUrl: 'https://shd.xyz.su' },
           appCapabilities: {}
         }).then(function () { notify('ui/notifications/initialized', {}); }).catch(function () {});
       }
@@ -287,6 +302,7 @@
         if (message.method === 'ui/notifications/tool-result') render(message.params && message.params.structuredContent);
       }, { passive: true });
 
+      applyTranslations();
       elements.search.addEventListener('input', renderRows);
       elements.refresh.addEventListener('click', refresh);
       elements.close.addEventListener('click', function () { elements.details.hidden = true; });

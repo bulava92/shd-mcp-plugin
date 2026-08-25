@@ -7,9 +7,9 @@
       "file": "index.html",
       "uri": "ui://shd/tasks/v1.html",
       "mediaType": "text/html;profile=mcp-app",
-      "bytes": 35774,
-      "sha256": "926fd10f0478fa566af6d134b174661416dcbd3fe380271c058ef077e17e9898",
-      "gzipBytes": 9451
+      "bytes": 46585,
+      "sha256": "580263abb12230c963bbb9b8590086770e80e69e61a7192383433cac381e02ec",
+      "gzipBytes": 12394
     }
   ],
   "license": "../../../../../LICENSE",

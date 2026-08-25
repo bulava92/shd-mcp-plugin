@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 45931,
-      "gzipBytes": 13579,
+      "bytes": 53686,
+      "gzipBytes": 15717,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/gitea/v1.html",
-      "sha256": "505ea4f334275478da05b4444da93f7e7c89163eeb1880825b2c37d275678fa1"
+      "sha256": "dec0da437c2f02912c9cf12e16de4b6fb81165eb577bed11cda1643df98f456e"
     }
   ],
   "license": "../../../../../LICENSE",

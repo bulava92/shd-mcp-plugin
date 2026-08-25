@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 41403,
-      "gzipBytes": 12426,
+      "bytes": 49158,
+      "gzipBytes": 14607,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/scheduling/v1.html",
-      "sha256": "e0ef3f5e588db53afe6b2617cee58853fa3b6be8cce898b7225c840e24cac1b2"
+      "sha256": "6b45cb2e14e1a0f3a3d93fd9e5e092fbfed6fb48de1a2f806972eb0393b51b83"
     }
   ],
   "license": "../../../../../LICENSE",
