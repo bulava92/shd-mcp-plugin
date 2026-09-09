@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-airbase",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 48220,
+      "gzipBytes": 14235,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/airbase/v1.html",
+      "sha256": "093206d0369e0ce87e779f72cd22aa626b5d27d65fb6e814513534d77d0164f6"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/airbase/v1/index.html"
+  }
+}

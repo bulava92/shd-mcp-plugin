@@ -11,10 +11,10 @@ description: Use before any SHD bulk create, update, import, archive, delete, or
    intended side effect.
 2. Read current schemas and records. Estimate affected, skipped, invalid and
    ambiguous rows.
-3. Prefer a server validation or dry-run operation. For ProjectBase use
-   `shd_project_db_validate_records`, then
-   `shd_project_db_bulk_create_records` or
-   `shd_project_db_bulk_upsert_records` with `dry_run: true` when applicable.
+3. Prefer a server validation or dry-run operation. For AirBase use
+   `shd_airbase_validate_records`, then
+   `shd_airbase_bulk_create_records` or
+   `shd_airbase_bulk_upsert_records` with `dry_run: true` when applicable.
 4. Present the plan and stop unless the user explicitly authorized execution.
 
 ## Execute safely

@@ -13,8 +13,8 @@ readback. Do not invent fields, statuses, identifiers, routes or capabilities.
 
 - Project list, project status, deadlines or project context: use the Projects
   Core tools and the `shd-active-projects` or `shd-project-status` workflow.
-- ProjectBase schema, records, links or data quality: use Project DB tools and
-  the `shd-project-db-audit` workflow.
+- AirBase schema, records, links or data quality: use AirBase tools and
+  the `shd-airbase-audit` workflow.
 - Tasks, task projects, task status or task dates: use Tasks tools and the
   `shd-task-workflow` workflow.
 - Project files and paths: use Files tools and the `shd-project-files` workflow.

@@ -10,8 +10,8 @@ description: Use when the user asks to inspect, compare, validate, create or upd
 1. Resolve the project, proposal, terms document or contract before acting.
 2. Use `shd_list_proposals` and `shd_get_proposal` for proposal registers and
    details.
-3. Use `shd_list_terms_documents`, `shd_get_terms_document`,
-   `shd_get_terms_document_completeness` and `shd_validate_terms_document` for
+3. Use `shd_list_contracts`, `shd_get_contract`,
+   `shd_get_pdf_scheme_editor_completeness` and `shd_validate_pdf_scheme_editor_document` for
    terms and completeness checks.
 4. Inspect template capabilities before proposing a template-driven change.
 5. Report line items, versions, completeness, approvals and publication state
