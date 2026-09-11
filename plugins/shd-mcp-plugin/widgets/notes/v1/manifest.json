@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 49148,
-      "gzipBytes": 14606,
+      "bytes": 49129,
+      "gzipBytes": 14384,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/notes/v1.html",
-      "sha256": "ec952d1e39e53c743652156c513b9bccb7438754cf0b9b48f9df4d76396f84da"
+      "sha256": "cb4881dca8cf3f999b27a540239f9a4d17204bc4ba5e65a4bf2f5ed0e7810e23"
     }
   ],
   "license": "../../../../../LICENSE",

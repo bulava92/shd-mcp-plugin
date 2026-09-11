@@ -33,7 +33,7 @@ modules. Skills do not grant permissions or bypass server-side ACLs.
 - linked Gitea issues, labels, comments and attachments;
 - safe bulk-change planning and validation rules.
 
-When the connected MCP host supports MCP Apps UI, the 36 SHD render tools have
+When the connected MCP host supports MCP Apps UI, the 42 SHD render tools have
 inline interactive widgets: active projects, module registers and specialized
 Kanban, workload, timeline, funnel, dashboard, calendar, matrix, tree and
 Project DB views. Each widget sorts or filters normalized records, shows
@@ -44,6 +44,12 @@ confirmation checkbox. After a successful mutation, the widget refreshes its
 source list.
 The same tools still return normal structured data for hosts that do not render
 widgets.
+
+The controller observability render tools share the versioned
+`widgets/controller-observability/v1/` resource. It exposes explicit native vs
+Influx/Grafana provenance, universal comparison presets, complete controller
+topology, telemetry health and operation audit. Expert-setting controls are enabled only
+for source-provided writable descriptors.
 
 The active-projects widget is versioned in `widgets/active-projects/v1/` with a
 manifest, SHA256 checksum and source/provenance note. The SHD MCP backend reads

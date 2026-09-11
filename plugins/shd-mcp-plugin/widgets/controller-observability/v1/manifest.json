@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-controller-observability",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "bytes": 22419,
+      "gzipBytes": 7748,
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/controller-observability/v1.html",
+      "sha256": "4fbbc0b0ffc135353bbfb16cad45d7bcb8a0340466b04869d080720b98f2dbba"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin",
+    "path": "plugins/shd-mcp-plugin/widgets/controller-observability/v1/index.html"
+  }
+}

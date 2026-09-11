@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77313,
-      "gzipBytes": 20862,
+      "bytes": 77403,
+      "gzipBytes": 20585,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/agents-health/v1.html",
-      "sha256": "4dbb42b0224b52f329e91212767d0d0b78ad228150d20dbf16c3841444378912"
+      "sha256": "866750c8b84f0879d50035ce6fb4b58174a33c3dafdfa7ed72a9ef747c6d4146"
     }
   ],
   "license": "../../../../../LICENSE",

@@ -61,6 +61,23 @@ Finance, CRM, Discussions, Notifications, Scheduling, Inventory, Agents,
 Status Page, Project DB, Notes, Project overview, Files, Proposals, Terms,
 Activity, Organizations and access, Gitea Issues and Schemes:
 
+Controller observability uses one parameterized resource for source history,
+cross-controller comparisons, expert settings, complete project topology,
+telemetry health and source audit:
+
+- `shd_render_controller_history_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_compare_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_settings_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_topology_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_telemetry_health_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_audit_widget` → `ui://shd/controller-observability/v1.html`.
+
+The controller topology keeps Loxone/WB source controllers separate from
+Raspberry Pi and mini PC controller rows without source inventory; it does not
+substitute the separate agent register for the project controller list.
+The agent overview is the inverse boundary: it lists agents/runtime access and
+does not become a controller list merely because an agent runs on a controller.
+
 - `shd_render_documents_widget` → `ui://shd/documents/v1.html`;
 - `shd_render_tasks_widget` → `ui://shd/tasks/v1.html`;
 - `shd_render_finance_widget` → `ui://shd/finance/v1.html`;

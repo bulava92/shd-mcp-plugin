@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 48220,
-      "gzipBytes": 14235,
+      "bytes": 48201,
+      "gzipBytes": 14230,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/airbase/v1.html",
-      "sha256": "093206d0369e0ce87e779f72cd22aa626b5d27d65fb6e814513534d77d0164f6"
+      "sha256": "4f331c4d7e295f080dfdbcd9360f860696817e0ccd2ffc0ca92f2790330faefb"
     }
   ],
   "license": "../../../../../LICENSE",

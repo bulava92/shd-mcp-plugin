@@ -5,11 +5,11 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 53686,
-      "gzipBytes": 15502,
+      "bytes": 53667,
+      "gzipBytes": 15498,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/pdf-scheme-editor/v1.html",
-      "sha256": "d1a29380759e80afd5b7c9f9ee90a99c393cbf20f177c4b05596609b7b93ed3f"
+      "sha256": "2f82b255a8d31a427246cdd96685c78917dd32b611ae52b96656780d60aa97df"
     }
   ],
   "license": "../../../../../LICENSE",

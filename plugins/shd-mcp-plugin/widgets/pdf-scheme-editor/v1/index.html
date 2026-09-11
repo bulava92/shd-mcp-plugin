@@ -74,7 +74,7 @@
         notifications:{listTool:'shd_list_notifications',listArgs:{limit:50,offset:0},paths:['data'],sort:'desc'},
         scheduling:{listTool:'shd_get_scheduling_overview',listArgs:{limit:100},readTool:'shd_list_scheduling_bookings',detailKey:'booking_id',detailArgs:{limit:1},paths:['data.bookings','data.upcoming_bookings','data'],sort:'asc'},
         inventory:{listTool:'shd_list_inventory_items',listArgs:{limit:100},readTool:'shd_get_inventory_item',detailKey:'item_id',paths:['data'],sort:'desc'},
-        agents:{listTool:'shd_agents_overview',listArgs:{},paths:['data.controllers','data.agents','data.user_agents','data'],sort:'asc'},
+        agents:{listTool:'shd_agents_overview',listArgs:{},paths:['data.agents','data.user_agents','data'],sort:'asc'},
         'status-page':{listTool:'shd_get_status_page_monitors',listArgs:{environment:'dev'},readTool:'shd_get_status_page_monitor_history',detailKey:'monitor_id',detailArgs:{limit:20},paths:['data'],nested:'monitors',sort:'asc'},
         'airbase':{listTool:'shd_airbase_tables',listArgs:{},readTool:'shd_airbase_schema',detailKey:'table',paths:['data.tables','data'],contextRequired:true,sort:'asc'},
         notes:{listTool:'shd_list_note_pages',listArgs:{limit:100},readTool:'shd_get_note_page',detailKey:'page_id',paths:['data'],sort:'desc'},

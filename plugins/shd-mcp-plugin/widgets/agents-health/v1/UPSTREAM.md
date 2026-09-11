@@ -2,4 +2,4 @@
 
 This artifact is served by the SHD MCP backend as ui://shd/agents-health/v1.html.
 
-The HTML is standalone, uses the MCP Apps bridge first, and keeps window.openai as a compatibility extension. It has no external script or network dependency. The widget provides a read-only agent and controller health overview.
+The HTML is standalone, uses the MCP Apps bridge first, and keeps window.openai as a compatibility extension. It has no external script or network dependency. The widget provides a read-only agent health overview; controller topology and telemetry health are rendered by the controller-observability widget.
