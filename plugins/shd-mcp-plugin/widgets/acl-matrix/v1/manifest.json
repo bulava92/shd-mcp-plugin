@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77269,
-      "gzipBytes": 20605,
+      "bytes": 78910,
+      "gzipBytes": 21186,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/acl-matrix/v1.html",
-      "sha256": "9e82d5a6f3c35445b5d7400fd4b1aa8ba93c97141cf83a23e585ef051e3f0421"
+      "sha256": "e0595452b8365206b4bb26cf5b2680c8da2e7107260a0caf7bb0c5c23008743b"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/acl-matrix/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

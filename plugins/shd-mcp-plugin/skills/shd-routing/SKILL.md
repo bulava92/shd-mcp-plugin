@@ -24,6 +24,7 @@ readback. Do not invent fields, statuses, identifiers, routes or capabilities.
 - Notifications, preferences or read state: use Notifications tools and the `shd-notifications` workflow.
 - Inventory, stock, assets, procurement or stocktakes: use Inventory tools and the `shd-inventory` workflow.
 - Agents, controllers, diagnostics, tunnels or network access: use Agents tools and the `shd-agents-operations` workflow.
+- Controller devices, current states, presence/history or sensor statistics: use the controller-integrations source tools; in a UI-capable host call the matching controller render tool after the data tool and before the final response (`shd_render_controller_devices_widget`, `shd_render_controller_live_state_widget`, `shd_render_controller_history_widget` or `shd_render_controller_statistics_widget`).
 - Status-page monitors, history, groups or incidents: use Status Page tools and the `shd-status-page` workflow.
 - Realtime sessions, event cursors or historical activity: use Realtime tools and the `shd-realtime-activity` workflow.
 - Terms documents, revisions, completeness or contract discussions: use Terms tools and the `shd-terms-contracts` workflow.

@@ -33,7 +33,7 @@ modules. Skills do not grant permissions or bypass server-side ACLs.
 - linked Gitea issues, labels, comments and attachments;
 - safe bulk-change planning and validation rules.
 
-When the connected MCP host supports MCP Apps UI, the 42 SHD render tools have
+When the connected MCP host supports MCP Apps UI, the 44 SHD render tools have
 inline interactive widgets: active projects, module registers and specialized
 Kanban, workload, timeline, funnel, dashboard, calendar, matrix, tree and
 Project DB views. Each widget sorts or filters normalized records, shows
@@ -46,19 +46,31 @@ The same tools still return normal structured data for hosts that do not render
 widgets.
 
 The controller observability render tools share the versioned
-`widgets/controller-observability/v1/` resource. It exposes explicit native vs
-Influx/Grafana provenance, universal comparison presets, complete controller
-topology, telemetry health and operation audit. Expert-setting controls are enabled only
-for source-provided writable descriptors.
+`widgets/controller-observability/v1/` resource. It exposes controller device
+inventory and profiles, normalized live states, server-computed binary/numeric
+statistics, explicit native vs Influx/Grafana provenance, universal comparison
+presets, complete controller topology, telemetry health and operation audit.
+Expert-setting controls are enabled only for source-provided writable descriptors.
 
 The active-projects widget is versioned in `widgets/active-projects/v1/` with a
 manifest, SHA256 checksum and source/provenance note. The SHD MCP backend reads
 that artifact for the `ui://shd/active-projects/v1.html` resource.
 
-The other versioned resources are stored under `widgets/` with a manifest,
-SHA256 checksum and source/provenance note for each resource. Their render
-tools are deliberately separate from the list tools so the server can keep
-data access and UI rendering auditable.
+The standard module resources are generated from the single
+`widgets/_shared/universal-widget.html` source by
+`scripts/generate-widget-artifacts.mjs`. Each generated artifact still keeps
+its own URI, manifest, SHA256 checksum and provenance note: this preserves
+resource cache keys and module-scope registration while removing duplicated
+HTML, bridge and action runtime code. The generator supports `--check` for a
+no-write consistency check. Module copy and fallback tool configuration lives
+in the sibling `widgets/_shared/universal-widget-config.json` source and is
+injected into each standalone artifact by the generator. For an older template
+that still contains the inline configuration block, run `--extract-config`
+once and then `--migrate-template` once. The
+active-projects and controller-observability resources remain separate because
+they are specialized applications with different interaction contracts. Render
+tools are deliberately separate from list tools so data access and UI rendering
+remain auditable.
 
 ## MCP connection
 

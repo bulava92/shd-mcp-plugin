@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77285,
-      "gzipBytes": 20602,
+      "bytes": 78926,
+      "gzipBytes": 21185,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/proposal-approvals/v1.html",
-      "sha256": "1fa0d0b933380d977cfc3406353b8a397b33419c89b247a311bb61fa9c6648bd"
+      "sha256": "b61f063e99b1672bf79b8964ded01cdb6d2c2eaabfe09761e88a5ead39cd7224"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/proposal-approvals/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

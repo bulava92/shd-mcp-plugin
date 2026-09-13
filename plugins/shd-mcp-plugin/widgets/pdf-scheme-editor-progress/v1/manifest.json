@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77280,
-      "gzipBytes": 20615,
+      "bytes": 78922,
+      "gzipBytes": 21190,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/pdf-scheme-editor-progress/v1.html",
-      "sha256": "9eb94e95c1a5ea11d07c5aab693d0d89b7c2a728958b8b49905dc252ab270b23"
+      "sha256": "3d755c24a84506f193bd7ca1ca8b0a33c8ec1a77c91e2937947da69e29aec30e"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/pdf-scheme-editor-progress/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

@@ -265,7 +265,7 @@
         return new Promise(function (resolve, reject) {
           var timeout = window.setTimeout(function () {
             pendingRequests.delete(id);
-            reject(new Error('Host request timed out'));
+            reject(new Error(t.refreshError));
           }, 10000);
           pendingRequests.set(id, { resolve: resolve, reject: reject, timeout: timeout });
         });

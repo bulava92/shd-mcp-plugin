@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77283,
-      "gzipBytes": 20601,
+      "bytes": 78924,
+      "gzipBytes": 21187,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/finance-dashboard/v1.html",
-      "sha256": "20231dba4f8d99b89d33bfe8a9247d3d8728d17fd75bf07cd10ed9950ad0913c"
+      "sha256": "57681855fe46c8bd436a53b851f1c6ee646014b65ff93913af40f0d0f118e85c"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/finance-dashboard/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

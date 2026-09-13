@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77271,
-      "gzipBytes": 20604,
+      "bytes": 78912,
+      "gzipBytes": 21185,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/task-kanban/v1.html",
-      "sha256": "87aa487aceb6b4310d69c55f1f706189c0f0689ff2c5a91c8c11bec9529d60e9"
+      "sha256": "15626fc6264ea19f4dfb270cce509bb05bd7006b6004263c042478437464668b"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/task-kanban/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

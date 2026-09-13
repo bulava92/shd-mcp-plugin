@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77329,
-      "gzipBytes": 20618,
+      "bytes": 78934,
+      "gzipBytes": 21186,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/documents-completeness/v1.html",
-      "sha256": "6964112ce1ae2ec25a736709bc00ad0a7335177ec98547ad48d672834e491760"
+      "sha256": "c99dc13e4cf8302699f9ae8cdf84462b999e20eee49b2baf18b620fb083f9e6f"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/documents-completeness/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

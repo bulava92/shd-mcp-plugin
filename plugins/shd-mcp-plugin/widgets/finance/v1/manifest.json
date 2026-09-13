@@ -7,14 +7,17 @@
       "file": "index.html",
       "uri": "ui://shd/finance/v1.html",
       "mediaType": "text/html;profile=mcp-app",
-      "bytes": 46724,
-      "sha256": "9602680407f0da06e87d71ad3374dbd4602d6ca6124f19983647b207c33c5b6e",
-      "gzipBytes": 12444
+      "bytes": 78904,
+      "sha256": "7b1a5c129a4995ca3b8850568d9eec5c1fb949a132efbfcd6658fc94a03747d3",
+      "gzipBytes": 21188
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/finance/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

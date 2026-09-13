@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77269,
-      "gzipBytes": 20604,
+      "bytes": 78910,
+      "gzipBytes": 21186,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/crm-funnel/v1.html",
-      "sha256": "e431183d3b959601687632ea36b207fc88c85f88c69c2d3abdd342be411db50c"
+      "sha256": "2704ffa6778cef26875f187623c2e58e3d0a76085b5369838b9abc7da137a789"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/crm-funnel/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

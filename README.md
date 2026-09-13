@@ -61,11 +61,15 @@ Finance, CRM, Discussions, Notifications, Scheduling, Inventory, Agents,
 Status Page, Project DB, Notes, Project overview, Files, Proposals, Terms,
 Activity, Organizations and access, Gitea Issues and Schemes:
 
-Controller observability uses one parameterized resource for source history,
-cross-controller comparisons, expert settings, complete project topology,
-telemetry health and source audit:
+Controller observability uses one parameterized resource for device inventory,
+current state, server-computed statistics, source history, cross-controller
+comparisons, expert settings, complete project topology, telemetry health and
+source audit:
 
 - `shd_render_controller_history_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_statistics_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_devices_widget` → `ui://shd/controller-observability/v1.html`;
+- `shd_render_controller_live_state_widget` → `ui://shd/controller-observability/v1.html`;
 - `shd_render_controller_compare_widget` → `ui://shd/controller-observability/v1.html`;
 - `shd_render_controller_settings_widget` → `ui://shd/controller-observability/v1.html`;
 - `shd_render_controller_topology_widget` → `ui://shd/controller-observability/v1.html`;

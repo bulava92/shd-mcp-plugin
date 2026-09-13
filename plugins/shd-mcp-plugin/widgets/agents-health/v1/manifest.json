@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77403,
-      "gzipBytes": 20585,
+      "bytes": 78916,
+      "gzipBytes": 21188,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/agents-health/v1.html",
-      "sha256": "866750c8b84f0879d50035ce6fb4b58174a33c3dafdfa7ed72a9ef747c6d4146"
+      "sha256": "dac1b47d9e6008708b464f7e310125ed1709e07955bd0c6adc5e9595c6bb5a09"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/agents-health/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

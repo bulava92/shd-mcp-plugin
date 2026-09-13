@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77275,
-      "gzipBytes": 20607,
+      "bytes": 78916,
+      "gzipBytes": 21189,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/team-workload/v1.html",
-      "sha256": "c78853304a6af3600d9ab331604de3f5b1a0fef7e0c63d2031a29e9a5532eaf8"
+      "sha256": "ea4aadca5ed101b2a0fe15c3d175c347bfabe21cb99dfe2be6121311c324174c"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/team-workload/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

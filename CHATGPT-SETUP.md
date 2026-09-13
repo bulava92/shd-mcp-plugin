@@ -46,6 +46,13 @@ The expected flow is:
 3. The selected widget renders a register, can call the matching detail tool for
    one selected row and exposes controlled write actions when declared by the
    render metadata.
+4. For controller requests, use the explicit controller data→render pair:
+   `shd_get_controller_source_inventory` → `shd_render_controller_devices_widget`,
+   `shd_get_home_live_state` → `shd_render_controller_live_state_widget`,
+   `shd_get_controller_source_history` → `shd_render_controller_history_widget`,
+   or `shd_get_controller_state_statistics` →
+   `shd_render_controller_statistics_widget`. Pass the complete data result and
+   preserve `project`, `controller` and `item_id` in `meta.sourceArgs`.
 
 The widget resources are versioned at `ui://shd/active-projects/v1.html`,
 `ui://shd/documents/v1.html`, `ui://shd/tasks/v1.html`,
@@ -53,6 +60,7 @@ The widget resources are versioned at `ui://shd/active-projects/v1.html`,
 `ui://shd/discussions/v1.html`, `ui://shd/notifications/v1.html`,
 `ui://shd/scheduling/v1.html`, `ui://shd/inventory/v1.html`,
 `ui://shd/agents/v1.html`, `ui://shd/status-page/v1.html`,
+`ui://shd/controller-observability/v1.html`,
 `ui://shd/project-db/v1.html`, `ui://shd/notes/v1.html`,
 `ui://shd/project-overview/v1.html`, `ui://shd/files/v1.html`,
 `ui://shd/proposals/v1.html`, `ui://shd/terms/v1.html`,

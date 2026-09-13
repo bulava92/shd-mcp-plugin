@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77283,
-      "gzipBytes": 20604,
+      "bytes": 78924,
+      "gzipBytes": 21186,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/schedule-calendar/v1.html",
-      "sha256": "efdd435fee5da454c651780eb41f10c5148b8eaf596b9e03f4d735ded7ae6761"
+      "sha256": "1c90f0299a9a3127f1c0c48dbb50e0c31815cbac1e55fa896dff00e7035716c2"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/schedule-calendar/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

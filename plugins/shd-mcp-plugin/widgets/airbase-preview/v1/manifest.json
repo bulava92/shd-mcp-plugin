@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 76306,
-      "gzipBytes": 20462,
+      "bytes": 78920,
+      "gzipBytes": 21188,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/airbase-preview/v1.html",
-      "sha256": "c2fcb36329b0588f621577863f6b7549bf622732fd88d4bcead254bd68b6642c"
+      "sha256": "fca8fbc1630bcb60d699442903900cec2eee02e863bb5d8523c6317b4d2d1b53"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/airbase-preview/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

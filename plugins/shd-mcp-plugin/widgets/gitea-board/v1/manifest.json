@@ -5,16 +5,19 @@
   "resources": [
     {
       "file": "index.html",
-      "bytes": 77271,
-      "gzipBytes": 20602,
+      "bytes": 78912,
+      "gzipBytes": 21188,
       "mediaType": "text/html;profile=mcp-app",
       "uri": "ui://shd/gitea-board/v1.html",
-      "sha256": "c761b817f26067ed2697d6c5da3f99a0e962dbf920a1c13ff24165dde910af7c"
+      "sha256": "6e92d2e27b29d3b90c4ca66c23891fd32fcb07e3a467f40009bd5dba916a9fc0"
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/gitea-board/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }

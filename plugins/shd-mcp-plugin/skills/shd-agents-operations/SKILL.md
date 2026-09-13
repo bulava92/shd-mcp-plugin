@@ -17,6 +17,23 @@ configuration.
 - Keep diagnostics, configuration, endpoint publication and network routing as
   separate operations. Never expose credentials, private keys or tunnel data.
 
+## Controller data and widgets
+
+- For a controller device list, call `shd_get_controller_source_inventory`, then
+  `shd_render_controller_devices_widget` with the complete result and scoped
+  `meta.sourceArgs`.
+- For current states across controllers, call `shd_get_home_live_state`, then
+  `shd_render_controller_live_state_widget`.
+- For one presence, binary state or numeric sensor statistics, call
+  `shd_get_controller_state_statistics`, then
+  `shd_render_controller_statistics_widget`. The server result is authoritative
+  for counts, intervals, durations, percentages, medians and hourly buckets;
+  do not calculate them from raw history in the model.
+- For raw time-series history, call `shd_get_controller_source_history`, then
+  `shd_render_controller_history_widget`. Keep the detailed rows in the widget
+  after a successful render and use plain text only when the UI call is
+  unavailable or fails.
+
 ## High-impact actions
 
 Creating/closing tunnels, publishing or revoking endpoints, replacing access

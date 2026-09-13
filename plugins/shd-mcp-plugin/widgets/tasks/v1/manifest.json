@@ -7,14 +7,17 @@
       "file": "index.html",
       "uri": "ui://shd/tasks/v1.html",
       "mediaType": "text/html;profile=mcp-app",
-      "bytes": 46585,
-      "sha256": "580263abb12230c963bbb9b8590086770e80e69e61a7192383433cac381e02ec",
-      "gzipBytes": 12394
+      "bytes": 78900,
+      "sha256": "f41e7f3752e9aff178f8370473119a431691cf06d3338cbc6c89ae4c7cc3631f",
+      "gzipBytes": 21186
     }
   ],
   "license": "../../../../../LICENSE",
   "source": {
     "repository": "https://github.com/bulava92/shd-mcp-plugin",
-    "path": "plugins/shd-mcp-plugin/widgets/tasks/v1/index.html"
+    "path": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget.html",
+    "generatedBy": "scripts/generate-widget-artifacts.mjs",
+    "engine": "shd-universal-v1",
+    "config": "plugins/shd-mcp-plugin/widgets/_shared/universal-widget-config.json"
   }
 }
