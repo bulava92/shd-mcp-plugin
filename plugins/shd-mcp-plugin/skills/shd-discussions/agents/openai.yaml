@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD discussions"
+  short_description: "Search and manage discussion threads"
+policy:
+  allow_implicit_invocation: false

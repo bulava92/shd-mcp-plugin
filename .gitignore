@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+.DS_Store
+.idea/
+.vscode/
+*.log
+__pycache__/
+*.py[cod]
+
+# MCP widget runtime artifacts are generated from the sources before serving.
+/plugins/shd-mcp-plugin/widgets/*/v1/

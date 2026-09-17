@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD estimates and proposals
+  short_description: Estimate and document workflows
+policy:
+  allow_implicit_invocation: false

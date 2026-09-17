@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD agents operations"
+  short_description: "Diagnose agents and guarded runtime actions"
+policy:
+  allow_implicit_invocation: false

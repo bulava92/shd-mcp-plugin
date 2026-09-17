@@ -1,0 +1,49 @@
+{
+  "name": "shd-mcp-plugin",
+  "version": "0.5.1",
+  "description": "Ready-to-install SHD workflows backed by the authenticated SHD MCP server.",
+  "author": {
+    "name": "SHD",
+    "url": "https://shd.xyz.su"
+  },
+  "homepage": "https://shd.xyz.su",
+  "repository": "https://github.com/bulava92/shd-mcp-plugin",
+  "license": "Proprietary",
+  "keywords": [
+    "SHD",
+    "projects",
+    "ProjectBase",
+    "tasks",
+    "finance",
+    "CRM",
+    "documents",
+    "inventory",
+    "organizations",
+    "notifications",
+    "realtime",
+    "Gitea",
+    "MCP"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "SHD MCP",
+    "shortDescription": "SHD projects and operations",
+    "longDescription": "Installable SHD MCP workflows for projects, ProjectBase, tasks, files, finance, CRM, documents, access control, inventory, notifications, realtime, status monitoring and linked Gitea operations.",
+    "developerName": "SHD",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://shd.xyz.su",
+    "brandColor": "#1E88E5",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png",
+    "defaultPrompt": [
+      "Покажи активные проекты с датой завершения и статусом.",
+      "Сделай сводку по проекту и его рискам.",
+      "Проверь ProjectBase без изменения данных."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

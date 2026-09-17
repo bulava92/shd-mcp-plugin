@@ -1,0 +1,1812 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style data-shd-widget-theme="shared">
+:root {
+  color-scheme: light dark;
+  --shd-bg: #f3f6f9;
+  --shd-surface: #ffffff;
+  --shd-surface-raised: #ffffff;
+  --shd-surface-subtle: #eef2f6;
+  --shd-line: #d6dee7;
+  --shd-line-strong: #b9c5d1;
+  --shd-ink: #17202a;
+  --shd-muted: #66717e;
+  --shd-accent: #496581;
+  --shd-accent-strong: #35516d;
+  --shd-accent-soft: rgba(73, 101, 129, .12);
+  --shd-on-accent: #ffffff;
+  --shd-good: #19734b;
+  --shd-good-soft: #e2f3eb;
+  --shd-warning: #946000;
+  --shd-warning-soft: #fff2cf;
+  --shd-danger: #b42318;
+  --shd-danger-soft: #ffebe9;
+  --shd-shadow: 0 1px 2px rgba(15, 23, 42, .05), 0 12px 30px rgba(15, 23, 42, .08);
+  --shd-shadow-soft: 0 1px 2px rgba(15, 23, 42, .05);
+  --shd-radius-sm: 10px;
+  --shd-radius-md: 14px;
+  --shd-radius-lg: 20px;
+  --shd-space-1: 4px;
+  --shd-space-2: 8px;
+  --shd-space-3: 12px;
+  --shd-space-4: 16px;
+  --shd-space-5: 20px;
+  --shd-space-6: 24px;
+  --shd-space-7: 32px;
+
+  /* Compatibility aliases for existing widget renderers and write actions. */
+  --bg: var(--shd-bg);
+  --surface: var(--shd-surface);
+  --panel: var(--shd-surface);
+  --hover: var(--shd-surface-subtle);
+  --surface-hover: var(--shd-surface-subtle);
+  --line: var(--shd-line);
+  --border: var(--shd-line);
+  --ink: var(--shd-ink);
+  --text: var(--shd-ink);
+  --muted: var(--shd-muted);
+  --accent: var(--shd-accent);
+  --soft: var(--shd-accent-soft);
+  --accent-soft: var(--shd-accent-soft);
+  --good: var(--shd-good);
+  --success: var(--shd-good);
+  --success-soft: var(--shd-good-soft);
+  --warning: var(--shd-warning);
+  --warning-soft: var(--shd-warning-soft);
+  --bad: var(--shd-danger);
+  --danger: var(--shd-danger);
+  --danger-soft: var(--shd-danger-soft);
+  --button: var(--shd-on-accent);
+  --shadow: var(--shd-shadow);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --shd-bg: #15181c;
+    --shd-surface: #1e2328;
+    --shd-surface-raised: #262c32;
+    --shd-surface-subtle: #2d343b;
+    --shd-line: #3d464f;
+    --shd-line-strong: #56616c;
+    --shd-ink: #f1f4f7;
+    --shd-muted: #a5adb6;
+    --shd-accent: #d8b56a;
+    --shd-accent-strong: #edc97d;
+    --shd-accent-soft: rgba(216, 181, 106, .16);
+    --shd-on-accent: #211b10;
+    --shd-good: #83d2a4;
+    --shd-good-soft: rgba(71, 164, 111, .22);
+    --shd-warning: #f2c66d;
+    --shd-warning-soft: rgba(196, 139, 40, .22);
+    --shd-danger: #ff9a93;
+    --shd-danger-soft: rgba(196, 61, 50, .22);
+    --shd-shadow: 0 1px 2px rgba(0, 0, 0, .22), 0 16px 34px rgba(0, 0, 0, .24);
+    --shd-shadow-soft: 0 1px 2px rgba(0, 0, 0, .22);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 0;
+  background: var(--shd-bg);
+}
+
+body {
+  min-width: 0;
+  margin: 0;
+  background: var(--shd-bg);
+  color: var(--shd-ink);
+  font: 14px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+.shell,
+.app {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: clamp(14px, 2.5vw, 28px);
+}
+
+.card,
+.app {
+  min-width: 0;
+  padding: clamp(18px, 2.6vw, 30px);
+  border: 1px solid var(--shd-line);
+  border-radius: var(--shd-radius-lg);
+  background: var(--shd-surface);
+  box-shadow: var(--shd-shadow);
+}
+
+.card > * + *,
+.app > * + *,
+.shell > * + *,
+.visual > * + * {
+  margin-block-start: var(--shd-space-5);
+}
+
+.card > .eyebrow + h1,
+.card > h1 + .lede,
+.app > .header + .toolbar {
+  margin-block-start: var(--shd-space-1);
+}
+
+.card > .summary:empty,
+.card > .status:empty,
+.app > .summary:empty,
+.app > .status:empty {
+  display: none;
+}
+
+.eyebrow {
+  color: var(--shd-muted);
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3,
+p {
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.15;
+  letter-spacing: -.02em;
+}
+
+.lede,
+.subtitle {
+  margin: 0;
+  color: var(--shd-muted);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--shd-space-5);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--shd-space-2);
+  flex-wrap: wrap;
+}
+
+.toolbar > .search {
+  flex: 1 1 220px;
+}
+
+.search,
+.toolbar input,
+.toolbar select,
+.setting input,
+.setting select,
+.shd-widget-actions-select,
+.shd-widget-actions-input {
+  min-width: 0;
+  border: 1px solid var(--shd-line-strong);
+  border-radius: var(--shd-radius-sm);
+  background: var(--shd-bg);
+  color: var(--shd-ink);
+  outline: 0;
+}
+
+.search,
+.toolbar input,
+.toolbar select {
+  padding: 10px 12px;
+}
+
+.toolbar select {
+  min-width: 150px;
+}
+
+.search:focus,
+.toolbar input:focus,
+.toolbar select:focus,
+.setting input:focus,
+.setting select:focus,
+.shd-widget-actions-select:focus,
+.shd-widget-actions-input:focus {
+  border-color: var(--shd-accent);
+  box-shadow: 0 0 0 3px var(--shd-accent-soft);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--shd-accent-soft);
+  outline-offset: 2px;
+}
+
+.button,
+.refresh,
+.toolbar button,
+.actions button,
+.inline-action {
+  border: 1px solid var(--shd-line-strong);
+  border-radius: var(--shd-radius-sm);
+  padding: 9px 13px;
+  background: var(--shd-surface-raised);
+  color: var(--shd-ink);
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.button:hover,
+.toolbar button:hover,
+.actions button:hover,
+.inline-action:hover {
+  border-color: var(--shd-accent);
+  background: var(--shd-surface-subtle);
+}
+
+.refresh,
+.toolbar .primary,
+.actions button,
+.inline-action,
+.app #refresh {
+  border-color: var(--shd-accent);
+  background: var(--shd-accent);
+  color: var(--shd-on-accent);
+}
+
+.refresh:hover,
+.toolbar .primary:hover,
+.actions button:hover,
+.inline-action:hover,
+.app #refresh:hover {
+  border-color: var(--shd-accent-strong);
+  background: var(--shd-accent-strong);
+}
+
+.refresh:disabled,
+.toolbar button:disabled,
+.actions button:disabled,
+.button:disabled,
+.inline-action:disabled {
+  cursor: wait;
+  opacity: .58;
+}
+
+.status {
+  min-height: 0;
+  color: var(--shd-muted);
+}
+
+.status.error,
+.error {
+  color: var(--shd-danger);
+}
+
+.summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--shd-space-2);
+}
+
+.summary span,
+.summary-item,
+.pill {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 26px;
+  padding: 4px 9px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--shd-surface-subtle);
+  color: var(--shd-muted);
+  font-size: 12px;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary strong,
+.summary-item strong {
+  margin-inline-end: 4px;
+  color: var(--shd-ink);
+  font-weight: 700;
+}
+
+.pill.good,
+.pill.up,
+.pill.ok,
+.pill.active,
+.status-done {
+  border-color: var(--shd-line);
+  background: var(--shd-good-soft);
+  color: var(--shd-good);
+}
+
+.pill.bad,
+.pill.down,
+.pill.error,
+.pill.overdue,
+.status-danger {
+  border-color: var(--shd-line);
+  background: var(--shd-danger-soft);
+  color: var(--shd-danger);
+}
+
+.status-progress {
+  background: var(--shd-accent-soft);
+  color: var(--shd-accent-strong);
+}
+
+.status-neutral {
+  background: var(--shd-surface-subtle);
+  color: var(--shd-muted);
+}
+
+.status-warning {
+  background: var(--shd-warning-soft);
+  color: var(--shd-warning);
+}
+
+.table-wrap,
+.table,
+.visual,
+.matrix-wrap {
+  min-width: 0;
+  overflow: auto;
+  border: 1px solid var(--shd-line-strong);
+  border-radius: var(--shd-radius-md);
+  background: var(--shd-surface-raised);
+  box-shadow: var(--shd-shadow-soft);
+}
+
+.table-wrap,
+.visual {
+  max-height: 520px;
+}
+
+.visual {
+  padding: var(--shd-space-3);
+}
+
+table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+th,
+td {
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--shd-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--shd-surface-subtle);
+  color: var(--shd-muted);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+
+tbody tr:last-child td,
+tr:last-child td {
+  border-bottom: 0;
+}
+
+tbody tr:hover,
+.record:hover,
+.record:focus,
+.project-row:hover {
+  background: var(--shd-accent-soft);
+}
+
+.record {
+  cursor: pointer;
+  outline: 0;
+}
+
+.title,
+.project-title,
+.visual-title {
+  font-weight: 700;
+}
+
+.sub,
+.project-code,
+.visual-date,
+.visual-value,
+.muted,
+.loading {
+  color: var(--shd-muted);
+}
+
+.sub,
+.project-code {
+  display: block;
+  margin-top: var(--shd-space-1);
+  font-size: 12px;
+}
+
+.empty {
+  padding: var(--shd-space-6) var(--shd-space-4);
+  color: var(--shd-muted);
+  text-align: center;
+}
+
+.visual[hidden],
+.details[hidden],
+.error[hidden] {
+  display: none;
+}
+
+.visual-card {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 14px 15px;
+  border: 1px solid var(--shd-line);
+  border-radius: var(--shd-radius-sm);
+  background: var(--shd-surface-raised);
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.visual-card:hover,
+.visual-card:focus {
+  border-color: var(--shd-accent);
+  background: var(--shd-surface-subtle);
+  outline: 0;
+}
+
+.visual-title {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.visual-date,
+.visual-value {
+  display: block;
+  margin-top: var(--shd-space-1);
+  font-size: 12px;
+}
+
+.visual-line {
+  display: flex;
+  align-items: center;
+  gap: var(--shd-space-2);
+  flex-wrap: wrap;
+  margin-top: var(--shd-space-2);
+}
+
+.grid,
+.metric-grid,
+.preview-grid,
+.calendar,
+.kanban {
+  display: grid;
+  min-width: 0;
+  gap: var(--shd-space-4);
+}
+
+#content {
+  display: grid;
+  min-width: 0;
+  gap: var(--shd-space-5);
+}
+
+.grid,
+.preview-grid {
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.metric-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+
+.panel,
+.metric,
+.progress-card,
+.preview-card,
+.kanban-col,
+.calendar-day,
+.detail {
+  min-width: 0;
+  border: 1px solid var(--shd-line);
+  border-radius: var(--shd-radius-md);
+  background: var(--shd-surface-raised);
+  box-shadow: var(--shd-shadow-soft);
+}
+
+.panel {
+  padding: var(--shd-space-5);
+}
+
+.panel h2,
+.panel h3 {
+  margin: 0 0 var(--shd-space-3);
+  color: var(--shd-ink);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.panel p {
+  margin: 0;
+  color: var(--shd-muted);
+}
+
+.metric {
+  padding: var(--shd-space-4);
+}
+
+.metric-label {
+  display: block;
+  color: var(--shd-muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.metric-value {
+  display: block;
+  margin-top: var(--shd-space-2);
+  color: var(--shd-ink);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 750;
+  letter-spacing: -.02em;
+  overflow-wrap: anywhere;
+}
+
+.metric p {
+  margin: var(--shd-space-2) 0 0;
+  color: var(--shd-ink);
+  font-size: clamp(20px, 2.7vw, 28px);
+  font-weight: 750;
+  letter-spacing: -.02em;
+}
+
+.kanban {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(210px, 1fr);
+  align-items: start;
+  overflow-x: auto;
+}
+
+.kanban-col {
+  min-width: 210px;
+  padding: var(--shd-space-3);
+}
+
+.kanban-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--shd-space-2);
+  margin-bottom: var(--shd-space-3);
+  font-weight: 700;
+}
+
+.kanban-list,
+.source-list,
+.tree {
+  display: grid;
+  gap: var(--shd-space-2);
+}
+
+.metric-grid + .kanban-list {
+  margin-top: var(--shd-space-1);
+}
+
+.timeline {
+  display: grid;
+  gap: 0;
+}
+
+.timeline-item {
+  display: grid;
+  position: relative;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: var(--shd-space-3);
+  padding-bottom: var(--shd-space-4);
+}
+
+.timeline-rail {
+  position: absolute;
+  top: 16px;
+  bottom: 0;
+  left: 8px;
+  width: 2px;
+  background: var(--shd-line);
+}
+
+.timeline-item:last-child .timeline-rail {
+  display: none;
+}
+
+.timeline-dot {
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--shd-accent-soft);
+  border-radius: 50%;
+  background: var(--shd-accent);
+}
+
+.timeline-content {
+  min-width: 0;
+}
+
+.timeline-meta {
+  margin-bottom: var(--shd-space-2);
+  color: var(--shd-muted);
+  font-size: 12px;
+}
+
+.funnel {
+  display: grid;
+  gap: var(--shd-space-3);
+}
+
+.funnel-row {
+  display: grid;
+  grid-template-columns: minmax(100px, 1fr) minmax(120px, 2fr) auto;
+  align-items: center;
+  gap: var(--shd-space-3);
+}
+
+progress {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border: 0;
+  border-radius: 999px;
+  background: var(--shd-surface-subtle);
+  accent-color: var(--shd-accent);
+}
+
+progress::-webkit-progress-bar {
+  border-radius: 999px;
+  background: var(--shd-surface-subtle);
+}
+
+progress::-webkit-progress-value {
+  border-radius: 999px;
+  background: var(--shd-accent);
+}
+
+progress::-moz-progress-bar {
+  border-radius: 999px;
+  background: var(--shd-accent);
+}
+
+.progress-card {
+  display: grid;
+  gap: var(--shd-space-2);
+  padding: var(--shd-space-4);
+}
+
+.preview-card {
+  padding: var(--shd-space-4);
+}
+
+.preview-fields {
+  display: grid;
+  gap: var(--shd-space-2);
+  margin-top: var(--shd-space-3);
+}
+
+.preview-field {
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+
+.preview-field strong {
+  color: var(--shd-muted);
+  font-weight: 600;
+}
+
+.calendar {
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+}
+
+.calendar-day {
+  display: grid;
+  align-content: start;
+  gap: var(--shd-space-3);
+  padding: var(--shd-space-3);
+}
+
+.calendar-head {
+  font-weight: 700;
+}
+
+.matrix-wrap {
+  background: var(--shd-surface-raised);
+}
+
+.matrix-table {
+  min-width: 600px;
+}
+
+.matrix-table th,
+.matrix-table td {
+  padding: 12px 14px;
+}
+
+.tree-children {
+  display: grid;
+  gap: var(--shd-space-2);
+  margin-left: var(--shd-space-3);
+  padding-left: var(--shd-space-4);
+  border-left: 1px solid var(--shd-line);
+}
+
+.details {
+  min-width: 0;
+  padding: var(--shd-space-5);
+  border: 1px solid var(--shd-line-strong);
+  border-radius: var(--shd-radius-md);
+  background: var(--shd-surface-subtle);
+  box-shadow: var(--shd-shadow-soft);
+}
+
+.detail-head,
+.details-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--shd-space-4);
+}
+
+.details h2,
+.details-title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.details-grid,
+.grid {
+  margin-top: var(--shd-space-4);
+}
+
+.detail {
+  padding: var(--shd-space-3);
+}
+
+.label,
+.detail-label {
+  display: block;
+  margin-bottom: var(--shd-space-1);
+  color: var(--shd-muted);
+  font-size: 11px;
+}
+
+.value,
+.detail-value {
+  display: block;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.close {
+  border: 0;
+  background: transparent;
+  color: var(--shd-muted);
+  font-size: 20px;
+}
+
+.chart {
+  min-height: 176px;
+  margin: var(--shd-space-3) 0 0;
+  padding: var(--shd-space-2);
+  overflow: hidden;
+  border: 1px solid var(--shd-line);
+  border-radius: var(--shd-radius-sm);
+  background: var(--shd-surface-subtle);
+}
+
+.chart svg {
+  display: block;
+  width: 100%;
+  height: 160px;
+}
+
+.chart-empty {
+  display: grid;
+  height: 156px;
+  place-items: center;
+  color: var(--shd-muted);
+  font-size: 12px;
+}
+
+.axis {
+  fill: var(--shd-muted);
+  font-size: 10px;
+}
+
+.chart-grid-line {
+  stroke: var(--shd-line);
+  stroke-dasharray: 3 4;
+  stroke-width: 1;
+}
+
+.chart-axis-line {
+  stroke: var(--shd-line-strong);
+  stroke-width: 1;
+}
+
+.chart-x-label,
+.chart-y-label {
+  fill: var(--shd-muted);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-line {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.line-a,
+.line-b {
+  fill: none;
+}
+
+.line-a {
+  stroke: #5e91c0;
+}
+
+.line-b {
+  stroke: #d48655;
+}
+
+.line-c {
+  stroke: #73b987;
+}
+
+.line-d {
+  stroke: #b58bd9;
+}
+
+.line-e {
+  stroke: #d9ad5c;
+}
+
+.line-f {
+  stroke: #63b9c9;
+}
+
+.comparison-chart {
+  min-height: 260px;
+}
+
+.comparison-chart svg {
+  height: 232px;
+}
+
+.chart-legend {
+  display: grid;
+  gap: var(--shd-space-2);
+  margin-top: var(--shd-space-3);
+}
+
+.chart-legend-row {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 1fr) repeat(4, auto);
+  align-items: center;
+  gap: var(--shd-space-3);
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--shd-line);
+  border-radius: var(--shd-radius-sm);
+  background: var(--shd-surface-subtle);
+}
+
+.chart-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.chart-swatch.line-a {
+  background: #5e91c0;
+}
+
+.chart-swatch.line-b {
+  background: #d48655;
+}
+
+.chart-swatch.line-c {
+  background: #73b987;
+}
+
+.chart-swatch.line-d {
+  background: #b58bd9;
+}
+
+.chart-swatch.line-e {
+  background: #d9ad5c;
+}
+
+.chart-swatch.line-f {
+  background: #63b9c9;
+}
+
+.chart-legend-name,
+.chart-legend-stat {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.chart-legend-name {
+  color: var(--shd-ink);
+  font-weight: 700;
+}
+
+.chart-legend-meta {
+  display: block;
+  margin-top: var(--shd-space-1);
+  color: var(--shd-muted);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.chart-legend-stat {
+  color: var(--shd-ink);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.chart-legend-stat-label {
+  margin-right: var(--shd-space-1);
+  color: var(--shd-muted);
+  font-size: 11px;
+}
+
+.source-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--shd-space-3);
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--shd-line);
+  border-radius: var(--shd-radius-sm);
+  background: var(--shd-surface-subtle);
+}
+
+.source-row > * {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.setting {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) minmax(150px, 1fr);
+  align-items: center;
+  gap: var(--shd-space-3);
+  padding: var(--shd-space-3) 0;
+  border-bottom: 1px solid var(--shd-line);
+}
+
+.setting:last-child {
+  border-bottom: 0;
+}
+
+.setting label {
+  font-weight: 700;
+}
+
+.setting small {
+  display: block;
+  color: var(--shd-muted);
+  font-weight: 400;
+}
+
+.setting input,
+.setting select {
+  width: 100%;
+  padding: 9px 10px;
+}
+
+.setting input:disabled,
+.setting select:disabled {
+  opacity: .6;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--shd-space-2);
+  margin-top: var(--shd-space-4);
+}
+
+.inline-action {
+  padding: 6px 9px;
+  font-size: 12px;
+}
+
+/* Active-projects keeps its own data renderer but shares this visual contract. */
+.app {
+  max-width: 1040px;
+}
+
+.app .header h1 {
+  font-size: clamp(21px, 2.4vw, 28px);
+}
+
+.app .subtitle {
+  margin-top: var(--shd-space-1);
+  font-size: 13px;
+}
+
+.app .table {
+  overflow: hidden;
+}
+
+.app .table-head,
+.app .project-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(130px, .8fr) minmax(110px, .7fr);
+  align-items: center;
+  gap: var(--shd-space-3);
+}
+
+.app .table-head {
+  padding: 11px 16px;
+  background: var(--shd-surface-subtle);
+  color: var(--shd-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.app .project-row {
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-top: 1px solid var(--shd-line);
+  background: var(--shd-surface-raised);
+  text-align: left;
+}
+
+.app .project-name,
+.app .project-title {
+  min-width: 0;
+}
+
+.app .project-title {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app .deadline {
+  color: var(--shd-ink);
+  font-size: 13px;
+}
+
+.app .deadline.missing {
+  color: var(--shd-muted);
+}
+
+.app .deadline.overdue {
+  color: var(--shd-danger);
+  font-weight: 700;
+}
+
+.app .status {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app .details {
+  background: var(--shd-surface-subtle);
+}
+
+@media (max-width: 720px) {
+  .shell,
+  .app {
+    padding: 12px;
+  }
+
+  .card,
+  .app {
+    padding: 16px;
+    border-radius: var(--shd-radius-md);
+  }
+
+  .header {
+    display: block;
+  }
+
+  .header .button,
+  .header #refresh {
+    margin-top: var(--shd-space-3);
+  }
+
+  .toolbar > * {
+    flex: 1 1 180px;
+  }
+
+  .toolbar .refresh,
+  .toolbar button,
+  .toolbar select {
+    flex-grow: 0;
+  }
+
+  .grid,
+  .preview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .chart-legend-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .chart-legend-stat {
+    grid-column: 2;
+  }
+
+  .setting {
+    grid-template-columns: 1fr;
+  }
+
+  .funnel-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .funnel-row progress {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .app .table-head,
+  .app .project-row {
+    grid-template-columns: minmax(0, 1.4fr) minmax(100px, .8fr) minmax(90px, .7fr);
+    gap: var(--shd-space-2);
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 440px) {
+  .metric-grid,
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-head,
+  .details-header {
+    display: block;
+  }
+
+  .close {
+    margin-top: var(--shd-space-2);
+  }
+}
+</style>
+<style data-shd-widget-write-actions="css">
+.shd-widget-actions {
+  min-width: 0;
+  padding: var(--shd-space-5, 20px);
+  border: 1px solid var(--shd-line-strong, var(--line, rgba(31, 41, 55, .16)));
+  border-radius: var(--shd-radius-md, 14px);
+  background: var(--shd-surface-raised, var(--surface, #e8edf2));
+  color: var(--shd-ink, var(--ink, #1d1f25));
+  box-shadow: var(--shd-shadow-soft, none);
+}
+
+.shd-widget-actions[hidden] {
+  display: none;
+}
+
+.shd-widget-actions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--shd-space-3, 12px);
+  margin-bottom: var(--shd-space-3, 12px);
+}
+
+.shd-widget-actions-selection {
+  overflow: hidden;
+  color: var(--shd-muted, var(--muted, #616670));
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shd-widget-actions-select,
+.shd-widget-actions-input {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--shd-line-strong, var(--line, rgba(31, 41, 55, .16)));
+  border-radius: var(--shd-radius-sm, 10px);
+  background: var(--shd-bg, var(--bg, #f8fafc));
+  color: var(--shd-ink, var(--ink, #1d1f25));
+}
+
+.shd-widget-actions-select:focus,
+.shd-widget-actions-input:focus {
+  border-color: var(--shd-accent, var(--accent, #535963));
+  outline: 0;
+  box-shadow: 0 0 0 3px var(--shd-accent-soft, var(--soft, rgba(75, 85, 99, .12)));
+}
+
+.shd-widget-actions-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--shd-space-3, 12px);
+  margin-top: var(--shd-space-3, 12px);
+}
+
+.shd-widget-actions-field {
+  display: grid;
+  gap: var(--shd-space-1, 4px);
+  color: var(--shd-muted, var(--muted, #616670));
+  font-size: 11px;
+}
+
+.shd-widget-actions-field:has(textarea) {
+  grid-column: span 2;
+}
+
+.shd-widget-actions-field input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--shd-accent, var(--accent, #535963));
+}
+
+.shd-widget-actions-confirm {
+  display: flex;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: var(--shd-space-2, 8px);
+  color: var(--shd-ink, var(--ink, #1d1f25));
+  font-size: 12px;
+}
+
+.shd-widget-actions-warning,
+.shd-widget-actions-hint {
+  grid-column: 1 / -1;
+  color: var(--shd-muted, var(--muted, #616670));
+  font-size: 12px;
+}
+
+.shd-widget-actions-danger {
+  color: var(--shd-danger, var(--bad, #b42318));
+}
+
+.shd-widget-actions-status {
+  min-height: 18px;
+  margin-top: var(--shd-space-3, 12px);
+  color: var(--shd-muted, var(--muted, #616670));
+  font-size: 12px;
+}
+
+.shd-widget-actions-status-error {
+  color: var(--shd-danger, var(--bad, #b42318));
+}
+
+.shd-widget-actions-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--shd-space-2, 8px);
+  margin-top: var(--shd-space-4, 16px);
+}
+
+.shd-widget-actions-buttons button {
+  padding: 9px 12px;
+  border: 1px solid var(--shd-line-strong, var(--line, rgba(31, 41, 55, .16)));
+  border-radius: var(--shd-radius-sm, 10px);
+  background: var(--shd-surface-subtle, var(--bg, #f8fafc));
+  color: var(--shd-ink, var(--ink, #1d1f25));
+  cursor: pointer;
+}
+
+.shd-widget-actions-buttons button:hover {
+  border-color: var(--shd-accent, var(--accent, #535963));
+  background: var(--shd-surface, var(--hover, #e1e8ef));
+}
+
+.shd-widget-actions-buttons button:disabled {
+  cursor: wait;
+  opacity: .62;
+}
+
+@media (max-width: 600px) {
+  .shd-widget-actions-field:has(textarea) {
+    grid-column: auto;
+  }
+
+  .shd-widget-actions-header {
+    display: block;
+  }
+
+  .shd-widget-actions-selection {
+    display: block;
+    margin-top: var(--shd-space-1, 4px);
+  }
+}
+</style>
+</head>
+<body>
+  <main class="app" aria-live="polite" data-shd-widget-engine="shd-universal-v1" data-widget-module="active-projects">
+    <header class="header">
+      <div>
+        <h1 data-i18n="title">Активные проекты</h1>
+        <p class="subtitle" data-i18n="subtitle">Сроки завершения и текущие статусы</p>
+      </div>
+      <button class="button" id="refresh" type="button" data-i18n="refresh">Обновить</button>
+    </header>
+    <div class="toolbar">
+      <input class="search" id="search" type="search" autocomplete="off" data-i18n-placeholder="search" placeholder="Поиск по проекту или коду">
+    </div>
+    <div class="summary" id="summary"></div>
+    <section class="table" aria-label="Проекты">
+      <div class="table-head">
+        <span data-i18n="project">Проект</span>
+        <span data-i18n="deadline">Дата завершения</span>
+        <span data-i18n="status">Статус</span>
+      </div>
+      <div id="rows"></div>
+      <div class="empty" id="empty" hidden></div>
+      <div class="error" id="error" hidden></div>
+    </section>
+    <section class="details" id="details" hidden>
+      <div class="details-header">
+        <div>
+          <h2 class="details-title" id="details-title"></h2>
+          <p class="details-code" id="details-code"></p>
+        </div>
+        <button class="button" id="close-details" type="button" data-i18n="close">Закрыть</button>
+      </div>
+      <div class="details-grid" id="details-grid"></div>
+      <p class="loading" id="details-loading" hidden></p>
+    </section>
+  </main>
+  <script>
+    (function () {
+      'use strict';
+
+      var messages = {
+        ru: {
+          title: 'Активные проекты',
+          subtitle: 'Сроки завершения и текущие статусы',
+          refresh: 'Обновить',
+          search: 'Поиск по проекту или коду',
+          project: 'Проект',
+          deadline: 'Дата завершения',
+          status: 'Статус',
+          close: 'Закрыть',
+          missingDate: 'Не указана',
+          noProjects: 'Проекты не найдены.',
+          noMatch: 'По фильтру ничего не найдено.',
+          loading: 'Загрузка…',
+          loadingProject: 'Загрузка данных проекта…',
+          refreshError: 'Не удалось обновить список проектов.',
+          projectError: 'Не удалось получить данные проекта.',
+          total: 'Всего',
+          withoutDate: 'Без даты',
+          archived: 'Архивных',
+          phase: 'Этап',
+          timezone: 'Часовой пояс',
+          updated: 'Обновлён',
+          code: 'Код'
+        },
+        en: {
+          title: 'Active projects',
+          subtitle: 'Completion dates and current statuses',
+          refresh: 'Refresh',
+          search: 'Search by project or code',
+          project: 'Project',
+          deadline: 'Completion date',
+          status: 'Status',
+          close: 'Close',
+          missingDate: 'Not set',
+          noProjects: 'No projects found.',
+          noMatch: 'No projects match the filter.',
+          loading: 'Loading…',
+          loadingProject: 'Loading project data…',
+          refreshError: 'Could not refresh the project list.',
+          projectError: 'Could not load the project data.',
+          total: 'Total',
+          withoutDate: 'No date',
+          archived: 'Archived',
+          phase: 'Phase',
+          timezone: 'Timezone',
+          updated: 'Updated',
+          code: 'Code'
+        }
+      };
+
+      var statusLabels = {
+        ru: {Tasks_Status_Todo:'К выполнению',Tasks_Status_Done:'Завершено',Tasks_Status_In_Progress:'В работе',Tasks_Status_Review:'На проверке',Modules_Done:'Завершено',todo:'К выполнению',to_do:'К выполнению','to do':'К выполнению','in progress':'В работе',in_progress:'В работе',in_progress_status:'В работе',done:'Завершено',completed:'Завершено',complete:'Завершено',closed:'Закрыто',active:'Активно',pending:'Ожидает',review:'На проверке',approved:'Согласовано',rejected:'Отклонено',archived:'В архиве',not_set:'Не задано',overdue:'Просрочено',blocked:'Заблокировано',error:'Ошибка',warning:'Предупреждение',maintenance:'Техническое обслуживание'},
+        en: {Tasks_Status_Todo:'To do',Tasks_Status_Done:'Done',Tasks_Status_In_Progress:'In progress',Tasks_Status_Review:'In review',Modules_Done:'Done',todo:'To do',to_do:'To do','to do':'To do','in progress':'In progress',in_progress:'In progress',in_progress_status:'In progress',done:'Done',completed:'Completed',complete:'Complete',closed:'Closed',active:'Active',pending:'Pending',review:'In review',approved:'Approved',rejected:'Rejected',archived:'Archived',not_set:'Not set',overdue:'Overdue',blocked:'Blocked',error:'Error',warning:'Warning',maintenance:'Maintenance'}
+      };
+      var localeSource = typeof window !== 'undefined' && window.openai && window.openai.locale || document.documentElement.lang || 'ru';
+      var locale = String(localeSource).toLowerCase().indexOf('ru') === 0 ? 'ru' : 'en';
+      var t = messages[locale];
+      var currentSnapshot = null;
+      var currentProjects = [];
+      var latestToolInput = null;
+      var pendingRequests = new Map();
+      var nextRequestId = 1;
+      var mcpAppsProtocolVersion = '2026-01-26';
+      var busy = false;
+
+      var elements = {
+        refresh: document.getElementById('refresh'),
+        search: document.getElementById('search'),
+        summary: document.getElementById('summary'),
+        rows: document.getElementById('rows'),
+        empty: document.getElementById('empty'),
+        error: document.getElementById('error'),
+        details: document.getElementById('details'),
+        detailsTitle: document.getElementById('details-title'),
+        detailsCode: document.getElementById('details-code'),
+        detailsGrid: document.getElementById('details-grid'),
+        detailsLoading: document.getElementById('details-loading'),
+        closeDetails: document.getElementById('close-details')
+      };
+
+      function applyTranslations() {
+        document.querySelectorAll('[data-i18n]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n');
+          if (t[key]) node.textContent = t[key];
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n-placeholder');
+          if (t[key]) node.setAttribute('placeholder', t[key]);
+        });
+        document.querySelector('.table').setAttribute('aria-label', t.project);
+      }
+
+      function request(method, params) {
+        var openai = typeof window !== 'undefined' ? window.openai : undefined;
+        if (method === 'tools/call' && openai && typeof openai.callTool === 'function') {
+          return openai.callTool(params.name, params.arguments || {});
+        }
+
+        var id = 'active-' + nextRequestId++;
+        window.parent.postMessage({ jsonrpc: '2.0', id: id, method: method, params: params }, '*');
+        return new Promise(function (resolve, reject) {
+          var timeout = window.setTimeout(function () {
+            pendingRequests.delete(id);
+            reject(new Error(t.refreshError));
+          }, 10000);
+          pendingRequests.set(id, { resolve: resolve, reject: reject, timeout: timeout });
+        });
+      }
+
+      function notify(method, params) {
+        window.parent.postMessage({ jsonrpc: '2.0', method: method, params: params || {} }, '*');
+      }
+
+      function initializeHost() {
+        return request('ui/initialize', {
+          protocolVersion: mcpAppsProtocolVersion,
+          appInfo: {
+            name: 'SHD Active Projects',
+            title: 'SHD Active Projects',
+            version: '1.0.0',
+            websiteUrl: 'https://shd.xyz.su'
+          },
+          appCapabilities: {}
+        }).then(function () {
+          notify('ui/notifications/initialized', {});
+        }).catch(function () {
+          // The window.openai compatibility bridge can work without the raw postMessage handshake.
+        });
+      }
+
+      function normalizePayload(value) {
+        if (!value) return null;
+        if (value.structuredContent) return value.structuredContent;
+        if (value.toolOutput) return value.toolOutput;
+        return value;
+      }
+
+      function getProjects(value) {
+        var payload = normalizePayload(value);
+        if (!payload || payload.error) return [];
+        var data = payload.projects || payload.items || payload.data;
+        for (var depth = 0; depth < 3 && data && !Array.isArray(data) && typeof data === 'object'; depth += 1) {
+          data = data.projects || data.items || data.data || data.results;
+        }
+        return Array.isArray(data) ? data.filter(function (item) { return item && typeof item === 'object'; }) : [];
+      }
+
+      function getProjectCode(project) {
+        return String(project.code || project.project_code || project.contract_project_id || project.id || '');
+      }
+
+      function getProjectName(project) {
+        return String(project.display_name || project.title || project.name || getProjectCode(project) || '—');
+      }
+
+      function getStatus(project) {
+        return String(project.status || project.phase || '—');
+      }
+
+      function statusLabel(value) {
+        var raw = String(value || '—');
+        var labels = statusLabels[locale] || statusLabels.ru;
+        return labels[raw] || labels[raw.toLowerCase()] || raw;
+      }
+
+      function getTone(status) {
+        var value = String(status).toLowerCase();
+        if (/done|complete|completed|closed|resolved|finished|готов|заверш/.test(value)) return 'done';
+        if (/cancel|reject|blocked|error|отмен|отклон|блок/.test(value)) return 'danger';
+        if (/progress|active|work|processing|в работе|актив/.test(value)) return 'progress';
+        if (/pending|review|pause|ожид|провер|пауза/.test(value)) return 'warning';
+        return 'neutral';
+      }
+
+      function getDeadlineTime(project) {
+        var value = project.deadline;
+        if (!value) return Number.POSITIVE_INFINITY;
+        var timestamp = Date.parse(String(value));
+        return Number.isNaN(timestamp) ? Number.POSITIVE_INFINITY : timestamp;
+      }
+
+      function formatDate(value) {
+        if (!value) return t.missingDate;
+        var raw = String(value).trim();
+        var dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(raw);
+        var timestamp = dateOnly ? (function () {
+          var parts = raw.split('-').map(Number);
+          return parts.every(function (part) { return Number.isFinite(part); }) ? Date.UTC(parts[0], parts[1] - 1, parts[2], 12) : Number.NaN;
+        }()) : Date.parse(raw);
+        if (Number.isNaN(timestamp)) return String(value);
+        try {
+          return new Intl.DateTimeFormat(locale, { day: '2-digit', month: '2-digit', year: 'numeric', ...(dateOnly ? { timeZone: 'UTC' } : {}) }).format(new Date(timestamp));
+        } catch (error) {
+          return String(value);
+        }
+      }
+
+      function isOverdue(project) {
+        var timestamp = getDeadlineTime(project);
+        var status = getStatus(project).toLowerCase();
+        return Number.isFinite(timestamp) && timestamp < Date.now() && !/done|complete|closed|resolved|заверш/.test(status);
+      }
+
+      function makeElement(tag, text, className) {
+        var node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+
+      function renderSummary(projects) {
+        elements.summary.replaceChildren();
+        var noDate = projects.filter(function (project) { return !project.deadline; }).length;
+        var archived = projects.filter(function (project) { return project.is_archived === true; }).length;
+        var total = makeElement('span', '', 'summary-item');
+        total.append(makeElement('strong', String(projects.length)), ' ' + t.total);
+        elements.summary.append(total);
+        if (noDate) {
+          var missing = makeElement('span', '', 'summary-item');
+          missing.append(makeElement('strong', String(noDate)), ' ' + t.withoutDate);
+          elements.summary.append(missing);
+        }
+        if (archived) {
+          var archivedNode = makeElement('span', '', 'summary-item');
+          archivedNode.append(makeElement('strong', String(archived)), ' ' + t.archived);
+          elements.summary.append(archivedNode);
+        }
+      }
+
+      function renderRows() {
+        var query = elements.search.value.trim().toLowerCase();
+        var projects = currentProjects.filter(function (project) {
+          if (!query) return true;
+          return (getProjectName(project) + ' ' + getProjectCode(project) + ' ' + getStatus(project)).toLowerCase().indexOf(query) !== -1;
+        });
+
+        elements.rows.replaceChildren();
+        elements.error.hidden = true;
+        elements.empty.hidden = projects.length !== 0;
+        elements.empty.textContent = currentProjects.length === 0 ? t.noProjects : t.noMatch;
+        projects.forEach(function (project) {
+          var row = makeElement('button', '', 'project-row');
+          row.type = 'button';
+          row.dataset.shdRecordId = getProjectCode(project);
+          row.dataset.shdRecordTitle = getProjectName(project);
+          row.setAttribute('aria-label', getProjectName(project));
+
+          var name = makeElement('span', '', 'project-name');
+          name.append(makeElement('span', getProjectName(project), 'project-title'));
+          name.append(makeElement('span', getProjectCode(project), 'project-code'));
+
+          var deadline = makeElement('span', formatDate(project.deadline), 'deadline' + (project.deadline ? '' : ' missing') + (isOverdue(project) ? ' overdue' : ''));
+          var status = makeElement('span', statusLabel(getStatus(project)), 'status status-' + getTone(getStatus(project)));
+          row.append(name, deadline, status);
+          row.addEventListener('click', function () { showProject(project); });
+          elements.rows.append(row);
+        });
+        window.__SHD_WIDGET_STATE__ = currentSnapshot;
+      }
+
+      function render(value) {
+        var payload = normalizePayload(value);
+        currentSnapshot = payload;
+        currentProjects = getProjects(payload).slice().sort(function (left, right) {
+          return getDeadlineTime(left) - getDeadlineTime(right) || getProjectName(left).localeCompare(getProjectName(right), locale);
+        });
+        renderSummary(currentProjects);
+        renderRows();
+        window.__SHD_WIDGET_STATE__ = payload;
+        window.dispatchEvent(new CustomEvent('shd-widget-data', { detail: payload }));
+      }
+
+      function setBusy(nextBusy, label) {
+        busy = nextBusy;
+        elements.refresh.disabled = nextBusy;
+        if (nextBusy) elements.refresh.textContent = label || t.loading;
+        else elements.refresh.textContent = t.refresh;
+      }
+
+      function setError(message) {
+        elements.error.hidden = false;
+        elements.error.textContent = message;
+      }
+
+      function unwrapResult(value) {
+        var payload = normalizePayload(value);
+        if (value && value.isError) throw new Error(payload && payload.error ? payload.error : t.refreshError);
+        if (payload && payload.error) throw new Error(String(payload.error));
+        return payload || value;
+      }
+
+      async function refresh() {
+        if (busy) return;
+        setBusy(true);
+        elements.error.hidden = true;
+        try {
+          var result = await request('tools/call', { name: 'shd_list_projects', arguments: { archived: false, limit: 100 } });
+          render(unwrapResult(result));
+        } catch (error) {
+          setError(error && error.message ? error.message : t.refreshError);
+        } finally {
+          setBusy(false);
+        }
+      }
+
+      function addDetail(label, value) {
+        var item = makeElement('div');
+        item.append(makeElement('span', label, 'detail-label'), makeElement('span', value || '—', 'detail-value'));
+        elements.detailsGrid.append(item);
+      }
+
+      function showDetailSnapshot(project) {
+        elements.detailsTitle.textContent = getProjectName(project);
+        elements.detailsCode.textContent = getProjectCode(project) ? t.code + ': ' + getProjectCode(project) : '';
+        elements.detailsGrid.replaceChildren();
+        addDetail(t.deadline, formatDate(project.deadline));
+        addDetail(t.status, statusLabel(getStatus(project)));
+        addDetail(t.phase, statusLabel(project.phase || '—'));
+        addDetail(t.timezone, String(project.timezone || '—'));
+        addDetail(t.updated, formatDate(project.updated_at));
+        elements.details.hidden = false;
+      }
+
+      async function showProject(project) {
+        showDetailSnapshot(project);
+        var code = getProjectCode(project);
+        if (!code) return;
+        elements.detailsLoading.hidden = false;
+        elements.detailsLoading.textContent = t.loadingProject;
+        try {
+          var result = await request('tools/call', { name: 'shd_get_project', arguments: { project_code: code } });
+          var payload = unwrapResult(result);
+          var data = payload && payload.data;
+          if (Array.isArray(data)) data = data[0];
+          if (data && typeof data === 'object') showDetailSnapshot(data);
+        } catch (error) {
+          setError(error && error.message ? error.message : t.projectError);
+        } finally {
+          elements.detailsLoading.hidden = true;
+        }
+      }
+
+      window.addEventListener('message', function (event) {
+        if (event.source !== window.parent) return;
+        var message = event.data;
+        if (!message || message.jsonrpc !== '2.0') return;
+        if (message.id !== undefined && pendingRequests.has(message.id)) {
+          var pending = pendingRequests.get(message.id);
+          pendingRequests.delete(message.id);
+          window.clearTimeout(pending.timeout);
+          if (message.error) pending.reject(new Error(message.error.message || t.refreshError));
+          else pending.resolve(message.result);
+          return;
+        }
+        if (message.method === 'ui/notifications/tool-input') {
+          latestToolInput = message.params || null;
+          if (!currentProjects.length) render(latestToolInput);
+        }
+        if (message.method === 'ui/notifications/tool-result') render(message.params && message.params.structuredContent);
+      }, { passive: true });
+
+      elements.search.addEventListener('input', renderRows);
+      elements.refresh.addEventListener('click', refresh);
+      elements.closeDetails.addEventListener('click', function () { elements.details.hidden = true; });
+      applyTranslations();
+      void initializeHost();
+
+      var openaiBridge = typeof window !== 'undefined' && window.openai ? window.openai : null;
+      var initialOutput = openaiBridge ? openaiBridge.toolOutput : null;
+      var initialInput = openaiBridge ? openaiBridge.toolInput : null;
+      if (initialOutput) {
+        render(initialOutput);
+        if (!currentProjects.length && initialInput) render(initialInput);
+      } else {
+        latestToolInput = initialInput;
+        render(latestToolInput || currentSnapshot);
+      }
+    }());
+  </script>
+<script data-shd-widget-write-actions="js">
+__SHD_WIDGET_ACTIONS_JS__
+</script>
+</body>
+</html>

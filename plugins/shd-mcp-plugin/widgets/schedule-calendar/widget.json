@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-schedule-calendar",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "mediaType": "text/html;profile=mcp-app",
+      "uri": "ui://shd/schedule-calendar/v1.html"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin"
+  }
+}

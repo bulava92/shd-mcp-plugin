@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD financial audit
+  short_description: Balances, payments and settlements
+policy:
+  allow_implicit_invocation: false

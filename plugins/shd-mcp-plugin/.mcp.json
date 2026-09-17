@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "shd": {
+      "type": "http",
+      "url": "https://shd.xyz.su/mcp",
+      "oauth_resource": "https://shd.xyz.su/mcp"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD project files
+  short_description: Inspect and safely manage files
+policy:
+  allow_implicit_invocation: false

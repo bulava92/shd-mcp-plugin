@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD entity resolution
+  short_description: Resolve CRM records and duplicates
+policy:
+  allow_implicit_invocation: false

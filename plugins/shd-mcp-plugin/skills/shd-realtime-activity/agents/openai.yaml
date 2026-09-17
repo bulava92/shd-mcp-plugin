@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD realtime and activity"
+  short_description: "Inspect events and manage live sessions"
+policy:
+  allow_implicit_invocation: false

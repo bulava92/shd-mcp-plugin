@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD status page"
+  short_description: "Inspect monitors and publish incidents safely"
+policy:
+  allow_implicit_invocation: false

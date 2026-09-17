@@ -1,0 +1,5 @@
+interface:
+  display_name: "SHD organizations and ACL"
+  short_description: "Audit members, roles and access policies"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,5 @@
+interface:
+  display_name: SHD task workflow
+  short_description: Read and safely update tasks
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "name": "shd-documents",
+  "version": "1.0.0",
+  "resources": [
+    {
+      "file": "index.html",
+      "uri": "ui://shd/documents/v1.html",
+      "mediaType": "text/html;profile=mcp-app"
+    }
+  ],
+  "license": "../../../../../LICENSE",
+  "source": {
+    "repository": "https://github.com/bulava92/shd-mcp-plugin"
+  }
+}
