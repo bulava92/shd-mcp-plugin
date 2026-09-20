@@ -115,17 +115,17 @@ button {
 .shell,
 .app {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: clamp(14px, 2.5vw, 28px);
+  padding: clamp(10px, 1.5vw, 18px);
 }
 
 .card,
 .app {
   min-width: 0;
-  padding: clamp(18px, 2.6vw, 30px);
+  padding: clamp(14px, 1.8vw, 22px);
   border: 1px solid var(--shd-line);
-  border-radius: var(--shd-radius-lg);
+  border-radius: var(--shd-radius-md);
   background: var(--shd-surface);
   box-shadow: var(--shd-shadow);
 }
@@ -134,7 +134,7 @@ button {
 .app > * + *,
 .shell > * + *,
 .visual > * + * {
-  margin-block-start: var(--shd-space-5);
+  margin-block-start: var(--shd-space-4);
 }
 
 .card > .eyebrow + h1,
@@ -371,7 +371,6 @@ button:focus-visible,
 
 .table-wrap,
 .table,
-.visual,
 .matrix-wrap {
   min-width: 0;
   overflow: auto;
@@ -381,13 +380,17 @@ button:focus-visible,
   box-shadow: var(--shd-shadow-soft);
 }
 
-.table-wrap,
 .visual {
+  min-width: 0;
+  overflow: auto;
+}
+
+.table-wrap {
   max-height: 520px;
 }
 
 .visual {
-  padding: var(--shd-space-3);
+  padding: 0;
 }
 
 table {
@@ -878,6 +881,12 @@ progress::-moz-progress-bar {
   vector-effect: non-scaling-stroke;
 }
 
+.chart-area {
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+
 .line-a,
 .line-b {
   fill: none;
@@ -907,36 +916,70 @@ progress::-moz-progress-bar {
   stroke: #63b9c9;
 }
 
+.chart-area.line-a {
+  fill: #5e91c0;
+}
+
+.chart-area.line-b {
+  fill: #d48655;
+}
+
+.chart-area.line-c {
+  fill: #73b987;
+}
+
+.chart-area.line-d {
+  fill: #b58bd9;
+}
+
+.chart-area.line-e {
+  fill: #d9ad5c;
+}
+
+.chart-area.line-f {
+  fill: #63b9c9;
+}
+
 .comparison-chart {
-  min-height: 260px;
+  min-height: 0;
+  padding: 8px 10px 6px;
+}
+
+.comparison-view {
+  display: grid;
+  min-width: 0;
+  gap: var(--shd-space-3);
 }
 
 .comparison-chart svg {
-  height: 232px;
+  height: clamp(260px, 31vw, 360px);
 }
 
 .chart-legend {
   display: grid;
-  gap: var(--shd-space-2);
+  gap: 0;
   margin-top: var(--shd-space-3);
 }
 
 .chart-legend-row {
   display: grid;
-  grid-template-columns: auto minmax(150px, 1fr) repeat(4, auto);
+  grid-template-columns: auto minmax(180px, 1fr) repeat(4, minmax(66px, auto));
   align-items: center;
-  gap: var(--shd-space-3);
+  gap: var(--shd-space-2) var(--shd-space-3);
   min-width: 0;
-  padding: 10px 12px;
-  border: 1px solid var(--shd-line);
-  border-radius: var(--shd-radius-sm);
-  background: var(--shd-surface-subtle);
+  padding: 9px 2px;
+  border-top: 1px solid var(--shd-line);
+}
+
+.chart-legend-row:first-child {
+  padding-top: 0;
+  border-top: 0;
 }
 
 .chart-swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
 }
 
 .chart-swatch.line-a {
@@ -970,26 +1013,34 @@ progress::-moz-progress-bar {
 }
 
 .chart-legend-name {
+  display: grid;
+  gap: 2px;
   color: var(--shd-ink);
   font-weight: 700;
 }
 
 .chart-legend-meta {
   display: block;
-  margin-top: var(--shd-space-1);
   color: var(--shd-muted);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
 }
 
+.chart-legend-error {
+  color: var(--shd-danger);
+}
+
 .chart-legend-stat {
+  display: grid;
+  gap: 1px;
   color: var(--shd-ink);
   font-variant-numeric: tabular-nums;
+  text-align: right;
   white-space: nowrap;
 }
 
 .chart-legend-stat-label {
-  margin-right: var(--shd-space-1);
+  margin-right: 0;
   color: var(--shd-muted);
   font-size: 11px;
 }
@@ -1148,12 +1199,12 @@ progress::-moz-progress-bar {
 @media (max-width: 720px) {
   .shell,
   .app {
-    padding: 12px;
+    padding: 8px;
   }
 
   .card,
   .app {
-    padding: 16px;
+    padding: 14px;
     border-radius: var(--shd-radius-md);
   }
 
@@ -1186,11 +1237,29 @@ progress::-moz-progress-bar {
   }
 
   .chart-legend-row {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr) repeat(2, minmax(72px, auto));
   }
 
   .chart-legend-stat {
-    grid-column: 2;
+    grid-column: auto;
+  }
+
+  .chart-legend-stat:nth-of-type(3) {
+    grid-column: 3;
+  }
+
+  .chart-legend-stat:nth-of-type(4) {
+    grid-column: 4;
+  }
+
+  .chart-legend-stat:nth-of-type(5) {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .chart-legend-stat:nth-of-type(6) {
+    grid-row: 2;
+    grid-column: 4;
   }
 
   .setting {

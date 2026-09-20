@@ -122,17 +122,17 @@ button {
 .shell,
 .app {
   width: 100%;
-  max-width: 1120px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: clamp(14px, 2.5vw, 28px);
+  padding: clamp(10px, 1.5vw, 18px);
 }
 
 .card,
 .app {
   min-width: 0;
-  padding: clamp(18px, 2.6vw, 30px);
+  padding: clamp(14px, 1.8vw, 22px);
   border: 1px solid var(--shd-line);
-  border-radius: var(--shd-radius-lg);
+  border-radius: var(--shd-radius-md);
   background: var(--shd-surface);
   box-shadow: var(--shd-shadow);
 }
@@ -141,7 +141,7 @@ button {
 .app > * + *,
 .shell > * + *,
 .visual > * + * {
-  margin-block-start: var(--shd-space-5);
+  margin-block-start: var(--shd-space-4);
 }
 
 .card > .eyebrow + h1,
@@ -378,7 +378,6 @@ button:focus-visible,
 
 .table-wrap,
 .table,
-.visual,
 .matrix-wrap {
   min-width: 0;
   overflow: auto;
@@ -388,13 +387,17 @@ button:focus-visible,
   box-shadow: var(--shd-shadow-soft);
 }
 
-.table-wrap,
 .visual {
+  min-width: 0;
+  overflow: auto;
+}
+
+.table-wrap {
   max-height: 520px;
 }
 
 .visual {
-  padding: var(--shd-space-3);
+  padding: 0;
 }
 
 table {
@@ -885,6 +888,12 @@ progress::-moz-progress-bar {
   vector-effect: non-scaling-stroke;
 }
 
+.chart-area {
+  stroke: none;
+  opacity: .12;
+  pointer-events: none;
+}
+
 .line-a,
 .line-b {
   fill: none;
@@ -914,36 +923,70 @@ progress::-moz-progress-bar {
   stroke: #63b9c9;
 }
 
+.chart-area.line-a {
+  fill: #5e91c0;
+}
+
+.chart-area.line-b {
+  fill: #d48655;
+}
+
+.chart-area.line-c {
+  fill: #73b987;
+}
+
+.chart-area.line-d {
+  fill: #b58bd9;
+}
+
+.chart-area.line-e {
+  fill: #d9ad5c;
+}
+
+.chart-area.line-f {
+  fill: #63b9c9;
+}
+
 .comparison-chart {
-  min-height: 260px;
+  min-height: 0;
+  padding: 8px 10px 6px;
+}
+
+.comparison-view {
+  display: grid;
+  min-width: 0;
+  gap: var(--shd-space-3);
 }
 
 .comparison-chart svg {
-  height: 232px;
+  height: clamp(260px, 31vw, 360px);
 }
 
 .chart-legend {
   display: grid;
-  gap: var(--shd-space-2);
+  gap: 0;
   margin-top: var(--shd-space-3);
 }
 
 .chart-legend-row {
   display: grid;
-  grid-template-columns: auto minmax(150px, 1fr) repeat(4, auto);
+  grid-template-columns: auto minmax(180px, 1fr) repeat(4, minmax(66px, auto));
   align-items: center;
-  gap: var(--shd-space-3);
+  gap: var(--shd-space-2) var(--shd-space-3);
   min-width: 0;
-  padding: 10px 12px;
-  border: 1px solid var(--shd-line);
-  border-radius: var(--shd-radius-sm);
-  background: var(--shd-surface-subtle);
+  padding: 9px 2px;
+  border-top: 1px solid var(--shd-line);
+}
+
+.chart-legend-row:first-child {
+  padding-top: 0;
+  border-top: 0;
 }
 
 .chart-swatch {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
 }
 
 .chart-swatch.line-a {
@@ -977,26 +1020,34 @@ progress::-moz-progress-bar {
 }
 
 .chart-legend-name {
+  display: grid;
+  gap: 2px;
   color: var(--shd-ink);
   font-weight: 700;
 }
 
 .chart-legend-meta {
   display: block;
-  margin-top: var(--shd-space-1);
   color: var(--shd-muted);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 400;
 }
 
+.chart-legend-error {
+  color: var(--shd-danger);
+}
+
 .chart-legend-stat {
+  display: grid;
+  gap: 1px;
   color: var(--shd-ink);
   font-variant-numeric: tabular-nums;
+  text-align: right;
   white-space: nowrap;
 }
 
 .chart-legend-stat-label {
-  margin-right: var(--shd-space-1);
+  margin-right: 0;
   color: var(--shd-muted);
   font-size: 11px;
 }
@@ -1155,12 +1206,12 @@ progress::-moz-progress-bar {
 @media (max-width: 720px) {
   .shell,
   .app {
-    padding: 12px;
+    padding: 8px;
   }
 
   .card,
   .app {
-    padding: 16px;
+    padding: 14px;
     border-radius: var(--shd-radius-md);
   }
 
@@ -1193,11 +1244,29 @@ progress::-moz-progress-bar {
   }
 
   .chart-legend-row {
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: auto minmax(0, 1fr) repeat(2, minmax(72px, auto));
   }
 
   .chart-legend-stat {
-    grid-column: 2;
+    grid-column: auto;
+  }
+
+  .chart-legend-stat:nth-of-type(3) {
+    grid-column: 3;
+  }
+
+  .chart-legend-stat:nth-of-type(4) {
+    grid-column: 4;
+  }
+
+  .chart-legend-stat:nth-of-type(5) {
+    grid-row: 2;
+    grid-column: 3;
+  }
+
+  .chart-legend-stat:nth-of-type(6) {
+    grid-row: 2;
+    grid-column: 4;
   }
 
   .setting {
@@ -1247,7 +1316,7 @@ progress::-moz-progress-bar {
 <main class="shell" data-shd-widget-engine="shd-universal-v1" data-widget-module="controller-observability"><section class="card">
   <div class="eyebrow">SHD MCP · controller observability</div>
   <h1 id="title">Контроллеры</h1><p class="lede" id="lede"></p>
-  <div class="toolbar"><button id="refresh" class="primary" type="button">Обновить</button><select id="source" hidden><option value="auto" data-i18n="sourceAuto">Автоматически</option><option value="native" data-i18n="sourceNative">Нативный источник</option><option value="influx" data-i18n="sourceInflux">Influx/Grafana</option><option value="all" data-i18n="sourceAll">Все источники</option></select><select id="preset" hidden><option value="co2-ventilation" data-i18n="presetCo2Ventilation">CO₂ → вентиляция</option><option value="temperature-heating" data-i18n="presetTemperatureHeating">Температура → отопление</option><option value="humidity-ventilation" data-i18n="presetHumidityVentilation">Влажность → вентиляция</option><option value="custom" data-i18n="presetCustom">Своя пара</option></select></div>
+  <div class="toolbar"><button id="refresh" class="primary" type="button">Обновить</button><select id="source" hidden><option value="auto" data-i18n="sourceAuto">Автоматически</option><option value="native" data-i18n="sourceNative">Нативный источник</option><option value="influx" data-i18n="sourceInflux">Influx/Grafana</option></select></div>
   <div id="status" class="status" role="status" aria-live="polite"></div><div id="summary" class="summary"></div><div id="content"></div>
 </section></main>
 <script>
@@ -1266,8 +1335,7 @@ progress::-moz-progress-bar {
       inventorySeparate:'Инвентарь устройств загружается отдельным запросом по выбранному контроллеру.',
       refresh:'Обновить',loading:'Загрузка…',empty:'Нет данных для отображения.',records:'записей',
       deviceCount:'устройств',controllerCount:'контроллеров',stateCount:'состояний',samples:'выборок',sampleOne:'выборка',sampleFew:'выборки',sampleMany:'выборок',
-      sourceAuto:'Автоматически',sourceNative:'Нативный источник',sourceInflux:'Influx/Grafana',sourceAll:'Все источники',
-      presetCo2Ventilation:'CO₂ → вентиляция',presetTemperatureHeating:'Температура → отопление',presetHumidityVentilation:'Влажность → вентиляция',presetCustom:'Своя пара',
+      sourceAuto:'Автоматически',sourceNative:'Нативный источник',sourceInflux:'Influx/Grafana',
       native:'Нативный источник',influx:'Influx/Grafana',available:'доступен',unavailable:'недоступен',
       configured:'настроен',points:'точек',source:'Источник',actualSource:'Фактический источник',sourceDetails:'Источник и качество',statisticsSummary:'Сводка статистики',summaryValue:'Значения',notAvailable:'нет данных',
       chartTitle:'Общий график',last:'последнее',seriesOne:'ряд',seriesFew:'ряда',seriesMany:'рядов',
@@ -1285,7 +1353,7 @@ progress::-moz-progress-bar {
       second:'с',minute:'мин',hour:'ч',day:'д',binary:'бинарный',numeric:'числовой',
       minimum:'минимум',maximum:'максимум',average:'среднее',open:'открытый',
       yes:'да',no:'нет',truncated:'выборка ограничена',noStats:'Статистика недоступна для выбранного диапазона или источника.',
-      noItems:'Устройства не найдены.',unavailableReason:'Причина недоступности',presetNoSeries:'Для выбранного режима нет доступных рядов.'
+      noItems:'Устройства не найдены.',unavailableReason:'Причина недоступности'
     },
     en:{
       history:['Controller history','Time-series points and data provenance.'],
@@ -1300,8 +1368,7 @@ progress::-moz-progress-bar {
       inventorySeparate:'Device inventory is loaded by a separate request for the selected controller.',
       refresh:'Refresh',loading:'Loading…',empty:'No data to display.',records:'records',
       deviceCount:'devices',controllerCount:'controllers',stateCount:'states',samples:'samples',sampleOne:'sample',sampleFew:'samples',sampleMany:'samples',
-      sourceAuto:'Automatic',sourceNative:'Native source',sourceInflux:'Influx/Grafana',sourceAll:'All sources',
-      presetCo2Ventilation:'CO₂ → ventilation',presetTemperatureHeating:'Temperature → heating',presetHumidityVentilation:'Humidity → ventilation',presetCustom:'Custom pair',
+      sourceAuto:'Automatic',sourceNative:'Native source',sourceInflux:'Influx/Grafana',
       native:'Native source',influx:'Influx/Grafana',available:'available',unavailable:'unavailable',
       configured:'configured',points:'points',source:'Source',actualSource:'Actual source',sourceDetails:'Source and quality',statisticsSummary:'Statistics summary',summaryValue:'Values',notAvailable:'no data',
       chartTitle:'Shared chart',last:'last',seriesOne:'series',seriesFew:'series',seriesMany:'series',
@@ -1319,13 +1386,13 @@ progress::-moz-progress-bar {
       second:'s',minute:'min',hour:'h',day:'d',binary:'binary',numeric:'numeric',
       minimum:'minimum',maximum:'maximum',average:'average',open:'open',
       yes:'yes',no:'no',truncated:'sample limited',noStats:'Statistics are unavailable for this range or source.',
-      noItems:'No devices found.',unavailableReason:'Unavailable reason',presetNoSeries:'No series are available for the selected preset.'
+      noItems:'No devices found.',unavailableReason:'Unavailable reason'
     }
   };
   function localTimezone(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch(err){return''}}
   var state={mode:'history',config:{},data:null,busy:false,timezone:localTimezone(),lang:(String((window.openai&&window.openai.locale)||document.documentElement.lang||'ru').toLowerCase().indexOf('en')===0?'en':'ru')};
   var pending=new Map(),nextId=1;
-  var el={title:document.getElementById('title'),lede:document.getElementById('lede'),refresh:document.getElementById('refresh'),source:document.getElementById('source'),preset:document.getElementById('preset'),status:document.getElementById('status'),summary:document.getElementById('summary'),content:document.getElementById('content')};
+  var el={title:document.getElementById('title'),lede:document.getElementById('lede'),refresh:document.getElementById('refresh'),source:document.getElementById('source'),status:document.getElementById('status'),summary:document.getElementById('summary'),content:document.getElementById('content')};
   function t(k){return(T[state.lang]&&T[state.lang][k])||k}
   function obj(x){return x&&typeof x==='object'&&!Array.isArray(x)}
   function text(x){if(x===null||x===undefined||x==='')return'—';if(typeof x==='object')try{return JSON.stringify(x)}catch(e){return'—'}return String(x)}
@@ -1340,7 +1407,7 @@ progress::-moz-progress-bar {
   function metaFrom(p){var m=obj(p.meta)?p.meta:{},w=obj(m.widget)?m.widget:{};state.mode=String(w.mode||m.mode||state.mode||'history');state.config=merge(state.config,w);if(obj(w.sourceArgs)&&Object.keys(w.sourceArgs).length)state.config.sourceArgs=w.sourceArgs;else if(obj(m.sourceArgs)&&Object.keys(m.sourceArgs).length)state.config.sourceArgs=m.sourceArgs;return m}
   function dataFrom(p){var source=unwrap(p);metaFrom(source);var data=source.meta&&source.meta.widget&&source.data!==undefined?source.data:source,timezone=data&&data.timezone,timezoneSource=data&&data.timezone_source;if(!timezone&&data&&Array.isArray(data.series)){var candidate=data.series.find(function(series){return series&&series.timezone});timezone=candidate&&candidate.timezone;timezoneSource=candidate&&candidate.timezone_source}if(typeof timezone==='string'&&timezone&&timezoneSource!=='normalized_utc'&&timezoneSource!=='influx_timestamp')state.timezone=timezone;return data}
   function translateOptions(select){select.querySelectorAll('[data-i18n]').forEach(function(option){option.textContent=t(option.getAttribute('data-i18n'))})}
-  function labels(){var heading=T[state.lang][state.mode]||T[state.lang].history,isCollection=state.mode==='statistics'&&state.data&&Array.isArray(state.data.series);document.documentElement.lang=state.lang;el.title.textContent=heading[0];el.lede.textContent=heading[1];el.refresh.textContent=t('refresh');translateOptions(el.source);translateOptions(el.preset);el.refresh.hidden=!!isCollection;el.source.hidden=isCollection||!['history','compare','health','statistics'].includes(state.mode);el.preset.hidden=state.mode!=='compare';if(state.mode==='compare'&&state.config.preset)el.preset.value=state.config.preset;if(state.config.sourceArgs&&state.config.sourceArgs.source)el.source.value=state.config.sourceArgs.source}
+  function labels(){var heading=T[state.lang][state.mode]||T[state.lang].history,isCollection=state.mode==='statistics'&&state.data&&Array.isArray(state.data.series);document.documentElement.lang=state.lang;el.title.textContent=heading[0];el.lede.textContent=heading[1];el.refresh.textContent=t('refresh');translateOptions(el.source);el.source.setAttribute('aria-label',t('source'));el.refresh.hidden=!!isCollection;el.source.hidden=isCollection||!['history','compare','health','statistics'].includes(state.mode);if(state.config.sourceArgs&&state.config.sourceArgs.source){var requested=String(state.config.sourceArgs.source).toLowerCase();el.source.value=['auto','native','influx'].includes(requested)?requested:'auto'}}
   function summary(items){el.summary.replaceChildren();(items||[]).forEach(function(x){var s=document.createElement('span');s.className='pill '+(x.kind||'');s.textContent=text(x.value);el.summary.append(s)})}
   function formatNumber(value){var number=Number(value);if(value===null||value===undefined||value===''||!Number.isFinite(number))return text(value);return number.toLocaleString(state.lang==='ru'?'ru-RU':'en-US',{maximumFractionDigits:2})}
   function dateOnlyText(raw){var parts=raw.split('-').map(Number);if(parts.length!==3||parts.some(function(part){return!Number.isFinite(part)}))return null;var date=new Date(Date.UTC(parts[0],parts[1]-1,parts[2],12));try{return new Intl.DateTimeFormat(state.lang,{dateStyle:'medium',timeZone:'UTC'}).format(date)}catch(err){return null}}
@@ -1426,7 +1493,7 @@ progress::-moz-progress-bar {
     }
     return sampled
   }
-  function valueUnit(item){return String(item&&(item.value_unit||item.data_point_unit||item.unit)||'').trim()}
+  function valueUnit(item){var value=String(item&&(item.value_unit||item.unit)||'').trim(),normalized=value.toLowerCase();return ['all','auto','unknown','—'].includes(normalized)?'':value}
   function seriesAxis(item){
     var declared=String(item&&(item.axis||item.y_axis)||'').toLowerCase();
     if(declared==='right'||declared==='secondary')return'right';
@@ -1435,8 +1502,12 @@ progress::-moz-progress-bar {
     return /%|percent|процент/.test(unit)||/ventilation|вентил|heating|отопл|fan|клапан/.test(group)?'right':'left'
   }
   function comparisonLabel(series){
-    var item=series&&series.item?series.item:(series||{}),label=item.label||item.name||item.id||t('records'),meta=[item.controller,item.item_id].filter(function(value){return value!==null&&value!==undefined&&String(value)!==''}),unit=valueUnit(item);
+    var item=series&&series.item?series.item:(series||{}),explicitLabel=item.label||item.name,label=explicitLabel||item.id||item.item_id||t('records'),meta=[];
+    if(item.controller)meta.push(item.controller);
+    var unit=valueUnit(item),source=String(item.selected_history_source||item.history_source||'').trim().toLowerCase();
     if(unit)meta.push(unit);
+    if(source&&source!=='all')meta.push(sourceLabel(source));
+    if(!explicitLabel&&item.item_id&&item.id!==item.item_id)meta.unshift(item.item_id);
     return{label:String(label),meta:meta.join(' · ')}
   }
   function comparisonChart(list){
@@ -1446,35 +1517,36 @@ progress::-moz-progress-bar {
     plotted.forEach(function(item){all=all.concat(item.raw);axisPoints[item.axis]=axisPoints[item.axis].concat(item.raw)});
     var timed=all.length>0&&all.every(function(point){return Number.isFinite(point.time)}),start=null,end=null;
     all.forEach(function(point){if(!Number.isFinite(point.time))return;if(start===null||point.time<start)start=point.time;if(end===null||point.time>end)end=point.time});
-    var ranges={left:numberRange(axisPoints.left,axisPoints.left.length>0&&axisPoints.left.every(function(point){return point.value===0||point.value===1})),right:numberRange(axisPoints.right,axisPoints.right.length>0&&axisPoints.right.every(function(point){return point.value===0||point.value===1}))},hasRight=plotted.some(function(item){return item.axis==='right'});
-    var width=900,height=250,left=58,right=58,top=18,bottom=42,plotWidth=width-left-right,plotHeight=height-top-bottom;
+    function isPercentSeries(item){var unit=valueUnit(item).toLowerCase(),group=String(item&&(item.group||item.id)||'').toLowerCase();return /%|percent|процент/.test(unit)||/ventilation|вентил|fan|клапан|heating|отопл/.test(group)}
+    var leftBinary=axisPoints.left.length>0&&axisPoints.left.every(function(point){return point.value===0||point.value===1}),rightBinary=axisPoints.right.length>0&&axisPoints.right.every(function(point){return point.value===0||point.value===1}),rightIsPercent=axisPoints.right.length>0&&!rightBinary&&plotted.some(function(item){return item.axis==='right'&&isPercentSeries(item.item)})&&axisPoints.right.every(function(point){return point.value>=0&&point.value<=100}),ranges={left:numberRange(axisPoints.left,leftBinary),right:rightIsPercent?{min:0,max:100,binary:false}:numberRange(axisPoints.right,rightBinary)},hasRight=plotted.some(function(item){return item.axis==='right'});
+    var width=1200,height=360,left=70,right=70,top=20,bottom=46,plotWidth=width-left-right,plotHeight=height-top-bottom;
     function xAt(point,index,points){if(timed&&start!==null&&end!==null&&end!==start&&Number.isFinite(point.time))return left+plotWidth*(point.time-start)/(end-start);return left+plotWidth*(points.length===1?.5:index/(points.length-1))}
     function yAt(value,axis){var range=ranges[axis]||ranges.left;return top+plotHeight*(range.max-value)/(range.max-range.min)}
     function axisUnit(axis){var found=plotted.find(function(item){return item.axis===axis&&valueUnit(item.item)});return found?valueUnit(found.item):''}
+    function baselineY(axis){var range=ranges[axis]||ranges.left,value=range.min<=0&&range.max>=0?0:range.min;return yAt(value,axis)}
     function tickText(value,axis){var unit=axisUnit(axis);return formatNumber(value)+(unit?' '+unit:'')}
     function stats(points){var values=(points||[]).map(function(point){return Number(point.value)}).filter(function(value){return Number.isFinite(value)});if(!values.length)return{last:null,min:null,max:null,average:null};var min=values[0],max=values[0],total=0;values.forEach(function(value){if(value<min)min=value;if(value>max)max=value;total+=value});return{last:values[values.length-1],min:min,max:max,average:total/values.length}}
     var chartHtml;
     if(!plotted.length)chartHtml='<div class="chart comparison-chart"><div class="chart-empty">'+esc(t('empty'))+'</div></div>';
     else{
-      var svg=['<svg class="shd-chart" viewBox="0 0 '+width+' '+height+'" role="img" aria-label="'+esc(t('chartTitle'))+'"><g>'],leftTicks=ranges.left.binary?[0,.5,1]:[ranges.left.min,(ranges.left.min+ranges.left.max)/2,ranges.left.max];
+      var svg=['<svg class="shd-chart" viewBox="0 0 '+width+' '+height+'" preserveAspectRatio="none" role="img" aria-label="'+esc(t('chartTitle'))+'"><g>'],leftTicks=ranges.left.binary?[0,.5,1]:[ranges.left.min,(ranges.left.min+ranges.left.max)/2,ranges.left.max];
       leftTicks.forEach(function(value){var y=yAt(value,'left');svg.push('<line class="chart-grid-line" x1="'+left+'" x2="'+(width-right)+'" y1="'+y.toFixed(1)+'" y2="'+y.toFixed(1)+'"/><text class="chart-y-label" x="6" y="'+(y+3).toFixed(1)+'">'+esc(tickText(value,'left'))+'</text>')});
       svg.push('</g><line class="chart-axis-line" x1="'+left+'" x2="'+left+'" y1="'+top+'" y2="'+(height-bottom)+'"/><line class="chart-axis-line" x1="'+left+'" x2="'+(width-right)+'" y1="'+(height-bottom)+'" y2="'+(height-bottom)+'"/>');
       if(hasRight){var rightTicks=ranges.right.binary?[0,.5,1]:[ranges.right.min,(ranges.right.min+ranges.right.max)/2,ranges.right.max];svg.push('<line class="chart-axis-line" x1="'+(width-right)+'" x2="'+(width-right)+'" y1="'+top+'" y2="'+(height-bottom)+'"/>');rightTicks.forEach(function(value){var y=yAt(value,'right');svg.push('<text class="chart-y-label chart-y-label-right" text-anchor="end" x="'+(width-6)+'" y="'+(y+3).toFixed(1)+'">'+esc(tickText(value,'right'))+'</text>')})}
-      plotted.forEach(function(item){var points=item.points,path='M '+xAt(points[0],0,points).toFixed(1)+' '+yAt(points[0].value,item.axis).toFixed(1);for(var i=1;i<points.length;i++)path+=(ranges[item.axis].binary?' H '+xAt(points[i],i,points).toFixed(1)+' V '+yAt(points[i].value,item.axis).toFixed(1):' L '+xAt(points[i],i,points).toFixed(1)+' '+yAt(points[i].value,item.axis).toFixed(1));var info=comparisonLabel(item),summary=stats(item.raw);svg.push('<path class="chart-line '+item.color+'" d="'+path+'" aria-label="'+esc(info.label)+'"><title>'+esc(info.label+' · '+t('last')+': '+formatNumber(summary.last))+'</title></path>');if(points.length===1)svg.push('<circle class="chart-point '+item.color+'" cx="'+xAt(points[0],0,points).toFixed(1)+'" cy="'+yAt(points[0].value,item.axis).toFixed(1)+'" r="4"><title>'+esc(info.label+' · '+formatNumber(points[0].value))+'</title></circle>')});
+      plotted.forEach(function(item){var points=item.points,path='M '+xAt(points[0],0,points).toFixed(1)+' '+yAt(points[0].value,item.axis).toFixed(1);for(var i=1;i<points.length;i++)path+=(ranges[item.axis].binary?' H '+xAt(points[i],i,points).toFixed(1)+' V '+yAt(points[i].value,item.axis).toFixed(1):' L '+xAt(points[i],i,points).toFixed(1)+' '+yAt(points[i].value,item.axis).toFixed(1));var info=comparisonLabel(item),summary=stats(item.raw);if(item.axis==='right'){var last=points[points.length-1],base=baselineY(item.axis),areaPath=path+' L '+xAt(last,points.length-1,points).toFixed(1)+' '+base.toFixed(1)+' L '+xAt(points[0],0,points).toFixed(1)+' '+base.toFixed(1)+' Z';svg.push('<path class="chart-area '+item.color+'" d="'+areaPath+'" aria-hidden="true"/>')}svg.push('<path class="chart-line '+item.color+'" d="'+path+'" aria-label="'+esc(info.label)+'"><title>'+esc(info.label+' · '+t('last')+': '+formatNumber(summary.last))+'</title></path>');if(points.length===1)svg.push('<circle class="chart-point '+item.color+'" cx="'+xAt(points[0],0,points).toFixed(1)+'" cy="'+yAt(points[0].value,item.axis).toFixed(1)+'" r="4"><title>'+esc(info.label+' · '+formatNumber(points[0].value))+'</title></circle>')});
       if(timed&&start!==null){svg.push('<text class="chart-x-label" text-anchor="start" x="'+left+'" y="'+(height-10)+'">'+esc(chartTimeLabel(start))+'</text>');if(end!==start)svg.push('<text class="chart-x-label" text-anchor="end" x="'+(width-right)+'" y="'+(height-10)+'">'+esc(chartTimeLabel(end))+'</text>')}
       chartHtml='<div class="chart comparison-chart">'+svg.join('')+'</svg></div>'
     }
     var html=[chartHtml,'<div class="chart-legend" role="list">'];
-    items.forEach(function(item){var info=comparisonLabel(item),summary=stats(item.raw),source=item.item.selected_history_source||item.item.history_source||'',available=item.item.available!==false,status=available?t('available'):text(item.item.error_code||t('unavailable'));html.push('<div class="chart-legend-row" role="listitem"><span class="chart-swatch '+item.color+'" aria-hidden="true"></span><span class="chart-legend-name">'+esc(info.label)+(info.meta?'<small class="chart-legend-meta">'+esc(info.meta)+(source?' · '+esc(sourceLabel(source)):'')+'</small>':'')+'<small class="chart-legend-meta">'+pill(status,available?'good':'bad')+'</small></span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('last'))+'</span>'+esc(formatNumber(summary.last))+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('minimum'))+'</span>'+esc(formatNumber(summary.min))+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('maximum'))+'</span>'+esc(formatNumber(summary.max))+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('average'))+'</span>'+esc(formatNumber(summary.average))+'</span></div>')});
-    return html.join('')+'</div>'
+    items.forEach(function(item){var info=comparisonLabel(item),summary=stats(item.raw),available=item.item.available!==false,error=!available?text(item.item.error_code||t('unavailable')):'';html.push('<div class="chart-legend-row" role="listitem"><span class="chart-swatch '+item.color+'" aria-hidden="true"></span><span class="chart-legend-name">'+esc(info.label)+(info.meta?'<small class="chart-legend-meta">'+esc(info.meta)+'</small>':'')+(error?'<small class="chart-legend-meta chart-legend-error">'+esc(error)+'</small>':'')+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('last'))+'</span>'+esc(formatNumber(summary.last))+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('minimum'))+'</span>'+esc(formatNumber(summary.min))+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('maximum'))+'</span>'+esc(formatNumber(summary.max))+'</span><span class="chart-legend-stat"><span class="chart-legend-stat-label">'+esc(t('average'))+'</span>'+esc(formatNumber(summary.average))+'</span></div>')});
+    return '<div class="comparison-view">'+html.join('')+'</div>'
   }
   function card(title,body,kind){var n=document.createElement('section');n.className='panel'+(kind?' '+kind:'');var h=document.createElement('h2');h.textContent=title;n.append(h);if(typeof body==='string')n.insertAdjacentHTML('beforeend',body);else if(body)n.append(body);return n}
   function table(headers,rows){var wrap=document.createElement('div');wrap.className='table-wrap';var tab=document.createElement('table'),thead=document.createElement('thead'),tr=document.createElement('tr');headers.forEach(function(h){var th=document.createElement('th');th.textContent=h;tr.append(th)});thead.append(tr);tab.append(thead);var tb=document.createElement('tbody');(rows||[]).forEach(function(row){var r=document.createElement('tr');row.forEach(function(v){var td=document.createElement('td');if(v&&v.nodeType)td.append(v);else td.textContent=text(v);r.append(td)});tb.append(r)});tab.append(tb);wrap.append(tab);return wrap}
   function empty(){var n=document.createElement('div');n.className='empty';n.textContent=t('empty');return n}
   function metricGrid(items){var grid=document.createElement('div');grid.className='metric-grid';items.forEach(function(item){grid.append(card(item[0],'<p>'+esc(item[1])+'</p>','metric'))});return grid}
   function renderHistory(d){var points=Array.isArray(d.points)?d.points:[];var sources=Array.isArray(d.history_sources)?d.history_sources:[];summary([{value:points.length+' '+t('points')},{value:t('source')+': '+text(d.selected_history_source||'—'),kind:d.selected_history_source?'good':'bad'},{value:t('records')+': '+((d.commands||[]).length)}]);var box=document.createElement('div');box.className='grid';box.append(card(t('source'),'<div class="source-list">'+sources.map(function(s){return '<div class="source-row"><span>'+esc(sourceLabel(s.name))+'</span><span>'+pill(s.available?t('available'):t('unavailable'),s.available?'good':'bad')+'</span></div>'}).join('')+'</div>'));var cp=card(t('value'));cp.insertAdjacentHTML('beforeend','<div class="chart">'+chart(points,'line-a')+'</div>');box.append(cp);el.content.append(box);if(points.length)el.content.append(table([t('time'),t('value'),t('name'),t('source')],points.slice(-80).reverse().map(function(p){return[dateText(p.time!==undefined?p.time:(p.source_timestamp!==undefined?p.source_timestamp:p.timestamp)),p.value,p.name||p.topic||p.channel,d.telemetry&&d.telemetry.provider||d.selected_history_source]})));else el.content.append(empty())}
-  function presetLabel(value){var key={"co2-ventilation":'presetCo2Ventilation',"temperature-heating":'presetTemperatureHeating',"humidity-ventilation":'presetHumidityVentilation',custom:'presetCustom'}[String(value)]||'presetCustom';return t(key)}
-  function renderCompare(d){var list=Array.isArray(d.series)?d.series:[],preset=String(d.preset||state.config.preset||el.preset.value||'custom');if(['co2-ventilation','temperature-heating','humidity-ventilation','custom'].includes(preset))el.preset.value=preset;summary([{value:presetLabel(preset)},{value:seriesLabel(list.length)},{value:dateText(d.from)+' → '+dateText(d.to)}]);if(list.length)el.content.append(card(t('chartTitle'),comparisonChart(list)));else el.content.append(empty())}
+  function renderCompare(d){var list=Array.isArray(d.series)?d.series:[];summary([{value:seriesLabel(list.length)},{value:dateText(d.from)+' → '+dateText(d.to)}]);if(list.length)el.content.insertAdjacentHTML('beforeend',comparisonChart(list));else el.content.append(empty())}
   function inputFor(s){var wrap=document.createElement('div');wrap.className='setting';var label=document.createElement('label');label.textContent=text(s.name||s.key);if(s.description){var small=document.createElement('small');small.textContent=s.description;label.append(small)}var value=s.current_value;var input;if(Array.isArray(s.enum_values)&&s.enum_values.length){input=document.createElement('select');s.enum_values.forEach(function(v){var o=document.createElement('option');o.value=String(v);o.textContent=String(v);input.append(o)});input.value=value===null||value===undefined?'':String(value)}else if(String(s.value_type||'').toLowerCase()==='boolean'){input=document.createElement('input');input.type='checkbox';input.checked=value===true||value===1||value==='1'}else{input=document.createElement('input');input.type=['number','integer'].includes(String(s.value_type||'').toLowerCase())?'number':'text';if(s.min!==null&&s.min!==undefined)input.min=s.min;if(s.max!==null&&s.max!==undefined)input.max=s.max;if(s.step!==null&&s.step!==undefined)input.step=s.step;input.value=value===null||value===undefined?'':String(value)}input.dataset.key=s.key;input.disabled=!s.writable;wrap.append(label,input);if(!s.writable){var ro=document.createElement('div');ro.className='muted';ro.textContent=t('readonly');wrap.append(ro)}return wrap}
   function renderSettings(d){var settings=Array.isArray(d.settings)?d.settings:[];summary([{value:settings.length+' '+t('records')},{value:t('revision')+': '+text(d.source_revision)}]);var form=document.createElement('div');form.className='panel';settings.forEach(function(s){form.append(inputFor(s))});var actions=document.createElement('div');actions.className='actions';var btn=document.createElement('button');btn.type='button';btn.textContent=t('save');btn.disabled=!settings.some(function(s){return s.writable});btn.onclick=function(){saveSettings(form,settings,d)};actions.append(btn);form.append(actions);if(!settings.some(function(s){return s.writable})){var note=document.createElement('p');note.className='muted';note.textContent=t('noWritable');form.append(note)}el.content.append(form)}
   function saveSettings(form,settings,d){var changes={};settings.forEach(function(s){if(!s.writable)return;var input=form.querySelector('[data-key="'+CSS.escape(String(s.key))+'"]');if(!input)return;var v=input.type==='checkbox'?input.checked:input.value;if(['number','integer'].includes(String(s.value_type||'').toLowerCase())&&v!=='')v=Number(v);changes[s.key]=v});if(!Object.keys(changes).length)return;var a=merge(state.config.sourceArgs,{settings:changes,expected_revision:d.source_revision||'',idempotency_key:'mcp-widget-'+Date.now()});rpc('tools/call',{name:state.config.writeTool||'shd_update_controller_expert_settings',arguments:a}).then(function(){setStatus(t('saved'),false);refresh()}).catch(function(e){setStatus(e.message||t('fail'),true)})}
@@ -1489,8 +1561,8 @@ progress::-moz-progress-bar {
   function renderAudit(d){var rows=Array.isArray(d.audit)?d.audit:(Array.isArray(d.commands)?d.commands:[]);summary([{value:rows.length+' '+t('records')}]);el.content.append(rows.length?table([t('time'),t('device'),t('action'),t('status'),t('requested'),t('actual')],rows.map(function(x){return[dateText(x.created_at),x.item_id,x.action,x.status,text(x.requested_value),text(x.actual_readback)]})):empty())}
   function render(){clear();labels();var d=state.data||{};try{if(state.mode==='history')renderHistory(d);else if(state.mode==='compare')renderCompare(d);else if(state.mode==='settings')renderSettings(d);else if(state.mode==='topology')renderTopology(d);else if(state.mode==='devices')renderDevices(d);else if(state.mode==='live-state')renderLiveState(d);else if(state.mode==='statistics')renderStatistics(d);else if(state.mode==='health')renderHealth(d);else if(state.mode==='audit')renderAudit(d);else el.content.append(document.createTextNode(t('unknown')))}catch(e){setStatus(e.message||t('unknown'),true)}}
   function apply(x){var p=unwrap(x);state.data=dataFrom(p);setStatus('',false);render()}
-  function refresh(){if(state.busy)return;var args=merge(state.config.listArgs,state.config.sourceArgs);if(el.source.value&&['history','compare','health','statistics'].includes(state.mode))args.source=el.source.value;if(state.mode==='compare'){args.preset=el.preset.value;var groups={"co2-ventilation":["co2","ventilation"],"temperature-heating":["temperature","heating"],"humidity-ventilation":["humidity","ventilation"]}[args.preset];if(groups&&Array.isArray(args.series)){var selected=args.series.filter(function(s){return groups.includes(String(s.group||'').toLowerCase())});if(!selected.length){setStatus(t('presetNoSeries'),true);return}args.series=selected}}var tool=state.config.dataTool;if(!tool){setStatus(t('unknown'),true);return}state.busy=true;el.refresh.disabled=true;setStatus(t('loading'),false);rpc('tools/call',{name:tool,arguments:args}).then(apply).catch(function(e){setStatus(e.message||t('fail'),true)}).finally(function(){state.busy=false;el.refresh.disabled=false})}
-  labels();el.source.onchange=refresh;el.preset.onchange=refresh;el.refresh.onclick=refresh;
+  function refresh(){if(state.busy)return;var args=merge(state.config.listArgs,state.config.sourceArgs);if(el.source.value&&['history','compare','health','statistics'].includes(state.mode))args.source=el.source.value;var tool=state.config.dataTool;if(!tool){setStatus(t('unknown'),true);return}state.busy=true;el.refresh.disabled=true;setStatus(t('loading'),false);rpc('tools/call',{name:tool,arguments:args}).then(apply).catch(function(e){setStatus(e.message||t('fail'),true)}).finally(function(){state.busy=false;el.refresh.disabled=false})}
+  labels();el.source.onchange=refresh;el.refresh.onclick=refresh;
   window.addEventListener('message',function(ev){if(ev.source!==window.parent)return;var m=ev.data||{};if(m.id!==undefined&&pending.has(m.id)){var q=pending.get(m.id);pending.delete(m.id);clearTimeout(q.timeout);if(m.error)q.reject(Error(m.error.message||t('fail')));else q.resolve(m.result);return}if(m.method==='ui/notifications/tool-input'||m.method==='ui/notifications/tool-result'){try{apply(m.params&&m.params.structuredContent||m.params||{})}catch(e){setStatus(e.message||t('fail'),true)}}});
   rpc('ui/initialize',{protocolVersion:'2026-01-26',appInfo:{name:'SHD controller observability',title:'SHD MCP',version:'1.0.0',websiteUrl:'https://shd.xyz.su'},appCapabilities:{}}).then(function(){window.parent.postMessage({jsonrpc:'2.0',method:'ui/notifications/initialized',params:{}},'*')}).catch(function(){});var initial=window.openai&&window.openai.toolOutput||window.openai&&window.openai.toolInput;if(initial){try{apply(initial)}catch(e){setStatus(e.message||t('fail'),true)}}else{refresh()}
 }());
