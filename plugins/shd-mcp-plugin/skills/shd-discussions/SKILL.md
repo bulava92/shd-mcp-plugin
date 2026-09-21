@@ -1,6 +1,7 @@
 ---
 name: shd-discussions
 description: Use when the user asks to find, read, search, create or edit SHD discussion channels, topics, messages or attachments.
+metadata: modules=discussions
 ---
 
 # SHD discussions

@@ -1,6 +1,7 @@
 ---
 name: shd-entity-resolution
 description: Use when the user asks to find a CRM entity, resolve duplicate names, compare counterparties, or determine whether records refer to the same business object.
+metadata: modules=*
 ---
 
 # SHD entity resolution

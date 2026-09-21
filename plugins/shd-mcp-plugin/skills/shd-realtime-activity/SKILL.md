@@ -1,6 +1,7 @@
 ---
 name: shd-realtime-activity
 description: Use when the user asks to inspect SHD realtime events, start or terminate a realtime session, or review operational activity and audit history.
+metadata: modules=realtime
 ---
 
 # SHD realtime and activity

@@ -1,6 +1,7 @@
 ---
 name: shd-wiki-management
 description: Use when the user asks to search, read, compare, create or update SHD Wiki, notes, pages, collections, databases, revisions or attachments.
+metadata: modules=notes
 ---
 
 # SHD Wiki and notes

@@ -1,6 +1,7 @@
 ---
 name: shd-notifications
 description: Use when the user asks to inspect SHD notifications, notification modules, read state or preferences, or mark notifications read.
+metadata: modules=notifications
 ---
 
 # SHD notifications

@@ -1,6 +1,7 @@
 ---
 name: shd-task-workflow
 description: Use when the user asks to find, inspect, create, update, reschedule, archive, or delete SHD tasks or task-project data.
+metadata: modules=tasks
 ---
 
 # SHD task workflow

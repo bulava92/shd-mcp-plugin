@@ -1,6 +1,6 @@
 {
   "name": "shd-mcp-plugin",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Ready-to-install SHD workflows backed by the authenticated SHD MCP server.",
   "author": {
     "name": "SHD",
@@ -18,6 +18,10 @@
     "CRM",
     "documents",
     "inventory",
+    "services",
+    "short-links",
+    "system-base",
+    "profile",
     "organizations",
     "notifications",
     "realtime",
@@ -28,7 +32,7 @@
   "interface": {
     "displayName": "SHD MCP",
     "shortDescription": "SHD projects and operations",
-    "longDescription": "Installable SHD MCP workflows for projects, ProjectBase, tasks, files, finance, CRM, documents, access control, inventory, notifications, realtime, status monitoring and linked Gitea operations.",
+  "longDescription": "Installable SHD MCP workflows for projects, ProjectBase, tasks, files, finance, CRM, documents, service catalog, short links, profile, global System Base, access control, inventory, notifications, realtime, status monitoring and linked Gitea operations.",
     "developerName": "SHD",
     "category": "Productivity",
     "capabilities": [

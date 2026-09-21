@@ -1,6 +1,7 @@
 ---
 name: shd-safe-bulk-change
 description: Use before any SHD bulk create, update, import, archive, delete, or other multi-record mutation, and whenever the user asks to plan a mass change.
+metadata: modules=*
 ---
 
 # Safe SHD bulk changes

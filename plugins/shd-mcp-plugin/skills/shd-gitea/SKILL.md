@@ -1,6 +1,7 @@
 ---
 name: shd-gitea
 description: Use when the user asks to inspect or manage SHD-linked Gitea issues, labels, comments or issue attachments.
+metadata: modules=gitea
 ---
 
 # SHD Gitea

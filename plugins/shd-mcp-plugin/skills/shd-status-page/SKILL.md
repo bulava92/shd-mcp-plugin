@@ -1,6 +1,7 @@
 ---
 name: shd-status-page
 description: Use when the user asks to inspect SHD status-page monitors, history, groups or incidents, or to change public status monitoring.
+metadata: modules=status-page
 ---
 
 # SHD status page

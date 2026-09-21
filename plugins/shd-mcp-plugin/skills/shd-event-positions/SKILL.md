@@ -1,6 +1,7 @@
 ---
 name: shd-event-positions
 description: Use when the user asks about SHD events, booking availability, scheduling slots, event types or booking positions.
+metadata: modules=scheduling
 ---
 
 # SHD events and scheduling

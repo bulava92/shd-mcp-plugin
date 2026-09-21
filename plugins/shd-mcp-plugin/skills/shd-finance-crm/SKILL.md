@@ -1,6 +1,7 @@
 ---
 name: shd-finance-crm
 description: Use when the user asks for finance or CRM information, document/payment checks, customer records, deals, relationships, or a project business overview in SHD.
+metadata: modules=finance,crm
 ---
 
 # SHD Finance and CRM

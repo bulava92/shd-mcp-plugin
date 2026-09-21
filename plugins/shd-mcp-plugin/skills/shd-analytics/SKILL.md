@@ -1,6 +1,7 @@
 ---
 name: shd-analytics
 description: Use when the user asks for SHD project or company analytics, trends, comparisons, metrics, charts, reports, or time summaries.
+metadata: modules=*
 ---
 
 # SHD analytics and reports

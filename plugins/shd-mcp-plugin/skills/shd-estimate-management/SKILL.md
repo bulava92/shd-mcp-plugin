@@ -1,6 +1,7 @@
 ---
 name: shd-estimate-management
 description: Use when the user asks to inspect, compare, validate, create or update SHD estimates, proposals, terms or document contracts.
+metadata: modules=proposal,documents,pdf-scheme-editor
 ---
 
 # SHD estimates and proposal documents

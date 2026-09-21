@@ -1,6 +1,7 @@
 ---
 name: shd-project-files
 description: Use when the user asks to inspect project files, obtain a file link, share or zip a file, rename or move a path, or delete project files.
+metadata: modules=files
 ---
 
 # SHD project files

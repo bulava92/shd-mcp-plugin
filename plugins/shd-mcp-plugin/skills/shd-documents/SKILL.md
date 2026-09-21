@@ -1,6 +1,7 @@
 ---
 name: shd-documents
 description: Use when the user asks to inspect, generate, send, publish, revise or audit SHD documents, templates, comments or public links.
+metadata: modules=documents
 ---
 
 # SHD documents

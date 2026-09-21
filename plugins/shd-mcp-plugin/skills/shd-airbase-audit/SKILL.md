@@ -1,6 +1,7 @@
 ---
 name: shd-airbase-audit
 description: Use when the user asks to inspect AirBase tables, validate project data, find duplicate or broken links, or audit AirBase quality without changing records.
+metadata: modules=airbase
 ---
 
 # AirBase audit

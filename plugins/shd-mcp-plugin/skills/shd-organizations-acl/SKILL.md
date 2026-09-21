@@ -1,6 +1,7 @@
 ---
 name: shd-organizations-acl
 description: Use when the user asks to inspect or change SHD organizations, members, invitations, roles, access audits or two-factor policies.
+metadata: modules=organizations
 ---
 
 # SHD organizations and ACL

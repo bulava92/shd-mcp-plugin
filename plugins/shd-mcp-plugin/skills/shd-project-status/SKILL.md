@@ -1,6 +1,7 @@
 ---
 name: shd-project-status
 description: Use when the user asks for a status report, operational summary, risks, blockers, next actions, or a cross-module overview of one SHD project.
+metadata: modules=projects-core
 ---
 
 # SHD project status

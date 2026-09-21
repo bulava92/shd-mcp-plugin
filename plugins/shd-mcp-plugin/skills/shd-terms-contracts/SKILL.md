@@ -1,6 +1,7 @@
 ---
 name: shd-terms-contracts
 description: Use when the user asks to inspect, compare, discuss, revise or restore SHD Terms documents and contract points.
+metadata: modules=documents,proposal
 ---
 
 # SHD Terms and contracts

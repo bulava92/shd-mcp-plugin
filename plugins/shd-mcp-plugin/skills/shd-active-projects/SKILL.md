@@ -1,6 +1,7 @@
 ---
 name: shd-active-projects
 description: Use when the user asks for all active SHD projects, project deadlines, project statuses, or a project register sorted by the nearest completion date.
+metadata: modules=projects-core
 ---
 
 # Active SHD projects

@@ -1,6 +1,7 @@
 ---
 name: shd-financial-account-audit
 description: Use when the user asks to audit SHD finance accounts, balances, payments, documents, allocations, settlements or finance history.
+metadata: modules=finance
 ---
 
 # SHD financial audit

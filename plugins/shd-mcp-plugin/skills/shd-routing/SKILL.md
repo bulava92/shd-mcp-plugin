@@ -1,6 +1,7 @@
 ---
 name: shd-routing
 description: Use for any request that asks SHD for data, a project operation, a module workflow, or a change to SHD records. Route the request to the narrowest existing SHD MCP tool and preserve server-side permissions.
+metadata: modules=*
 ---
 
 # SHD routing and safety
@@ -22,6 +23,14 @@ readback. Do not invent fields, statuses, identifiers, routes or capabilities.
 - Documents, templates, revisions, PDFs or publication links: use Documents tools and the `shd-documents` workflow.
 - Organizations, members, invitations, roles or two-factor policy: use Organizations tools and the `shd-organizations-acl` workflow.
 - Notifications, preferences or read state: use Notifications tools and the `shd-notifications` workflow.
+- Services, versions, approvals or site publications: use Services tools and
+  the `shd-services` workflow.
+- Short links, public aliases, rotation or revocation: use Short Links tools
+  and the `shd-short-links` workflow.
+- Global System Base tables or records: use System Base tools and the
+  `shd-system-base` workflow. Do not substitute AirBase tools.
+- Authenticated profile or OIDC link changes: use Profile tools and the
+  `shd-auth-profile` workflow.
 - Inventory, stock, assets, procurement or stocktakes: use Inventory tools and the `shd-inventory` workflow.
 - Agents, controllers, diagnostics, tunnels or network access: use Agents tools and the `shd-agents-operations` workflow.
 - Controller devices, current states, presence/history or sensor statistics: use the controller-integrations source tools; in a UI-capable host call the matching controller render tool after the data tool and before the final response (`shd_render_controller_devices_widget`, `shd_render_controller_live_state_widget`, `shd_render_controller_history_widget` or `shd_render_controller_statistics_widget`). For one statistics series, render the final result once; for several explicitly requested series, collect them into one `data.series` collection and render one summary widget, not one widget per retry, metric field or inventory match.

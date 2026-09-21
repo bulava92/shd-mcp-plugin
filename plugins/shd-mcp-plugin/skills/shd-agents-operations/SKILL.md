@@ -1,6 +1,7 @@
 ---
 name: shd-agents-operations
 description: Use when the user asks to inspect SHD agents, controllers, diagnostics, tunnels, access rules, endpoints, monitoring or agent runtime actions.
+metadata: modules=agents,controller-integrations
 ---
 
 # SHD agents operations

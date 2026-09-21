@@ -1,6 +1,7 @@
 ---
 name: shd-inventory
 description: Use when the user asks to inspect or change SHD inventory items, assets, stock, procurement, reservations, receipts or stocktakes.
+metadata: modules=inventory
 ---
 
 # SHD inventory

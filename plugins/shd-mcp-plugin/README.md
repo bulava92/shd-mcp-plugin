@@ -6,6 +6,9 @@ SHD backend or a second MCP server.
 
 The plugin requires an SHD account authorized for the requested projects and
 modules. Skills do not grant permissions or bypass server-side ACLs.
+Each Skill declares its module scope; the MCP server filters Skill discovery
+and Skill resources by the authenticated module access in the same way as
+prompts and data resources.
 
 ## Included workflows
 
@@ -26,6 +29,9 @@ modules. Skills do not grant permissions or bypass server-side ACLs.
 - organizations, members, invitations, ACL and two-factor policies;
 - notifications, preferences and read-state workflows;
 - inventory, assets, stock, procurement and stocktake workflows;
+- service catalog, version, approval and site-publication workflows;
+- short-link, public-alias, rotation and revocation workflows;
+- global System Base and authenticated profile workflows;
 - agent/controller diagnostics, tunnels, endpoints and runtime actions;
 - status-page monitors, groups, history and incidents;
 - realtime sessions, event cursors and operational activity;
