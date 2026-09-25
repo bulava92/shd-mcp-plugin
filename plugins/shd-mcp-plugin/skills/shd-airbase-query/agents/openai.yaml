@@ -1,0 +1,5 @@
+interface:
+  display_name: Вопросы по AirBase
+  short_description: Чтение записей и связей проекта
+policy:
+  allow_implicit_invocation: true
